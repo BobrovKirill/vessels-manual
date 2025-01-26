@@ -1,0 +1,10 @@
+/// Emulates password input type for disabling browser autocomplete
+/// https://github.com/noppa/text-security
+///
+@mixin text-security() {
+  /* stylelint-disable -- password emulation hack */
+  font-family: text-security-disc;
+  /* stylelint-enable */
+
+  -webkit-text-security: disc;
+}

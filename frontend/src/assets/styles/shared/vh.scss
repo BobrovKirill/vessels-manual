@@ -1,0 +1,9 @@
+/// Returns the consistent and correct vh value.
+/// Useful on mobile and tablet devices.
+/// Allows to ignore the browser top and bottom bars.
+/// --vh calculates by JS.
+///
+/// @param {number} $value
+@function vh($value) {
+  @return calc(var(--vh, 1vh) * #{$value});
+}

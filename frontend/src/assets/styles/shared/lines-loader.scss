@@ -1,0 +1,38 @@
+@mixin lines-loader($colorA: color('gray', 3), $colorB: white) {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  &::before,
+  &::after {
+    animation: lines-loader 2s infinite linear;
+
+    background-image: linear-gradient(to right, $colorA 0%, $colorB 50%, $colorA 100%);
+    background-position: 0 100%;
+    background-size: 200% auto;
+
+    border-radius: 4px;
+    content: '';
+  }
+
+  &::before {
+    width: 60%;
+    height: 20px;
+  }
+
+  &::after {
+    width: 100%;
+    height: 44px;
+    margin-top: 16px;
+  }
+
+  @keyframes lines-loader {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}

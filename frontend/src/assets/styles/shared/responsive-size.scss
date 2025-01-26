@@ -1,0 +1,17 @@
+@use "sass:math";
+@import 'breakpoint';
+@import 'strip-unit';
+
+
+/// Make responsive size
+///
+/// @param {String} $size - width or height in px
+/// @param {String} $breakpoint - breakpoint keyword
+/// @param {String} $type - breakpoint type keyword
+///
+/// @return {String} - responsive size in vw
+@function responsive-size($size, $breakpoint, $type: 'base') {
+  $size: strip-unit($size);
+  $breakpoint: breakpoint-value($breakpoint, $type);
+  @return math.div($size, $breakpoint) * 100vw;
+}

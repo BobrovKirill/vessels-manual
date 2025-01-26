@@ -1,0 +1,16 @@
+/// Truncate multiline text with an ellipsis.
+///
+/// @param {number} $line-clamp
+/// @param {string} $line-height
+@mixin multiline-text-truncate($line-clamp, $line-height) {
+  /* stylelint-disable -- multiline text truncation hack */
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+
+  display: block;
+  display: -webkit-box;
+  /* stylelint-enable */
+
+  overflow: hidden;
+  max-height: calc($line-height * $line-clamp);
+}

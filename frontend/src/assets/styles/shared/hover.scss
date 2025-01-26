@@ -1,0 +1,44 @@
+/// Creates an accessable hover for devices.
+@mixin hover($on: null, $pseudo: null) {
+  $active: '&:active';
+  $hover: '&:hover';
+
+  @if ($on) {
+    $active: '#{$on}:active &';
+    $hover: '#{$on}:hover &';
+
+    @if ($on == '::before' or $on == '::after') {
+      $active: '&:active#{$on}';
+      $hover: '&:hover#{$on}';
+    }
+  }
+
+  #{$active} {
+    -webkit-tap-highlight-color: transparentize(black, 1);
+    @content;
+  }
+
+  @media (any-hover: hover) {
+    #{$hover} {
+      @content;
+    }
+  }
+}
+
+/// Shadow hover effect on card
+@mixin card-shadow-hover($on: null) {
+  transition: box-shadow 0.4s;
+
+  @include hover($on: $on) {
+    box-shadow: 0 2px 18px transparentize(black, 0.92);
+  }
+}
+
+/// Color hover effect on card
+@mixin card-color-hover($on: null) {
+  transition: color 0.2s;
+
+  @include hover($on: $on) {
+    color: rgba(color('gray', 7), 0.8);
+  }
+}

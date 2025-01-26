@@ -1,0 +1,61 @@
+@use './strip-unit';
+
+$breakpoints: (
+  'desktop': (
+    'base': 1024px,
+    'medium': 1236px,
+    'wide': 1552px,
+  ),
+
+  'mobile': (
+    'base': 320px,
+    'medium': 375px,
+    'medium-plus': 400px,
+    'wide': 425px,
+  ),
+
+  'tablet': (
+    'base': 768px,
+  ),
+);
+
+/// Include styles for media query.
+///
+/// @param {string} $breakpoint
+///   A breakpoint key in $breakpoints.
+/// @param {string} $type
+///   A breakpoint type.
+@mixin breakpoint($breakpoint, $type: 'base', $media-width: 'min-width') {
+  $map: map-get($breakpoints, $breakpoint);
+  $width: map-get($map, $type);
+
+  @media screen and ($media-width: $width) {
+    @content;
+  }
+}
+
+/// Get breakpoint value.
+///
+/// @param {string} $breakpoint
+///   A breakpoint key in $breakpoints.
+/// @param {string} $type
+///   A breakpoint type.
+@function breakpoint($breakpoint, $type: 'base') {
+  $map: map-get($breakpoints, $breakpoint);
+  $width: map-get($map, $type);
+
+  @return $width;
+}
+
+/// Get breakpoint unitless value.
+///
+/// @param {string} $breakpoint
+///   A breakpoint key in $breakpoints.
+/// @param {string} $type
+///   A breakpoint type.
+@function breakpoint-value($breakpoint, $type: 'base') {
+  $map: map-get($breakpoints, $breakpoint);
+  $width: map-get($map, $type);
+
+  @return strip-unit($width);
+}

@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use 'sass:list';
+/// Colors.
+$colors: (
+  'black': (
+    #181716,
+    #0a0a0a,
+    #0a0f14,
+    #101010,
+  ),
+
+  'blue': (
+    #0082ff,
+    #006ee1,
+  ),
+
+  'gray': (
+    #fcfcfc,
+    #f4f4f4,
+    #e2e2e2,
+    #c3c3c3,
+    #989898,
+    #767676,
+    #2d2d2d,
+    #232323,
+    #2e2e2e,
+    #151515,
+  ),
+
+  'green': (
+    #4bb44b,
+    #0e8912,
+    #E8EFD7,
+    #b1d74f,
+  ),
+
+  'orange': (
+    #ffa00a,
+  ),
+
+  'red': (
+    #dc0a19,
+    #f02d37,
+  ),
+
+  'yellow': (
+    #f4e600,
+    #f5dc00,
+  ),
+);
+
+
+@function color($key, $index: 1) {
+  $shades: map.get($colors, $key);
+
+  @if $shades == null {
+    @error "Color `#{$key}` not found in \$colors map.";
+  }
+
+  @return list.nth($shades, $index);
+}

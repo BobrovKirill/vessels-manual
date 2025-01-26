@@ -1,0 +1,97 @@
+@import './color';
+
+//$scrollbar-default-color: rgba(color('black'), 0.14);
+$scrollbar-default-color: rgba(0 0 0 0, 0.14);
+
+/// Horizontal scrollbar styles.
+///
+/// @param {string} $color
+@mixin scrollbar-y($color: $scrollbar-default-color) {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  scrollbar-color: $color transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 2px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-right: 2px solid transparent;
+    border-left: 3px solid transparent;
+
+    background-clip: content-box;
+    background-color: $color;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background-color: rgba($color, 0.07);
+  }
+}
+
+/// Vertical scrollbar styles.
+///
+/// @param {string} $color
+@mixin scrollbar-x($color: $scrollbar-default-color) {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+
+  overflow-x: auto;
+  overscroll-behavior: contain;
+
+  scrollbar-color: $color transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 11px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 0 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-top: 3px solid transparent;
+    border-bottom: 2px solid transparent;
+
+    background-clip: content-box;
+    background-color: $color;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background-color: rgba($color, 0.07);
+  }
+}
+
+/// Generic scrollbar styles.
+///
+/// @param {string} $color
+/// @param {string} $axis
+@mixin scrollbar($color: $scrollbar-default-color, $axis: 'y' ) {
+  @if ($axis == 'x') {
+    @include scrollbar-x($color);
+  } @else {
+    @include scrollbar-y($color);
+  }
+}
+
+@mixin invisible-scrollbar() {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,93 @@
+@use 'sass:map';
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+mark,
+::selection {
+  background: color('yellow');
+  color: color('gray', 7);
+}
+
+body {
+  position: relative;
+  padding-bottom: 0 !important; // Ignore incorrect floor adfox value
+  margin: 0;
+
+  background-color: color('gray', 2);
+  font-family: font('primary');
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  hyphens: auto;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: 0;
+
+  font-family: font('primary');
+  outline: 0;
+}
+
+input {
+  font-family: font('primary');
+}
+
+.scaleY-enter-active,
+.scaleY-leave-active {
+  transform-origin: top;
+  transition: transform 0.2s;
+
+  will-change: transform;
+}
+
+.scaleY-enter,
+.scaleY-leave-to {
+  transform: scaleY(0);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transform: translateY(0);
+  transition: transform 0.2s;
+
+  will-change: transform;
+}
+
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: translateY(100%);
+}
+
+a {
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}

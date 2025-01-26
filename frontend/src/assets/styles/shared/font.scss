@@ -1,0 +1,14 @@
+/// Fonts.
+$fonts: (
+  'primary': ('Source Sans Pro', sans-serif),
+  'secondary': ('Merriweather', serif),
+);
+
+/// Returns a font from fonts map.
+///
+/// @param {string} $key
+///   Fonts map key.
+/// @return {string} Value from the `$fonts` by `$key`.
+@function font($key) {
+  @return map-get($fonts, $key);
+}

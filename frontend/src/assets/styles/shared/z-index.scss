@@ -1,0 +1,20 @@
+$base-z-index: 1000000;
+
+$z-index: (
+  'dropdown': $base-z-index,
+  'header': $base-z-index,
+  'modal': $base-z-index + 1,
+  'nuxt-progress': $base-z-index + 1,
+);
+
+@function z-index($key) {
+  @if ($key) {
+    @return map-get($z-index, $key);
+  }
+
+  @return $base-z-index;
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}

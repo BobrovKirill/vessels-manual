@@ -1,0 +1,20 @@
+@import './str-replace';
+
+/// Returns Forbes corporate pattern as data URI SVG.
+///
+/// @param {string} $color
+/// @param {string} $direction
+@function svg-pattern($color: #{color('gray', 8)}, $direction: 'row') {
+  $color: str-replace($color, '#', '%23');
+
+  @if $direction == 'row' {
+    @return url("data:image/svg+xml,%3Csvg width='400' height='160' viewBox='0 0 400 160' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 160C44.1828 160 80 124.183 80 80C80 35.8172 44.1828 0 0 0L0 160Z' fill='#{$color}'/%3E%3Cpath d='M80 160C124.183 160 160 124.183 160 80C160 35.8172 124.183 0 80 0L80 160Z' fill='#{$color}'/%3E%3Ccircle cx='240' cy='80' r='80' fill='#{$color}'/%3E%3Cpath d='M400 0C355.817 -3.86258e-06 320 35.8172 320 80C320 124.183 355.817 160 400 160L400 0Z' fill='#{$color}'/%3E%3C/svg%3E");
+  }
+
+  @if $direction == 'column' {
+    @return url("data:image/svg+xml,%3Csvg width='160' height='400' viewBox='0 0 160 400' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 -6.99382e-06C-1.93129e-06 44.1828 35.8172 80 80 80C124.183 80 160 44.1828 160 0L0 -6.99382e-06Z' fill='#{$color}'/%3E%3Cpath d='M0 80C-1.93129e-06 124.183 35.8172 160 80 160C124.183 160 160 124.183 160 80L0 80Z' fill='#{$color}'/%3E%3Ccircle cx='80' cy='240' r='80' transform='rotate(90 80 240)' fill='#{$color}'/%3E%3Cpath d='M160 400C160 355.817 124.183 320 80 320C35.8172 320 5.79387e-06 355.817 0 400L160 400Z' fill='#{$color}'/%3E%3C/svg%3E");
+  }
+
+  @error "Unkown '#{$direction}' in $direction.";
+  @return null;
+}
