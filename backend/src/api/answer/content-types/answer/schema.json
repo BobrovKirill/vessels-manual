@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "answers",
+  "info": {
+    "singularName": "answer",
+    "pluralName": "answers",
+    "displayName": "answer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "answer_id": {
+      "type": "uid"
+    },
+    "question_id": {
+      "type": "uid"
+    },
+    "text": {
+      "type": "string"
+    },
+    "is_correct": {
+      "type": "boolean"
+    },
+    "comment": {
+      "type": "text"
+    }
+  }
+}
