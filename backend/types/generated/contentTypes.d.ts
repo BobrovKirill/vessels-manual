@@ -422,6 +422,7 @@ export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
     question_id: Schema.Attribute.UID;
     text: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -569,6 +570,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
+    description: '';
     displayName: 'Question';
     pluralName: 'questions';
     singularName: 'question';
@@ -577,6 +579,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    answers: Schema.Attribute.Relation<'oneToMany', 'api::answer.answer'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -586,15 +589,12 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
       'api::question.question'
     > &
       Schema.Attribute.Private;
-    order: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     question_id: Schema.Attribute.UID;
-    text: Schema.Attribute.String;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    verssal_type_id: Schema.Attribute.UID;
-    waterway_type_id: Schema.Attribute.UID;
   };
 }
 

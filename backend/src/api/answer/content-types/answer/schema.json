@@ -25,6 +25,12 @@
     },
     "comment": {
       "type": "text"
+    },
+    "question": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::question.question",
+      "inversedBy": "answers"
     }
   }
 }

@@ -4,27 +4,27 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "Question"
+    "displayName": "Question",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "question_id": {
-      "type": "uid"
-    },
-    "verssal_type_id": {
-      "type": "uid"
-    },
-    "waterway_type_id": {
-      "type": "uid"
-    },
     "text": {
-      "type": "string"
+      "type": "text",
+      "required": true
     },
-    "order": {
-      "type": "integer"
+    "question_id": {
+      "type": "uid",
+      "required": false
+    },
+    "answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::answer.answer",
+      "mappedBy": "question"
     }
   }
 }
