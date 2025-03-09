@@ -1,12 +1,7 @@
-import type { NuxtConfig } from '@nuxt/types'
+import type { NuxtConfig } from '@nuxt/schema'
 
 export const PLUGINS: NuxtConfig['plugins'] = [
   // { src: '~/plugins/imageFormat' },
-
-  /**
-   * SvgIcon Component.
-   */
-  // { src: '~/plugins/svgicon' },
 
   /**
    * User.
