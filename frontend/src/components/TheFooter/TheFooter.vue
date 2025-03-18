@@ -150,7 +150,6 @@ console.log('TheFooter is loaded')
   .footer_down_list_item {
     font-size: 15px;
     font-family: 'Roboto';
-    font-weight: regular;
     color: #213341;
   }
 
