@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: your_dockerhub_user/backend:latest
+    image: kseniadakiny/backend:latest
     container_name: myapp_backend
     ports:
       - "8000:8000"  
@@ -10,7 +10,8 @@ services:
       - ENV=production
 
   frontend:
-    image: your_dockerhub_user/frontend:latest
+    image: kseniadakiny/frontend:latest
     container_name: myapp_frontend
     ports:
       - "3000:80"     
+
