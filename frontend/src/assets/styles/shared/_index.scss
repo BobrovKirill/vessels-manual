@@ -1,7 +1,7 @@
 /// Shared entities.
 @forward 'breakpoint';
 @forward 'color';
-//@import 'constants';
+@forward 'constants';
 //@import 'font';
 //@import 'hover';
 //@import 'lines-loader';
@@ -15,4 +15,5 @@
 //@import 'vh';
 //@import 'z-index';
 @forward 'strip-unit';
+
 
