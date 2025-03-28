@@ -11,9 +11,6 @@
     "draftAndPublish": false
   },
   "pluginOptions": {},
-  "config": {
-    "displayField": "text"
-  },
   "attributes": {
     "text": {
       "type": "text",
@@ -35,6 +32,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::water-region-type.water-region-type",
+      "mappedBy": "question"
+    },
+    "watercraft_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::watercraft-type.watercraft-type",
       "mappedBy": "question"
     }
   }

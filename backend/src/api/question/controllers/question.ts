@@ -31,16 +31,3 @@ module.exports = createCoreController('api::question.question', ({strapi}) => ({
     }
   },
 }));
-
-//    "region_type": {
-//      "type": "relation",
-//      "relation": "manyToOne",
-//      "target": "api::region-type.region-type",
-//      "inversedBy": "questions"
-//    },
-//    "watercraft_type": {
-//      "type": "relation",
-//      "relation": "manyToOne",
-//      "target": "api::watercraft-type.watercraft-type",
-//      "inversedBy": "questions"
-//    }
