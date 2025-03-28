@@ -401,15 +401,15 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
   collectionName: 'answers';
   info: {
+    description: '';
     displayName: 'answer';
     pluralName: 'answers';
     singularName: 'answer';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    answer_id: Schema.Attribute.UID;
     comment: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -423,7 +423,6 @@ export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
-    question_id: Schema.Attribute.UID;
     text: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -576,7 +575,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     singularName: 'question';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     answers: Schema.Attribute.Relation<'oneToMany', 'api::answer.answer'>;
@@ -590,8 +589,80 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    question_id: Schema.Attribute.UID;
+    quiz_type: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::quiz-type.quiz-type'
+    >;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    water_region_types: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::water-region-type.water-region-type'
+    >;
+  };
+}
+
+export interface ApiQuizTypeQuizType extends Struct.CollectionTypeSchema {
+  collectionName: 'quiz_types';
+  info: {
+    description: '';
+    displayName: 'quizType';
+    pluralName: 'quiz-types';
+    singularName: 'quiz-type';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::quiz-type.quiz-type'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['quiz', 'exam']> &
+      Schema.Attribute.DefaultTo<'quiz'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWaterRegionTypeWaterRegionType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'water_region_types';
+  info: {
+    description: '';
+    displayName: 'waterRegionType';
+    pluralName: 'water-region-types';
+    singularName: 'water-region-type';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::water-region-type.water-region-type'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
+    region: Schema.Attribute.Enumeration<['mp', 'vp', 'vvp']> &
+      Schema.Attribute.Required;
+    text: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1114,6 +1185,8 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::question.question': ApiQuestionQuestion;
+      'api::quiz-type.quiz-type': ApiQuizTypeQuizType;
+      'api::water-region-type.water-region-type': ApiWaterRegionTypeWaterRegionType;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

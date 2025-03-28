@@ -4,19 +4,14 @@
   "info": {
     "singularName": "answer",
     "pluralName": "answers",
-    "displayName": "answer"
+    "displayName": "answer",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "answer_id": {
-      "type": "uid"
-    },
-    "question_id": {
-      "type": "uid"
-    },
     "text": {
       "type": "string"
     },

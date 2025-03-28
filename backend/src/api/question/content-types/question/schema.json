@@ -8,22 +8,33 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
+  "config": {
+    "displayField": "text"
+  },
   "attributes": {
     "text": {
       "type": "text",
       "required": true
     },
-    "question_id": {
-      "type": "uid",
-      "required": false
-    },
     "answers": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::answer.answer",
+      "mappedBy": "question"
+    },
+    "quiz_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quiz-type.quiz-type",
+      "inversedBy": "questions"
+    },
+    "water_region_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::water-region-type.water-region-type",
       "mappedBy": "question"
     }
   }
