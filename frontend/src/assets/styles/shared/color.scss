@@ -39,15 +39,17 @@ $colors: (
   ),
 
   'red': (
-    #dc0a19,
-    #f02d37,
+    #b82132,
   ),
 
   'yellow': (
     #f4e600,
     #f5dc00,
   ),
+
+  
 );
+
 
 
 @function color($key, $index: 1) {

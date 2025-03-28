@@ -1,15 +1,14 @@
+@use 'sass:map';
 $bar-height: 48px;
 $bar-height-mobile: 48px;
 $under-bar-heigth: 40px;
 $header-height-mobile: $bar-height + $under-bar-heigth;
 
-$waterfall-carousel-height: 180px;
-$waterfall-carousel-height-mobile: 188px;
-$waterfall-subscription-height: 176px;
-$waterfall-date-bar-height: 58px;
+
 
 @mixin waterfall-subscription-is-hidden() {
   @media only screen and (max-height: 900px) {
     @content;
   }
 }
+

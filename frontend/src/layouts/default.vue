@@ -1,3 +1,7 @@
+<script setup lang="ts">
+console.log('default layouts')
+</script>
+
 <template>
   <div :class="$style.layout">
     <TheHeader />
@@ -7,10 +11,6 @@
     <TheFooter />
   </div>
 </template>
-
-<script setup lang="ts">
-console.log('default layouts')
-</script>
 
 <style lang="scss" module>
 .layout {
