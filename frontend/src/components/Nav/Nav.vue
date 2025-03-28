@@ -10,59 +10,40 @@ console.log('props', props.list)
 
 <template>
   <nav class="nav">
-    <ul v-if="$viewport.isGreaterThan('tablet')" class="header__nav__list">
+    <ul v-if="$viewport.isGreaterThan('tablet')" class="nav__list">
       <li
         v-for="(listItem, index) in list"
         :key="index"
-        class="header__nav-item"
+        class="nav__list-item"
         :class="`${index}_item`"
       >
         <NuxtLink v-if="listItem.name" :to="listItem.to">
           {{ listItem.name || '' }}
         </NuxtLink>
       </li>
-      <!--      <li class="header__nav__list__item first__item__left"> -->
-      <!--        <NuxtLink to="/tests"> -->
-      <!--          Тесты -->
-      <!--        </NuxtLink> -->
-      <!--      </li> -->
-      <!--      <li class="header__nav__list__item second__item__left"> -->
-      <!--        <NuxtLink to="/info"> -->
-      <!--          Информация -->
-      <!--        </NuxtLink> -->
-      <!--      </li> -->
-      <!--      <li class="header__nav__list__item first__item__right"> -->
-      <!--        <NuxtLink to="/info-project"> -->
-      <!--          О&nbsp;проекте -->
-      <!--        </NuxtLink> -->
-      <!--      </li> -->
-      <!--      <li class="header__nav__list__item second__item__right"> -->
-      <!--        <NuxtLink to="/more"> -->
-      <!--          Теория -->
-      <!--        </NuxtLink> -->
-      <!--      </li> -->
     </ul>
     <slot />
   </nav>
 </template>
 
 <style scoped lang="scss">
-
 a {
   text-decoration: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
 }
 
 .nav {
   margin: 0 auto;
 }
 
-
-.header__nav-item {
+.nav__list-item {
     color: #B82132;
     font-size: 14px;
 }
 
-.header__nav__list {
+.nav__list {
     display: grid;
     grid-template-columns: repeat(5, 90px);
     grid-template-areas:
@@ -75,22 +56,19 @@ a {
     column-gap: 90px;
 }
 
-.header__nav-item:nth-child(1) {
+.nav__list-item:nth-child(1) {
   grid-area: item1;
 }
 
-.header__nav-item:nth-child(2) {
+.nav__list-item:nth-child(2) {
   grid-area: item2;
 }
 
-.header__nav-item:nth-child(3) {
+.nav__list-item:nth-child(3) {
   grid-area: item3;
 }
 
-.header__nav-item:nth-child(4) {
+.nav__list-item:nth-child(4) {
   grid-area: item4;
 }
-
-
-
 </style>
