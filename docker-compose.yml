@@ -16,7 +16,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: ghcr.io/celes/strapi-app:latest
     container_name: strapi_backend
     env_file: ./backend/.env
     ports:
@@ -24,3 +23,4 @@ services:
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/.tmp:/app/.tmp
+
