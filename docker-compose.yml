@@ -1,19 +1,26 @@
-version: '3.8'
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: myapp_backend
-    ports:
-      - "8000:8000"
-    environment:
-      - ENV=production
-
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: myapp_frontend
+    image: my-frontend:latest
+    container_name: nuxt_frontend
+    environment:
+      API_URL: "http://backend:1337"
     ports:
-      - "3000:80"
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ghcr.io/celes/strapi-app:latest
+    container_name: strapi_backend
+    env_file: ./backend/.env
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./backend/public/uploads:/app/public/uploads
+      - ./backend/.tmp:/app/.tmp
