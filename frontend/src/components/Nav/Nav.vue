@@ -22,25 +22,12 @@ console.log('props', props.list)
         </NuxtLink>
       </li>
     </ul>
-    <slot />
   </nav>
 </template>
 
 <style scoped lang="scss">
-a {
-  text-decoration: none;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-}
-
 .nav {
   margin: 0 auto;
-}
-
-.nav__list-item {
-    color: #B82132;
-    font-size: 14px;
 }
 
 .nav__list {
@@ -54,6 +41,18 @@ a {
     align-items: center;
     justify-items: center;
     column-gap: 90px;
+}
+
+.nav__list-item {
+  color: #B82132;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .nav__list-item:nth-child(1) {

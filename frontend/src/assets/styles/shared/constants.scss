@@ -1,14 +1,21 @@
-@use 'sass:map';
+@use './color' as *;
+
 $bar-height: 48px;
 $bar-height-mobile: 48px;
 $under-bar-heigth: 40px;
 $header-height-mobile: $bar-height + $under-bar-heigth;
+$nav-mobile-index: 999;
+
+//----------------Light Theme--------------//
+
+$main: color('gray');
+$secondary: color('blue');
+$accent:color('red');
+
+$first-font: color('black');
+$second-font: color('green');
+$accent-font: color('red');
 
 
-
-@mixin waterfall-subscription-is-hidden() {
-  @media only screen and (max-height: 900px) {
-    @content;
-  }
-}
+//-----------------Dark Theme--------------//
 

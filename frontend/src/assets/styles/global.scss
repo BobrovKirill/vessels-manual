@@ -8,7 +8,7 @@
 mark,
 ::selection {
   background: color('yellow');
-  color: color('gray', 7);
+  color: color('gray');
 }
 
 body {
@@ -16,7 +16,7 @@ body {
   padding-bottom: 0 !important; // Ignore incorrect floor adfox value
   margin: 0;
 
-  background-color: color('gray', 2);
+  background-color: color('gray');
   font-family: font('primary');
 
   -webkit-font-smoothing: antialiased;
@@ -91,14 +91,3 @@ a {
   clip-path: inset(100%);
   white-space: nowrap;
 }
-
-//----------------Global Vag--------------//
-
-$accent-font: color('red');
-
-$secondary: color('blue');
-$secondfont: color('black');
-
-//-----------------dark theme--------------//
-
-

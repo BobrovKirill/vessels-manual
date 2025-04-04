@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 /// Fonts.
 $fonts: (
   'primary': ('Source Sans Pro', sans-serif),
@@ -10,5 +12,5 @@ $fonts: (
 ///   Fonts map key.
 /// @return {string} Value from the `$fonts` by `$key`.
 @function font($key) {
-  @return map-get($fonts, $key);
+  @return map.get($fonts, $key);
 }

@@ -2,17 +2,16 @@
 import Nav from '~/components/Nav/Nav.vue'
 
 import { navList } from '~/components/TheHeader/index'
+import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
 
 console.log('TheHeader is loaded')
 </script>
 
 <template>
   <header class="header">
-    <button class="header__buttontheme">
-      <SvgIcon class="header__buttontheme-svg" name="ellipse" />
-    </button>
+    <TheSwitcher v-if="$viewport.isGreaterThan('mobileWide')" />
 
-    <NuxtLink class="header__nav-logo" to="/tests">
+    <NuxtLink class="header__logo" to="/">
       <img
         class="header__logo-img"
         height="100"
@@ -20,22 +19,18 @@ console.log('TheHeader is loaded')
         width="101"
       >
     </NuxtLink>
+
     <Nav :list="navList" />
-    <theBurger v-if="$viewport.isLessThan('desktop')" />
-    <NuxtLink class="header__login-link">
-      <SvgIcon class="header__login-link-svg" name="lk" />
+
+    <TheBurger v-if="$viewport.isLessThan('desktop')" :list="navList" />
+
+    <NuxtLink class="header__login">
+      <SvgIcon class="header__login-icon" name="lk" />
     </NuxtLink>
   </header>
 </template>
 
 <style lang="scss" scoped>
-a {
-    text-decoration: none;
-    color: inherit;
-    padding: 0;
-    margin: 0;
-  }
-
 .header {
   max-width: 320px;
   width: 100%;
@@ -66,60 +61,20 @@ a {
 
 }
 
-.header__buttontheme {
-  display: none;
-
-  @include breakpoint('tablet') {
-    border: 1px solid #000000;
-    border-radius: 50px;
-    display: flex;
-    padding: 7px;
-    max-width: 74px;
-    width: 100%;
-    max-height: 37px;
-    height: 100%;
-  }
-
-  @include breakpoint('desktop') {
-    border: 1px solid #000000;
-    border-radius: 50px;
-    display: flex;
-    padding: 9px;
-    max-width: 93px;
-    width: 100%;
-    max-height: 55px;
-    height: 100%;
-  }
-
-}
-
-.header__buttontheme-svg {
-
-  @include breakpoint('tablet') {
-    max-width: 20px;
-    max-height: 20px;
-  }
-
-  @include breakpoint('desktop') {
-    max-width: 36px;
-    max-height: 36px;
-  }
-}
-
-.header__login-link {
-  background: #B82132;
+.header__login {
+  background: $accent;
 
   @include breakpoint('tablet') {
     padding: 16px 16px;
   }
 
   @include breakpoint('desktop') {
-    padding: 15.5px 44px;
+    padding: 16px 44px;
 
   }
 }
 
-.header__login-link-svg {
+.header__login-icon {
   padding: 0;
   margin: 0;
   width: 29px;
@@ -137,19 +92,17 @@ a {
 
 }
 
-.header__nav-logo {
+.header__logo {
   position: absolute;
 
   @include breakpoint('tablet') {
-    position: absolute;
     right: 46%;
     width: 65px;
     height: 65px;
   }
 
   @include breakpoint('desktop') {
-    position: absolute;
-    right: 50.3%;
+    right: 50%;
     padding: 0;
     margin: 0;
     max-height: 98px;
