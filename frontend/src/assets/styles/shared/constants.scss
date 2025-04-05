@@ -1,9 +1,8 @@
 @use './color' as *;
 
-$bar-height: 48px;
-$bar-height-mobile: 48px;
-$under-bar-heigth: 40px;
-$header-height-mobile: $bar-height + $under-bar-heigth;
+$header-height-mobile: 36px;
+$header-height-tablet: 68px;
+$header-height-desk: 102px;
 $nav-mobile-index: 999;
 
 //----------------Light Theme--------------//
