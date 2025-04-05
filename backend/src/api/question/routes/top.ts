@@ -8,8 +8,17 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/top',
-      handler: 'question.topTen',
+      path: '/quez',
+      handler: 'top.quez',
+      config: {
+        auth: false,
+      },
+    },
+
+    {
+      method: 'GET',
+      path: '/exam',
+      handler: 'top.exam',
       config: {
         auth: false,
       },
