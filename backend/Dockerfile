@@ -1,4 +1,4 @@
-FROM node:18 AS build
+FROM node:18-alpine AS build
 
 RUN apk add --no-cache build-base python3 gcc autoconf automake zlib-dev libpng-dev vips-dev git
 
@@ -7,7 +7,6 @@ COPY package*.json ./
 RUN npm install --only=production
 
 COPY . .
-ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npm run build
 
 FROM node:18-alpine
