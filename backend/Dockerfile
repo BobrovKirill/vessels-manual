@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:18 AS build
 
 RUN apk add --no-cache build-base python3 gcc autoconf automake zlib-dev libpng-dev vips-dev git
 
