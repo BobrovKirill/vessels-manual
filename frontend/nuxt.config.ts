@@ -7,7 +7,6 @@ import {
   BUILD_MODULES as buildModules,
   HEAD as head,
   MODULES as modules,
-  PLUGINS as plugins,
   ROUTER as router,
 } from './nuxt.config/index'
 import { createRobots } from './robots'
@@ -84,7 +83,6 @@ export default defineNuxtConfig({
 
   buildModules,
   head,
-  plugins,
   router,
   modules,
 })

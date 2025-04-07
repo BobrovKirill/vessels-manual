@@ -1,5 +1,5 @@
 export * from './buildModules'
 export * from './head'
+export * from './modules'
 export * from './plugins'
 export * from './router'
-export * from './modules'
