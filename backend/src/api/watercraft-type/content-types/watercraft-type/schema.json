@@ -21,12 +21,6 @@
         "motor",
         "jet-sky"
       ]
-    },
-    "question": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::question.question",
-      "inversedBy": "watercraft_types"
     }
   }
 }

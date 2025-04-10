@@ -20,12 +20,6 @@
       ],
       "default": "quiz"
     },
-    "questions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::question.question",
-      "mappedBy": "quiz_type"
-    },
     "text": {
       "type": "string"
     }

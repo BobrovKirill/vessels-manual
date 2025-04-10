@@ -21,17 +21,8 @@
       ],
       "required": true
     },
-    "question": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::question.question",
-      "inversedBy": "water_region_types"
-    },
     "text": {
       "type": "string"
     }
-  },
-  "config": {
-    "displayField": "text"
   }
 }
