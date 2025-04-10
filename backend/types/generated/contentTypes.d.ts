@@ -487,6 +487,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -495,105 +496,13 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
-    type: Schema.Attribute.Enumeration<['vv', 'mp', 'motor', 'scooter']> &
+    type: Schema.Attribute.Enumeration<
+      ['vp', 'vvp', 'mp', 'motor', 'scooter', 'sail', 'special']
+    > &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiQuizTypeQuizType extends Struct.CollectionTypeSchema {
-  collectionName: 'quiz_types';
-  info: {
-    description: '';
-    displayName: 'quizType';
-    pluralName: 'quiz-types';
-    singularName: 'quiz-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::quiz-type.quiz-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<['quiz', 'exam']> &
-      Schema.Attribute.DefaultTo<'quiz'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiWaterRegionTypeWaterRegionType
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'water_region_types';
-  info: {
-    description: '';
-    displayName: 'waterRegionType';
-    pluralName: 'water-region-types';
-    singularName: 'water-region-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::water-region-type.water-region-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    region: Schema.Attribute.Enumeration<['mp', 'vp', 'vvp']> &
-      Schema.Attribute.Required;
-    text: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiWatercraftTypeWatercraftType
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'watercraft_types';
-  info: {
-    description: '';
-    displayName: 'WatercraftType';
-    pluralName: 'watercraft-types';
-    singularName: 'watercraft-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::watercraft-type.watercraft-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    watercraft: Schema.Attribute.Enumeration<['motor', 'jet-sky']>;
   };
 }
 
@@ -1110,9 +1019,6 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::global.global': ApiGlobalGlobal;
       'api::question.question': ApiQuestionQuestion;
-      'api::quiz-type.quiz-type': ApiQuizTypeQuizType;
-      'api::water-region-type.water-region-type': ApiWaterRegionTypeWaterRegionType;
-      'api::watercraft-type.watercraft-type': ApiWatercraftTypeWatercraftType;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

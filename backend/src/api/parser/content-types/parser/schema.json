@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parsers",
+  "info": {
+    "singularName": "parser",
+    "pluralName": "parsers",
+    "displayName": "parser"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pdfs": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

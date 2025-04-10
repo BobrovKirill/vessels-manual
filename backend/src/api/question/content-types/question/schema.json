@@ -25,12 +25,24 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "vv",
+        "vp",
+        "vvp",
         "mp",
         "motor",
-        "scooter"
+        "scooter",
+        "sail",
+        "special"
       ],
       "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }
