@@ -109,7 +109,9 @@ console.log('TheFooter is loaded')
 
   .footer_up {
     display: flex;
-    background-color: black;
+    background-image: url("@/assets/images/footer/footerback.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     justify-content: space-between;
     padding: 40px 50px;
   }

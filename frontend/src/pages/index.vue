@@ -1,42 +1,452 @@
 <script setup lang="ts">
-import { useNuxtApp } from '#app'
+import Dividingline from '~/components/Dividingline/Dividingline.vue'
+import Runningline from '~/components/Runningline/Runningline.vue'
+import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
 
-const { $viewport } = useNuxtApp()
-
-console.log('index page')
-
-const isShowTestBlock = computed(() => $viewport.isGreaterThan('tablet'))
 </script>
 
 <template>
-  <div>
-    <h1>Pages</h1>
-
-    <SvgIcon name="close" />
-
-    <div class="background-test" />
-
-    <div v-if="$viewport.isLessThan('tablet')">
-      viewport test
-    </div>
-
-    <div v-if="isShowTestBlock">
-      viewport test 2
-    </div>
-
-    <div>{{ isShowTestBlock }}</div>
+  <div class="container">
+    <main class="main">
+      <div class="main__blog-first">
+        <h1 class="main__blog-first-title">
+          ОНЛАЙН-ТРЕНАЖЕР ДЛЯ ПРОХОЖДЕНИЯ ЭКЗАМЕНА ДЛЯ ГИМС
+        </h1>
+      </div>
+      <div class="main__blog-second">
+        <div class="main__blog-second-text">
+          <dd class="main__blog-second-text1">
+            Районы плаванья
+            МП,&nbsp;ВП, ВВП
+          </dd>
+          <dd class="main__blog-second-text2">
+            Суда
+            гидроцикл,&nbsp;парусное&nbsp;судно, моторное судно
+          </dd>
+        </div>
+        <button class="main__blog-second-btn">
+          НАЧАТЬ ОБУЧЕНИЕ
+        </button>
+      </div>
+      <div class="main__blog-third">
+        <img alt="mainjpg" src="../assets/images/mainpage/mainsecond.jpg">
+      </div>
+      <div class="main__blog-fourth">
+        <h2 class="main__blog-fourth-title">
+          ИНФОРМАЦИЯ
+        </h2>
+        <ul class="main__blog-fourth-list">
+          <li class="main__blog-fourth-list-item">
+            ЭКЗАМЕН ГИМС
+          </li>
+          <li class="main__blog-fourth-list-item">
+            ПРАВИЛА ПРОВЕДЕНИЯ ГИМС
+          </li>
+          <li class="main__blog-fourth-list-item">
+            ТЕОРИЯ
+          </li>
+          <li class="main__blog-fourth-list-item">
+            ОТСЛЕЖИВАНИЕ ПРОГРЕССА В ЛИЧНОМ КАБИНЕТЕ
+          </li>
+        </ul>
+      </div>
+    </main>
+    <Runningline />
+    <section class="about">
+      <div class="about__img">
+        <img alt="" src="../assets/images/mainpage/Frame.jpg">
+      </div>
+      <div class="about__info">
+        <div class="about__info-left">
+          <h2 class="about__info-left-title">
+            О&nbsp;подготовке&nbsp;к экзамену
+          </h2>
+          <img alt="" src="../assets/images/mainpage/aboutimg.jpg">
+        </div>
+        <div class="about__info-right">
+          <SvgIcon class="about__info-right-svg1" name="panchor" />
+          <SvgIcon class="about__info-right-svg2" name="panchor" />
+          <SvgIcon class="about__info-right-svg3" name="panchor" />
+          <SvgIcon class="about__info-right-svg4" name="panchor" />
+          <h3 class="about__info-right-title">
+            НА ЭТОМ РЕСУРСЕ ВЫ МОЖЕТЕ ПОДГОТОВИТЬСЯ К ЭКЗАМЕНУ ГИМС
+          </h3>
+          <p class="about__info-right-text">
+            Пройдите теоретический курс, потренируйтесь на тестах и узнайте все правила судовождения, необходимые для успешной сдачи экзамена.
+          </p>
+          <ul class="about__info-right-list">
+            <li class="about__info-right-list-item">
+              Тесты соответствуют официальным билетам ГИМС
+            </li>
+            <li class="about__info-right-list-item">
+              Практические советы для экзамена на воде
+            </li>
+            <li class="about__info-right-list-item">
+              Актуальные требования и полезные материалы
+            </li>
+          </ul>
+          <button class="about__info-right-link">
+            ОЗНАКОМИТСЯ ПОДРОБНЕЕ
+          </button>
+          <p class="about__info-right-text2">
+            Этот ресурс полностью бесплатный, Вы&nbsp;можете проходить тесты в&nbsp;любой момент, но&nbsp;если вы&nbsp;зарегистрируетесь в&nbsp;личном кабинете&nbsp;то&nbsp;сможете отслеживать процесс своего обучения. это очень удобно попробуйте!
+          </p>
+          <button class="about__info-right-link">
+            ЗАРЕГИСТРИРОВАТЬСЯ
+          </button>
+        </div>
+      </div>
+    </section>
+    <Dividingline />
+    <section class="tests">
+      <div class="tests__card">
+        <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - МП</span>
+        <h3 class="tests__card-title">ВНУТРЕННИЕ И ВНЕШНИЕ МОРЯ</h3>
+        <img alt="" src="../assets/images/mainpage/card1.jpg">
+        <Nuxtlink class="tests__card-link" to="/">
+          ПЕРЕЙТИ К ТЕСТУ
+        </Nuxtlink>
+      </div>
+      <div class="tests__card">
+        <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - ВВ</span>
+        <h3 class="tests__card-title">ВНУТРЕННИЕ ВОДОЕМЫ</h3>
+        <img alt="" src="../assets/images/mainpage/card2.jpg">
+        <Nuxtlink class="tests__card-link" to="/">
+          ПЕРЕЙТИ К ТЕСТУ
+        </Nuxtlink>
+      </div>
+      <div class="tests__card">
+        <span class="tests__card-pretitle">РАЙОНЫ ПЛАВАНИЯ - ВВП</span>
+        <h3 class="tests__card-title">ВНУТРЕННИЕ ВОДНЫЕ ПУТИ</h3>
+        <img alt="" src="../assets/images/mainpage/card3.jpg">
+        <Nuxtlink class="tests__card-link" to="/">
+          ПЕРЕЙТИ К ТЕСТУ
+        </Nuxtlink>
+      </div>
+    </section>
+    <Runningline />
   </div>
 </template>
 
-<style lang="scss" scoped>
- h1 {
-   color: brown;
- }
+<style scoped lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 
- .background-test {
-   background-color: tomato;
-   height: 600px;
-   width: 600px;
-   background-image: url("@/assets/images/footer-background.png");
- }
+  @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+  .container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid black;
+
+  }
+
+  .main {
+    max-width: 1390px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, 329px);
+    grid-template-areas:
+    "item1 item3"
+    "item2 item4";
+  }
+
+  .main__blog-first {
+    grid-area: item1;
+    display: flex;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+  }
+
+  .main__blog-second {
+    grid-area: item2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Martian Mono', serif;
+    border-right: 1px solid black;
+    padding: 30px 30px;
+    height: 100%;
+
+  }
+
+  .main__blog-third {
+    display: flex;
+    grid-area: item3;
+    border-bottom: 1px solid black;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main__blog-fourth {
+    grid-area: item4;
+  }
+
+  .main__blog-second-btn {
+    margin: 0;
+    padding: 40px;
+    max-width: 634px;
+    background-color: #B82132;
+    font-size: 30px;
+    color: white;
+
+  }
+
+  .main__blog-first-title {
+    font-family: 'Merriweather';
+    font-size: 50px;
+    line-height: 67px;
+    font-weight: bold;
+    color: #213341;
+    margin: 0;
+    padding: 0;
+    max-width: 570px;
+    width: 100%;
+  }
+
+  .main__blog-fourth-title{
+    font-family: 'Merriweather';
+    text-align: center;
+    font-size: 40px;
+    line-height: 65px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 20px;
+    color: #213341;
+    border-bottom: 1px solid black;
+
+  }
+
+  .main__blog-fourth-list{
+    padding: 0;
+    margin: 0 0 0 25px;
+    color: #B82132;
+    list-style-position: inside;
+  }
+
+  .main__blog-fourth-list li::marker {
+    margin-right: 0px;
+  }
+
+  .main__blog-fourth-list-item{
+    margin: 0;
+    padding: 0;
+    font-family: 'Martian Mono', serif;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .main__blog-second-text1 {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    max-width: 160px;
+  }
+
+  .main__blog-second-text2 {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    max-width: 310px;
+  }
+
+  .main__blog-second-text {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    max-width: 630px;
+    justify-content: space-between;
+    max-height: 62px;
+    height: 100%;
+  }
+
+  .about {
+    max-width: 1397px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .about__img {
+    display: flex;
+    border-bottom: 1px solid black;
+  }
+
+  .about__info {
+    display: flex;
+    max-height: 697px;
+    height: 100%;
+  }
+
+  .about__info-left {
+    border-right: 1px solid black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .about__info-left-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Merriweather';
+    color: #213341;
+    font-size: 58px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+  }
+
+  .about__info-right-list {
+    list-style-position: inside;
+    padding: 0;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    width: 81%;
+  }
+
+  .about__info-right-list-item {
+    font-family: 'Martian Mono';
+    font-size: 16px;
+  }
+
+  .about__info-right-title {
+    margin: 0;
+    padding: 30px 0 0 0;
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    font-family: 'Merriweather';
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  .about__info-right-text {
+    margin: 0;
+    padding: 0;
+    font-family: 'Martian Mono';
+    text-transform: uppercase;
+    width: 81%;
+  }
+
+  .about__info-right-text2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Martian Mono';
+    width: 81%;
+    text-transform: uppercase;
+  }
+
+  .about__info-right-link {
+    text-decoration: none;
+    font-family: 'Martian Mono';
+    color: white;
+    background: #B82132;
+    padding: 15px 0px;
+    font-size: 14px;
+    max-width: 264px;
+    width: 100%;
+  }
+
+  .about__info-right-link:last-child {
+    margin-bottom: 30px;
+  }
+
+  .about__info-right {
+    display: flex;
+    padding: 30px 0 40px 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .about__info-right-svg1 {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    transform: rotate(90deg);
+  }
+
+  .about__info-right-svg2 {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    transform: rotate(-180deg);
+  }
+
+  .about__info-right-svg3 {
+    position: absolute;
+    right: 0;
+    bottom: 40px;
+    transform: rotate(-90deg);
+  }
+
+  .about__info-right-svg4 {
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+  }
+
+  .tests {
+    display: flex;
+    font-family: "Martian Mono";
+    justify-content: space-between;
+    padding: 50px 0px;
+    max-width: 1397px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .tests__card {
+    border: 2px solid transparent;
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 436px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .tests__card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #B82132;
+  }
+
+  .tests__card-link {
+    cursor: pointer;
+    display: none;
+    background-color: #B82132;
+    position: absolute;
+    top: 50%;
+    color: white;
+    text-decoration: none;
+    padding: 17px 72px;
+  }
+
+  .tests__card:hover .tests__card-link{
+    display: block;
+  }
+
+  .tests__card-pretitle {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .tests__card-title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+  }
 </style>
