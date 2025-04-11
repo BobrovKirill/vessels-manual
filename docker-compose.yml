@@ -6,7 +6,7 @@ services:
     image: my-frontend:latest
     container_name: nuxt_frontend
     environment:
-      API_URL: "http://158.160.180.181:1337/api"
+      API_URL: "http://158.160.173.105/api"
     ports:
       - "3000:3000"
     depends_on:
