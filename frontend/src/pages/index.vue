@@ -15,14 +15,22 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       </div>
       <div class="main__blog-second">
         <div class="main__blog-second-text">
-          <dd class="main__blog-second-text1">
-            Районы плаванья
-            МП,&nbsp;ВП, ВВП
-          </dd>
-          <dd class="main__blog-second-text2">
-            Суда
-            гидроцикл,&nbsp;парусное&nbsp;судно, моторное судно
-          </dd>
+          <dl class="main__blog-second-text1">
+            <dd >
+              Районы плаванья
+            </dd>
+            <dt>
+              МП,&nbsp;ВП, ВВП
+            </dt>
+          </dl>
+          <dl class="main__blog-second-text2">
+            <dd>
+              Суда
+            </dd>
+            <dt>
+              гидроцикл,&nbsp;парусное&nbsp;судно, моторное судно
+            </dt>
+          </dl>
         </div>
         <button class="main__blog-second-btn">
           НАЧАТЬ ОБУЧЕНИЕ
@@ -53,15 +61,16 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     </main>
     <Runningline />
     <section class="about">
-      <div class="about__img">
+      <picture class="about__img">
         <img alt="" src="../assets/images/mainpage/Frame.jpg">
-      </div>
+      </picture>
+
       <div class="about__info">
         <div class="about__info-left">
           <h2 class="about__info-left-title">
             О&nbsp;подготовке&nbsp;к экзамену
           </h2>
-          <img alt="" src="../assets/images/mainpage/aboutimg.jpg">
+          <img class="about__info-left-img" alt="" src="../assets/images/mainpage/aboutimg.jpg">
         </div>
         <div class="about__info-right">
           <SvgIcon class="about__info-right-svg1" name="panchor" />
@@ -149,8 +158,16 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: minmax(100px, 329px);
     grid-template-areas:
-    "item1 item3"
-    "item2 item4";
+      "item1"
+      "item2"
+      "item3"
+      "item4";
+
+    @include breakpoint('desktop') {
+      grid-template-areas:
+      "item1 item3"
+      "item2 item4";
+    }
   }
 
   .main__blog-first {
@@ -245,14 +262,22 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     margin: 0;
     padding: 0;
     text-transform: uppercase;
-    max-width: 160px;
+    max-width: 186px;
+  }
+
+  .main__blog-second-text2 dd {
+    margin-left: 0;
+  }
+
+  .main__blog-second-text1 dd {
+    margin-left: 0;
   }
 
   .main__blog-second-text2 {
     margin: 0;
     padding: 0;
     text-transform: uppercase;
-    max-width: 310px;
+    max-width: 342px;
   }
 
   .main__blog-second-text {
@@ -272,8 +297,15 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
   }
 
   .about__img {
-    display: flex;
+    display: inline-block;
     border-bottom: 1px solid black;
+    width: 50%;
+    height: auto;
+
+    @include breakpoint('desktop') {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .about__info {
@@ -289,6 +321,10 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .about__info-left-img {
+    display: block;
   }
 
   .about__info-left-title {
