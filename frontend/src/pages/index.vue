@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import Dividingline from '~/components/Dividingline/Dividingline.vue'
 import Runningline from '~/components/Runningline/Runningline.vue'
-import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
-
+import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 </script>
 
 <template>
@@ -15,7 +14,7 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       <div class="main__blog-second">
         <div class="main__blog-second-text">
           <dl class="main__blog-second-text1">
-            <dd >
+            <dd>
               Районы плаванья
             </dd>
             <dt>
@@ -111,7 +110,9 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     <section class="tests">
       <div class="tests__card">
         <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - МП</span>
-        <h3 class="tests__card-title">ВНУТРЕННИЕ И ВНЕШНИЕ МОРЯ</h3>
+        <h3 class="tests__card-title">
+          ВНУТРЕННИЕ И ВНЕШНИЕ МОРЯ
+        </h3>
         <img alt="" src="../assets/images/mainpage/card1.jpg">
         <Nuxtlink class="tests__card-link" to="/">
           ПЕРЕЙТИ К ТЕСТУ
@@ -119,7 +120,9 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       </div>
       <div class="tests__card">
         <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - ВВ</span>
-        <h3 class="tests__card-title">ВНУТРЕННИЕ ВОДОЕМЫ</h3>
+        <h3 class="tests__card-title">
+          ВНУТРЕННИЕ ВОДОЕМЫ
+        </h3>
         <img alt="" src="../assets/images/mainpage/card2.jpg">
         <Nuxtlink class="tests__card-link" to="/">
           ПЕРЕЙТИ К ТЕСТУ
@@ -127,7 +130,9 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       </div>
       <div class="tests__card">
         <span class="tests__card-pretitle">РАЙОНЫ ПЛАВАНИЯ - ВВП</span>
-        <h3 class="tests__card-title">ВНУТРЕННИЕ ВОДНЫЕ ПУТИ</h3>
+        <h3 class="tests__card-title">
+          ВНУТРЕННИЕ ВОДНЫЕ ПУТИ
+        </h3>
         <img alt="" src="../assets/images/mainpage/card3.jpg">
         <Nuxtlink class="tests__card-link" to="/">
           ПЕРЕЙТИ К ТЕСТУ
