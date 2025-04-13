@@ -19,9 +19,11 @@ async function fetchTest() {
     <button @click="fetchTest">
       TEST FETCH
     </button>
-    <main>
-      <nuxt-page />
-    </main>
+    <div class="container">
+      <main>
+        <nuxt-page />
+      </main>
+    </div>
     <TheFooter />
   </div>
 </template>
@@ -30,5 +32,12 @@ async function fetchTest() {
 .layout {
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid black;
 }
 </style>

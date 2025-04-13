@@ -6,8 +6,7 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
 </script>
 
 <template>
-  <div class="container">
-    <main class="main">
+    <section class="main">
       <div class="main__blog-first">
         <h1 class="main__blog-first-title">
           ОНЛАЙН-ТРЕНАЖЕР ДЛЯ ПРОХОЖДЕНИЯ ЭКЗАМЕНА ДЛЯ ГИМС
@@ -36,9 +35,9 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
           НАЧАТЬ ОБУЧЕНИЕ
         </button>
       </div>
-      <div class="main__blog-third">
+      <picture class="main__blog-third">
         <img alt="mainjpg" src="../assets/images/mainpage/mainsecond.jpg">
-      </div>
+      </picture>
       <div class="main__blog-fourth">
         <h2 class="main__blog-fourth-title">
           ИНФОРМАЦИЯ
@@ -58,7 +57,7 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
           </li>
         </ul>
       </div>
-    </main>
+    </section>
     <Runningline />
     <section class="about">
       <picture class="about__img">
@@ -70,7 +69,9 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
           <h2 class="about__info-left-title">
             О&nbsp;подготовке&nbsp;к экзамену
           </h2>
-          <img class="about__info-left-img" alt="" src="../assets/images/mainpage/aboutimg.jpg">
+          <picture class="about__info-left-img">
+            <img  alt="" src="../assets/images/mainpage/aboutimg.jpg">
+          </picture>
         </div>
         <div class="about__info-right">
           <SvgIcon class="about__info-right-svg1" name="panchor" />
@@ -134,7 +135,6 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       </div>
     </section>
     <Runningline />
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -142,19 +142,11 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
 
   @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 
-  .container {
-    max-width: 1440px;
-    width: 100%;
-    margin: 0 auto;
-    border-top: 1px solid black;
-
-  }
-
   .main {
-    max-width: 1390px;
-    width: 100%;
     margin: 0 auto;
     display: grid;
+    width: 100%;
+    justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: minmax(100px, 329px);
     grid-template-areas:
@@ -167,41 +159,65 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
       grid-template-areas:
       "item1 item3"
       "item2 item4";
+      max-width: 1390px;
+      width: 100%;
     }
   }
 
   .main__blog-first {
     grid-area: item1;
+    max-width: 700px;
+    width: 100%;
     display: flex;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+
     justify-content: center;
     align-items: center;
     padding: 30px 0px;
+
+    @include breakpoint('desktop') {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
   }
 
   .main__blog-second {
     grid-area: item2;
     display: flex;
+    max-width: 700px;
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
     font-family: 'Martian Mono', serif;
-    border-right: 1px solid black;
     padding: 30px 30px;
     height: 100%;
+
+    @include breakpoint('desktop') {
+      border-right: 1px solid black;
+    }
 
   }
 
   .main__blog-third {
     display: flex;
     grid-area: item3;
+    max-width: 700px;
+    width: 100%;
+    padding: 30px;
     border-bottom: 1px solid black;
     justify-content: center;
     align-items: center;
   }
 
+  .main__blog-third img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .main__blog-fourth {
     grid-area: item4;
+    max-width: 700px;
+    width: 100%;
   }
 
   .main__blog-second-btn {
@@ -294,6 +310,10 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     max-width: 1397px;
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .about__img {
@@ -302,40 +322,76 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
     width: 50%;
     height: auto;
 
+    @include breakpoint('tablet') {
+      max-height: 700px;
+      height: 100%;
+    }
+
     @include breakpoint('desktop') {
       width: 100%;
       height: auto;
     }
   }
 
+  .about__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .about__info {
     display: flex;
-    max-height: 697px;
-    height: 100%;
+    flex-direction: column;
+
+    @include breakpoint('desktop') {
+      display: flex;
+      flex-direction: row;
+      max-height: 697px;
+      height: 100%;
+    }
   }
 
   .about__info-left {
-    border-right: 1px solid black;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include breakpoint('desktop') {
+      border-right: 1px solid black;
+      max-width: 698px;
+      width: 100%;
+    }
   }
 
   .about__info-left-img {
     display: block;
+    width: 100%;
+    height: 100%;
   }
+
+
 
   .about__info-left-title {
     margin: 0;
     padding: 0;
     font-family: 'Merriweather';
+    font-size: 26px;
     color: #213341;
-    font-size: 58px;
     text-align: center;
     border-bottom: 1px solid black;
     text-transform: uppercase;
+
+    @include breakpoint('tablet') {
+      font-size: 38px;
+      max-width: 698px;
+      width: 100%;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 58px;
+    }
   }
 
   .about__info-right-list {
@@ -395,11 +451,23 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
 
   .about__info-right {
     display: flex;
-    padding: 30px 0 40px 20px;
+    padding: 10px 0 20px 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: relative;
+
+    @include breakpoint('tablet') {
+      padding: 10px 0 20px 0;
+      max-width: 698px;
+      width: 100%;
+    }
+
+    @include breakpoint('desktop') {
+      padding: 30px 0 40px 20px;
+      max-width: 698px;
+      width: 100%;
+    }
   }
 
   .about__info-right-svg1 {
@@ -431,12 +499,18 @@ import SvgIcon from "~/components/SvgIcon/SvgIcon.vue";
 
   .tests {
     display: flex;
+    flex-direction: column;
     font-family: "Martian Mono";
     justify-content: space-between;
+    align-items: center;
     padding: 50px 0px;
     max-width: 1397px;
     width: 100%;
     margin: 0 auto;
+
+    @include breakpoint('desktop') {
+      flex-direction: row;
+    }
   }
 
   .tests__card {
