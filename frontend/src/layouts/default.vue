@@ -14,21 +14,23 @@ async function fetchTest() {
 </script>
 
 <template>
-  <div :class="$style.layout">
+  <div class="layout">
     <TheHeader />
     <button @click="fetchTest">
       TEST FETCH
     </button>
-    <div class="container">
-      <main>
+
+    <main>
+      <div class="container">
         <nuxt-page />
-      </main>
-    </div>
+      </div>
+    </main>
+
     <TheFooter />
   </div>
 </template>
 
-<style lang="scss" module>
+<style lang="scss">
 .layout {
   display: grid;
   grid-template-rows: auto 1fr auto;

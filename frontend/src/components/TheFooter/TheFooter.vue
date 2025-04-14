@@ -78,7 +78,7 @@ console.log('TheFooter is loaded')
           </li>
         </ul>
       </div>
-      </div>
+    </div>
   </footer>
 </template>
 
@@ -99,7 +99,7 @@ console.log('TheFooter is loaded')
     margin: 0;
     padding: 0;
   }
-  
+
   .page_footer{
     max-width: 1400px;
     width: 100%;
@@ -116,7 +116,6 @@ console.log('TheFooter is loaded')
     background-size: 100% 100%;
     justify-content: space-between;
 
-
     @include breakpoint('desktop') {
       flex-direction: row;
       padding: 40px 50px;
@@ -125,22 +124,35 @@ console.log('TheFooter is loaded')
 
   .footer_blog_left {
     padding: 0;
-    margin: 0;
+    margin: 0 0 15px 0;
     max-width: 520px;
     width: 100%;
     background-color: rgba(247, 247, 247, 0.45);
     border-radius: 4px;
     padding: 35px 55px 35px 35px;
+
+    @include breakpoint('desktop') {
+      margin: 0 0 0 0;
+    }
   }
 
   .footer_blog_right {
     padding: 0;
-    margin: 0;
+    margin: 0 0 15px 0;
     max-width: 520px;
     width: 100%;
     background-color: rgba(247, 247, 247, 0.45);
     border-radius: 4px;
     padding: 35px 55px 35px 35px;
+
+    @include breakpoint('desktop') {
+      max-height: 483px;
+      margin: 0 0 0 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 
   .footer_down_list {
@@ -165,11 +177,30 @@ console.log('TheFooter is loaded')
   .footer_blog_left_title {
     margin-bottom: 10px;
     color: #213341;
+    font-size: 14px;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .footer_blog_left_subtitle {
     margin-bottom: 10px;
     color: #213341;
+
+    font-size: 14px;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .footer_blog_left_text:not(:last-child) {
@@ -178,16 +209,45 @@ console.log('TheFooter is loaded')
 
   .footer_blog_left_text {
     color: #213341;
+    font-size: 12px;
+
+    @include breakpoint('tablet') {
+      font-size: 16px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 16px;
+    }
   }
 
   .footer_blog_right_title {
     margin-bottom: 10px;
     color: #213341;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .footer_blog_right_listcontacts_item{
     color: #213341;
     margin-bottom: 10px;
+
+    font-size: 12px;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .footer_blog_right_listcontacts_item_link {
@@ -197,14 +257,32 @@ console.log('TheFooter is loaded')
   .footer_blog_right_subtitle{
     color: #213341;
     margin-bottom: 10px;
+    font-size: 14px;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
-  
+
   .footer_blog_right_listdev_item{
     color: #213341;
+
+    font-size: 12px;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .footer_blog_right_listdev {
     margin-bottom: 10px;
   }
-
 </style>

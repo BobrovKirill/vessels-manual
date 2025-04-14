@@ -5,141 +5,146 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 </script>
 
 <template>
-    <section class="main">
-      <div class="main__blog-first">
-        <h1 class="main__blog-first-title">
-          ОНЛАЙН-ТРЕНАЖЕР ДЛЯ ПРОХОЖДЕНИЯ ЭКЗАМЕНА ДЛЯ ГИМС
-        </h1>
+  <section class="main">
+    <div class="main__blog-first">
+      <h1 class="main__blog-first-title">
+        ОНЛАЙН-ТРЕНАЖЕР ДЛЯ ПРОХОЖДЕНИЯ ЭКЗАМЕНА ДЛЯ ГИМС
+      </h1>
+    </div>
+
+    <div class="main__blog-second">
+      <div class="main__blog-second-text">
+        <dl class="main__blog-second-text1">
+          <dd>
+            Районы плаванья
+          </dd>
+          <dt>
+            МП,&nbsp;ВП, ВВП
+          </dt>
+        </dl>
+
+        <dl class="main__blog-second-text2">
+          <dd>
+            Суда
+          </dd>
+          <dt>
+            гидроцикл,&nbsp;парусное&nbsp;судно, моторное судно
+          </dt>
+        </dl>
       </div>
-      <div class="main__blog-second">
-        <div class="main__blog-second-text">
-          <dl class="main__blog-second-text1">
-            <dd>
-              Районы плаванья
-            </dd>
-            <dt>
-              МП,&nbsp;ВП, ВВП
-            </dt>
-          </dl>
-          <dl class="main__blog-second-text2">
-            <dd>
-              Суда
-            </dd>
-            <dt>
-              гидроцикл,&nbsp;парусное&nbsp;судно, моторное судно
-            </dt>
-          </dl>
-        </div>
-        <button class="main__blog-second-btn">
-          НАЧАТЬ ОБУЧЕНИЕ
-        </button>
-      </div>
-      <picture class="main__blog-third">
-        <img alt="mainjpg" src="../assets/images/mainpage/mainsecond.jpg">
-      </picture>
-      <div class="main__blog-fourth">
-        <h2 class="main__blog-fourth-title">
-          ИНФОРМАЦИЯ
+      <button class="main__blog-second-btn">
+        НАЧАТЬ ОБУЧЕНИЕ
+      </button>
+    </div>
+
+    <picture class="main__blog-third">
+      <img alt="mainjpg" src="../assets/images/mainpage/mainsecond.jpg">
+    </picture>
+
+    <div class="main__blog-fourth">
+      <h2 class="main__blog-fourth-title">
+        ИНФОРМАЦИЯ
+      </h2>
+
+      <ul class="main__blog-fourth-list">
+        <li class="main__blog-fourth-list-item">
+          ЭКЗАМЕН ГИМС
+        </li>
+        <li class="main__blog-fourth-list-item">
+          ПРАВИЛА ПРОВЕДЕНИЯ ГИМС
+        </li>
+        <li class="main__blog-fourth-list-item">
+          ТЕОРИЯ
+        </li>
+        <li class="main__blog-fourth-list-item">
+          ОТСЛЕЖИВАНИЕ ПРОГРЕССА В ЛИЧНОМ КАБИНЕТЕ
+        </li>
+      </ul>
+    </div>
+  </section>
+  <Runningline />
+  <section class="about">
+    <picture class="about__img">
+      <img alt="" src="../assets/images/mainpage/Frame.jpg">
+    </picture>
+
+    <div class="about__info">
+      <div class="about__info-left">
+        <h2 class="about__info-left-title">
+          О&nbsp;подготовке&nbsp;к экзамену
         </h2>
-        <ul class="main__blog-fourth-list">
-          <li class="main__blog-fourth-list-item">
-            ЭКЗАМЕН ГИМС
+        <picture class="about__info-left-img">
+          <img alt="" src="../assets/images/mainpage/aboutimg.jpg">
+        </picture>
+      </div>
+      <div class="about__info-right">
+        <SvgIcon class="about__info-right-svg1" name="panchor" />
+        <SvgIcon class="about__info-right-svg2" name="panchor" />
+        <SvgIcon class="about__info-right-svg3" name="panchor" />
+        <SvgIcon class="about__info-right-svg4" name="panchor" />
+        <h3 class="about__info-right-title">
+          НА ЭТОМ РЕСУРСЕ ВЫ МОЖЕТЕ ПОДГОТОВИТЬСЯ К ЭКЗАМЕНУ ГИМС
+        </h3>
+        <p class="about__info-right-text">
+          Пройдите теоретический курс, потренируйтесь на тестах и узнайте все правила судовождения, необходимые для успешной сдачи экзамена.
+        </p>
+        <ul class="about__info-right-list">
+          <li class="about__info-right-list-item">
+            Тесты соответствуют официальным билетам ГИМС
           </li>
-          <li class="main__blog-fourth-list-item">
-            ПРАВИЛА ПРОВЕДЕНИЯ ГИМС
+          <li class="about__info-right-list-item">
+            Практические советы для экзамена на воде
           </li>
-          <li class="main__blog-fourth-list-item">
-            ТЕОРИЯ
-          </li>
-          <li class="main__blog-fourth-list-item">
-            ОТСЛЕЖИВАНИЕ ПРОГРЕССА В ЛИЧНОМ КАБИНЕТЕ
+          <li class="about__info-right-list-item">
+            Актуальные требования и полезные материалы
           </li>
         </ul>
+        <button class="about__info-right-link">
+          ОЗНАКОМИТСЯ ПОДРОБНЕЕ
+        </button>
+        <p class="about__info-right-text2">
+          Этот ресурс полностью бесплатный, Вы&nbsp;можете проходить тесты в&nbsp;любой момент, но&nbsp;если вы&nbsp;зарегистрируетесь в&nbsp;личном кабинете&nbsp;то&nbsp;сможете отслеживать процесс своего обучения. это очень удобно попробуйте!
+        </p>
+        <button class="about__info-right-link">
+          ЗАРЕГИСТРИРОВАТЬСЯ
+        </button>
       </div>
-    </section>
-    <Runningline />
-    <section class="about">
-      <picture class="about__img">
-        <img alt="" src="../assets/images/mainpage/Frame.jpg">
-      </picture>
-
-      <div class="about__info">
-        <div class="about__info-left">
-          <h2 class="about__info-left-title">
-            О&nbsp;подготовке&nbsp;к экзамену
-          </h2>
-          <picture class="about__info-left-img">
-            <img  alt="" src="../assets/images/mainpage/aboutimg.jpg">
-          </picture>
-        </div>
-        <div class="about__info-right">
-          <SvgIcon class="about__info-right-svg1" name="panchor" />
-          <SvgIcon class="about__info-right-svg2" name="panchor" />
-          <SvgIcon class="about__info-right-svg3" name="panchor" />
-          <SvgIcon class="about__info-right-svg4" name="panchor" />
-          <h3 class="about__info-right-title">
-            НА ЭТОМ РЕСУРСЕ ВЫ МОЖЕТЕ ПОДГОТОВИТЬСЯ К ЭКЗАМЕНУ ГИМС
-          </h3>
-          <p class="about__info-right-text">
-            Пройдите теоретический курс, потренируйтесь на тестах и узнайте все правила судовождения, необходимые для успешной сдачи экзамена.
-          </p>
-          <ul class="about__info-right-list">
-            <li class="about__info-right-list-item">
-              Тесты соответствуют официальным билетам ГИМС
-            </li>
-            <li class="about__info-right-list-item">
-              Практические советы для экзамена на воде
-            </li>
-            <li class="about__info-right-list-item">
-              Актуальные требования и полезные материалы
-            </li>
-          </ul>
-          <button class="about__info-right-link">
-            ОЗНАКОМИТСЯ ПОДРОБНЕЕ
-          </button>
-          <p class="about__info-right-text2">
-            Этот ресурс полностью бесплатный, Вы&nbsp;можете проходить тесты в&nbsp;любой момент, но&nbsp;если вы&nbsp;зарегистрируетесь в&nbsp;личном кабинете&nbsp;то&nbsp;сможете отслеживать процесс своего обучения. это очень удобно попробуйте!
-          </p>
-          <button class="about__info-right-link">
-            ЗАРЕГИСТРИРОВАТЬСЯ
-          </button>
-        </div>
-      </div>
-    </section>
-    <Dividingline />
-    <section class="tests">
-      <div class="tests__card">
-        <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - МП</span>
-        <h3 class="tests__card-title">
-          ВНУТРЕННИЕ И ВНЕШНИЕ МОРЯ
-        </h3>
-        <img alt="" src="../assets/images/mainpage/card1.jpg">
-        <Nuxtlink class="tests__card-link" to="/">
-          ПЕРЕЙТИ К ТЕСТУ
-        </Nuxtlink>
-      </div>
-      <div class="tests__card">
-        <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - ВВ</span>
-        <h3 class="tests__card-title">
-          ВНУТРЕННИЕ ВОДОЕМЫ
-        </h3>
-        <img alt="" src="../assets/images/mainpage/card2.jpg">
-        <Nuxtlink class="tests__card-link" to="/">
-          ПЕРЕЙТИ К ТЕСТУ
-        </Nuxtlink>
-      </div>
-      <div class="tests__card">
-        <span class="tests__card-pretitle">РАЙОНЫ ПЛАВАНИЯ - ВВП</span>
-        <h3 class="tests__card-title">
-          ВНУТРЕННИЕ ВОДНЫЕ ПУТИ
-        </h3>
-        <img alt="" src="../assets/images/mainpage/card3.jpg">
-        <Nuxtlink class="tests__card-link" to="/">
-          ПЕРЕЙТИ К ТЕСТУ
-        </Nuxtlink>
-      </div>
-    </section>
-    <Runningline />
+    </div>
+  </section>
+  <Dividingline />
+  <section class="tests">
+    <div class="tests__card">
+      <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - МП</span>
+      <h3 class="tests__card-title">
+        ВНУТРЕННИЕ И ВНЕШНИЕ МОРЯ
+      </h3>
+      <img alt="" src="../assets/images/mainpage/card1.jpg">
+      <Nuxtlink class="tests__card-link" to="/">
+        ПЕРЕЙТИ К ТЕСТУ
+      </Nuxtlink>
+    </div>
+    <div class="tests__card">
+      <span class="tests__card-pretitle">РАЙОН ПЛАВАНИЯ - ВВ</span>
+      <h3 class="tests__card-title">
+        ВНУТРЕННИЕ ВОДОЕМЫ
+      </h3>
+      <img alt="" src="../assets/images/mainpage/card2.jpg">
+      <Nuxtlink class="tests__card-link" to="/">
+        ПЕРЕЙТИ К ТЕСТУ
+      </Nuxtlink>
+    </div>
+    <div class="tests__card">
+      <span class="tests__card-pretitle">РАЙОНЫ ПЛАВАНИЯ - ВВП</span>
+      <h3 class="tests__card-title">
+        ВНУТРЕННИЕ ВОДНЫЕ ПУТИ
+      </h3>
+      <img alt="" class="test__card-img" src="../assets/images/mainpage/card3.jpg">
+      <Nuxtlink class="tests__card-link" to="/">
+        ПЕРЕЙТИ К ТЕСТУ
+      </Nuxtlink>
+    </div>
+  </section>
+  <Runningline />
 </template>
 
 <style scoped lang="scss">
@@ -171,33 +176,53 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
   .main__blog-first {
     grid-area: item1;
-    max-width: 700px;
+    max-width: 300px;
     width: 100%;
     display: flex;
 
     justify-content: center;
     align-items: center;
     padding: 30px 0px;
+    border-bottom: 1px solid black;
+
+    @include breakpoint('tablet') {
+      max-width: 700px;
+      width: 100%;
+    }
 
     @include breakpoint('desktop') {
       border-right: 1px solid black;
       border-bottom: 1px solid black;
+      max-width: 700px;
+      width: 100%;
     }
   }
 
   .main__blog-second {
     grid-area: item2;
     display: flex;
-    max-width: 700px;
+    max-width: 300px;
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
     font-family: 'Martian Mono', serif;
-    padding: 30px 30px;
+    padding: 10px 10px;
     height: 100%;
+    border-bottom: 1px solid black;
+
+    @include breakpoint('tablet') {
+      max-width: 700px;
+      border-bottom: 1px solid black;
+      width: 100%;
+    }
 
     @include breakpoint('desktop') {
       border-right: 1px solid black;
+      border-bottom: none;
+      max-width: 700px;
+      width: 100%;
+      padding: 30px 30px;
+      height: 100%;
     }
 
   }
@@ -205,12 +230,21 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
   .main__blog-third {
     display: flex;
     grid-area: item3;
-    max-width: 700px;
+    height: auto;
+    object-fit: cover;
     width: 100%;
     padding: 30px;
     border-bottom: 1px solid black;
     justify-content: center;
     align-items: center;
+
+    @include breakpoint('tablet') {
+      width: 100%;
+    }
+
+    @include breakpoint('desktop') {
+      width: 100%;
+    }
   }
 
   .main__blog-third img {
@@ -221,42 +255,86 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
   .main__blog-fourth {
     grid-area: item4;
-    max-width: 700px;
+    max-width: 300px;
     width: 100%;
+
+    @include breakpoint('tablet') {
+      max-width: 700px;
+      width: 100%;
+    }
+
+    @include breakpoint('desktop') {
+      max-width: 700px;
+      width: 100%;
+    }
   }
 
   .main__blog-second-btn {
     margin: 0;
-    padding: 40px;
+    padding: 20px;
     max-width: 634px;
     background-color: #B82132;
-    font-size: 30px;
+    font-size: 20px;
     color: white;
 
+    @include breakpoint('tablet') {
+      padding: 25px;
+      font-size: 25px;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    @include breakpoint('desktop') {
+      padding: 40px;
+      max-width: 634px;
+      font-size: 30px;
+    }
   }
 
   .main__blog-first-title {
     font-family: 'Merriweather';
-    font-size: 50px;
-    line-height: 67px;
+    font-size: 25px;
+    line-height: 47px;
     font-weight: bold;
     color: #213341;
     margin: 0;
     padding: 0;
     max-width: 570px;
     width: 100%;
+
+    @include breakpoint('tablet') {
+      font-size: 35px;
+      line-height: 57px;
+      font-weight: bold;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 50px;
+      line-height: 67px;
+      font-weight: bold;
+    }
   }
 
   .main__blog-fourth-title{
     font-family: 'Merriweather';
     text-align: center;
-    font-size: 40px;
-    line-height: 65px;
+    font-size: 20px;
+    line-height: 45px;
     font-weight: bold;
     padding: 0;
     margin: 0 0 20px;
     color: #213341;
     border-bottom: 1px solid black;
+
+    @include breakpoint('tablet') {
+      font-size: 30px;
+      line-height: 45px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 40px;
+      line-height: 65px;
+    }
 
   }
 
@@ -275,15 +353,35 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     margin: 0;
     padding: 0;
     font-family: 'Martian Mono', serif;
-    font-size: 26px;
+    font-size: 16px;
     font-weight: bold;
+
+    @include breakpoint('tablet') {
+      font-size: 26px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 26px;
+    }
   }
 
   .main__blog-second-text1 {
     margin: 0;
     padding: 0;
+    font-size: 12px;
     text-transform: uppercase;
     max-width: 186px;
+    margin-bottom: 25px;
+
+    @include breakpoint('tablet') {
+      max-width: 186px;
+      font-size: 16px;
+    }
+
+    @include breakpoint('desktop') {
+      max-width: 186px;
+      font-size: 16px;
+    }
   }
 
   .main__blog-second-text2 dd {
@@ -297,18 +395,40 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
   .main__blog-second-text2 {
     margin: 0;
     padding: 0;
+    font-size: 12px;
     text-transform: uppercase;
     max-width: 342px;
+
+    @include breakpoint('tablet') {
+      max-width: 302px;
+      font-size: 16px;
+    }
+
+    @include breakpoint('desktop') {
+      max-width: 342px;
+      font-size: 16px;
+    }
   }
 
   .main__blog-second-text {
     margin: 0;
     padding: 0;
-    display: flex;
+    flex-direction: column;
     max-width: 630px;
     justify-content: space-between;
-    max-height: 62px;
+    max-height: 100px;
     height: 100%;
+
+    @include breakpoint('tablet') {
+      display: flex;
+      flex-direction: row;
+      max-width: 700px;
+    }
+
+    @include breakpoint('desktop') {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .about {
@@ -322,10 +442,11 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
   }
 
   .about__img {
-    display: inline-block;
+    display: block;
     border-bottom: 1px solid black;
-    width: 50%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 
     @include breakpoint('tablet') {
       max-height: 700px;
@@ -342,6 +463,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .about__info {
@@ -374,9 +496,15 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
-
+  .about__info-left-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .about__info-left-title {
     margin: 0;
@@ -395,7 +523,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     }
 
     @include breakpoint('desktop') {
-      font-size: 58px;
+      font-size: 48px;
     }
   }
 
@@ -404,12 +532,12 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     padding: 0;
     margin: 0 0 15px;
     text-transform: uppercase;
-    width: 81%;
+    width: 71%;
   }
 
   .about__info-right-list-item {
     font-family: 'Martian Mono';
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .about__info-right-title {
@@ -420,34 +548,53 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     width: 50%;
     font-family: 'Merriweather';
     font-weight: bold;
-    font-size: 22px;
+    font-size: 12px;
+
+    @include breakpoint('desktop') {
+      font-size: 18px;
+    }
   }
 
   .about__info-right-text {
     margin: 0;
     padding: 0;
+    font-size: 12px;
     font-family: 'Martian Mono';
     text-transform: uppercase;
-    width: 81%;
+    width: 71%;
   }
 
   .about__info-right-text2 {
     margin: 0;
     padding: 0;
+    font-size: 12px;
     font-family: 'Martian Mono';
-    width: 81%;
+    width: 71%;
     text-transform: uppercase;
   }
 
   .about__info-right-link {
+
     text-decoration: none;
     font-family: 'Martian Mono';
     color: white;
     background: #B82132;
     padding: 15px 0px;
     font-size: 14px;
-    max-width: 264px;
+    max-width: 184px;
     width: 100%;
+
+    @include breakpoint('tablet') {
+      padding: 15px 0px;
+      font-size: 14px;
+      max-width: 264px;
+    }
+
+    @include breakpoint('desktop') {
+      padding: 15px 0px;
+      font-size: 14px;
+      max-width: 264px;
+    }
   }
 
   .about__info-right-link:last-child {
@@ -456,50 +603,113 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
   .about__info-right {
     display: flex;
-    padding: 10px 0 20px 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    padding: 10px 0 20px 0;
+
     position: relative;
+
+    height: 650px;
 
     @include breakpoint('tablet') {
       padding: 10px 0 20px 0;
       max-width: 698px;
       width: 100%;
+      height: 650px;
     }
 
     @include breakpoint('desktop') {
-      padding: 30px 0 40px 20px;
+      padding: 30px 0 30px 20px;
       max-width: 698px;
       width: 100%;
+      height: auto;
     }
   }
 
   .about__info-right-svg1 {
     position: absolute;
-    left: 20px;
-    top: 30px;
+    left: 0;
+    top: 10px;
     transform: rotate(90deg);
+    max-height: 52px;
+    max-width: 52px;
+
+    @include breakpoint('tablet') {
+      max-height: 72px;
+      max-width: 72px;
+    }
+
+    @include breakpoint('desktop') {
+      max-height: 92px;
+      max-width: 92px;
+      left: 20px;
+      top: 30px;
+    }
+
   }
 
   .about__info-right-svg2 {
     position: absolute;
     right: 0;
-    top: 30px;
+    top: 10px;
     transform: rotate(-180deg);
+    max-height: 52px;
+    max-width: 52px;
+
+    @include breakpoint('tablet') {
+      max-height: 72px;
+      max-width: 72px;
+    }
+
+    @include breakpoint('desktop') {
+      max-height: 92px;
+      max-width: 92px;
+      right: 0;
+      top: 30px;
+    };
   }
 
   .about__info-right-svg3 {
     position: absolute;
     right: 0;
-    bottom: 40px;
+    bottom: 20px;
     transform: rotate(-90deg);
+    max-height: 52px;
+    max-width: 52px;
+
+    @include breakpoint('tablet') {
+      max-height: 72px;
+      max-width: 72px;
+    }
+
+    @include breakpoint('desktop') {
+      max-height: 92px;
+      max-width: 92px;
+      right: 0;
+      bottom: 30px;
+    }
   }
 
   .about__info-right-svg4 {
     position: absolute;
-    left: 20px;
-    bottom: 40px;
+    left: 0px;
+    bottom: 20px;
+    max-height: 52px;
+    max-width: 52px;
+
+    @include breakpoint('tablet') {
+      max-height: 72px;
+      max-width: 72px;
+    }
+
+    @include breakpoint('desktop') {
+      max-height: 92px;
+      max-width: 92px;
+      left: 20px;
+      bottom: 30px;
+    }
   }
 
   .tests {
@@ -546,7 +756,17 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     top: 50%;
     color: white;
     text-decoration: none;
-    padding: 17px 72px;
+    padding: 17px 42px;
+
+    @include breakpoint('tablet') {
+      font-size: 16px;
+      padding: 17px 72px;
+    }
+
+    @include breakpoint('desktop') {
+      font-size: 16px;
+      padding: 17px 72px;
+    }
   }
 
   .tests__card:hover .tests__card-link{
@@ -563,5 +783,12 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     margin: 0;
     padding: 0;
     margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .tests__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 </style>
