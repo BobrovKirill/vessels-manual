@@ -18,6 +18,9 @@ services:
       dockerfile: Dockerfile
     container_name: strapi_backend
     env_file: ./backend/.env
+    environment:
+      NODE_ENV: development
+      DATABASE_CLIENT: sqlite
     ports:
       - "1337:1337"
     volumes:
