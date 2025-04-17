@@ -16,7 +16,7 @@ RUN apk add --no-cache vips-dev
 WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package*.json ./
-COPY --from=build /app/. ./ 
+COPY --from=build /app/. ./
 
 ENV NODE_ENV=production
 EXPOSE 1337
