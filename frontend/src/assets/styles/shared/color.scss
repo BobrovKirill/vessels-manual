@@ -3,35 +3,19 @@
 /// Colors.
 $colors: (
   'black': (
-    #181716,
-    #0a0a0a,
-    #0a0f14,
-    #101010,
+    #000000,
   ),
 
   'blue': (
-    #0082ff,
-    #006ee1,
+    #3B6790,
   ),
 
   'gray': (
-    #fcfcfc,
-    #f4f4f4,
-    #e2e2e2,
-    #c3c3c3,
-    #989898,
-    #767676,
-    #2d2d2d,
-    #232323,
-    #2e2e2e,
-    #151515,
+    #F6F6F6,
   ),
 
   'green': (
-    #4bb44b,
-    #0e8912,
-    #E8EFD7,
-    #b1d74f,
+    #213341,
   ),
 
   'orange': (
@@ -39,8 +23,7 @@ $colors: (
   ),
 
   'red': (
-    #dc0a19,
-    #f02d37,
+    #b82132,
   ),
 
   'yellow': (
@@ -48,6 +31,7 @@ $colors: (
     #f5dc00,
   ),
 );
+
 
 
 @function color($key, $index: 1) {

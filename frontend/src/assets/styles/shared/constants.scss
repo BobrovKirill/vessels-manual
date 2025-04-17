@@ -1,15 +1,20 @@
-$bar-height: 48px;
-$bar-height-mobile: 48px;
-$under-bar-heigth: 40px;
-$header-height-mobile: $bar-height + $under-bar-heigth;
+@use './color' as *;
 
-$waterfall-carousel-height: 180px;
-$waterfall-carousel-height-mobile: 188px;
-$waterfall-subscription-height: 176px;
-$waterfall-date-bar-height: 58px;
+$header-height-mobile: 36px;
+$header-height-tablet: 68px;
+$header-height-desk: 102px;
+$nav-mobile-index: 999;
 
-@mixin waterfall-subscription-is-hidden() {
-  @media only screen and (max-height: 900px) {
-    @content;
-  }
-}
+//----------------Light Theme--------------//
+
+$main: color('gray');
+$secondary: color('blue');
+$accent:color('red');
+
+$first-font: color('black');
+$second-font: color('green');
+$accent-font: color('red');
+
+
+//-----------------Dark Theme--------------//
+

@@ -1,9 +1,17 @@
+import { resolve } from 'node:path'
+import { defineNuxtConfig } from 'nuxt/config'
+import usePluginAutoImport from 'unplugin-auto-import/vite'
+import svgLoader from 'vite-svg-loader'
+
 import {
   BUILD_MODULES as buildModules,
   HEAD as head,
-  PLUGINS as plugins,
+  MODULES as modules,
   ROUTER as router,
 } from './nuxt.config/index'
+import { createRobots } from './robots'
+
+createRobots()
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -28,12 +36,16 @@ export default defineNuxtConfig({
     transpile: ['maska'],
   },
 
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-    },
-  ],
+  components: {
+    dirs: [
+      {
+        path: '~/components',
+        pathPrefix: false,
+        global: true,
+        extensions: ['vue'],
+      },
+    ],
+  },
 
   css: ['~/assets/styles/global.scss'],
 
@@ -47,8 +59,17 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
 
+    plugins: [
+      svgLoader(),
+
+      usePluginAutoImport({
+        imports: ['vue'],
+
+        dts: resolve(__dirname, 'src/types', 'auto-imports.d.ts'),
+      }),
+    ],
+  },
 
   // render: {
   //   bundleRenderer: {
@@ -58,18 +79,10 @@ export default defineNuxtConfig({
   //   },
   // },
 
-  svgLoader: {
-    svgoConfig: {
-      plugins: [{ mergePaths: false }],
-    },
-  },
-
   srcDir: 'src',
 
-  modules: ['@pinia/nuxt'],
   buildModules,
   head,
-  plugins,
   router,
-
+  modules,
 })

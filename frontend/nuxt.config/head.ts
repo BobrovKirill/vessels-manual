@@ -1,6 +1,4 @@
-import env from '../env'
-
-const { API_URL, HOST } = env
+const { VITE_API, HOST } = import.meta.env
 
 const title = 'Курсовая работа'
 const description = 'Курсовая работа ВШЭ'
@@ -66,7 +64,7 @@ export const HEAD = {
 
     // Resource hints: preconnect
     // ...(IS_PRODUCTION_MODE ? [...addPreconnect('//{host}')] : []),
-    // ...addPreconnect(API_URL),
+    // ...addPreconnect(VITE_API),
 
     // Resource hints: dns-prefetch
   ],

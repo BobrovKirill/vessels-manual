@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::answer.answer",
+      "mappedBy": "question"
+    },
+    "quiz_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quiz-type.quiz-type",
+      "inversedBy": "questions"
+    },
+    "water_region_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::water-region-type.water-region-type",
+      "mappedBy": "question"
+    },
+    "watercraft_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::watercraft-type.watercraft-type",
+      "mappedBy": "question"
+    }
+  }
+}

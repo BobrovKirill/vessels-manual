@@ -6,7 +6,11 @@ services:
     image: my-frontend:latest
     container_name: nuxt_frontend
     environment:
+<<<<<<< HEAD
       API_URL: "http://158.160.173.105/api"
+=======
+      API_URL: "http://backend:1337"
+>>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
     ports:
       - "3000:3000"
     depends_on:
@@ -18,11 +22,18 @@ services:
       dockerfile: Dockerfile
     container_name: strapi_backend
     env_file: ./backend/.env
+<<<<<<< HEAD
     environment:
       NODE_ENV: development
       DATABASE_CLIENT: sqlite
+=======
+>>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
     ports:
       - "1337:1337"
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/.tmp:/app/.tmp
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96

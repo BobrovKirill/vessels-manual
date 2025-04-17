@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   frontend:
     build:
@@ -12,10 +13,15 @@ services:
     depends_on:
       - backend
 
+=======
+version: '3.8'
+services:
+>>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+<<<<<<< HEAD
     container_name: strapi_backend
     env_file: ./backend/.env
     ports:
@@ -23,3 +29,19 @@ services:
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/.tmp:/app/.tmp
+=======
+    container_name: myapp_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: myapp_frontend
+    ports:
+      - "3000:80"
+
+>>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96

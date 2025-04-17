@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz_types",
+  "info": {
+    "singularName": "quiz-type",
+    "pluralName": "quiz-types",
+    "displayName": "quizType",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "quiz",
+        "exam"
+      ],
+      "default": "quiz"
+    },
+    "questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question.question",
+      "mappedBy": "quiz_type"
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

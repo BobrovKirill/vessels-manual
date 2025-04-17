@@ -1,3 +1,4 @@
+@use "sass:map";
 @use './strip-unit';
 
 $breakpoints: (
@@ -26,8 +27,8 @@ $breakpoints: (
 /// @param {string} $type
 ///   A breakpoint type.
 @mixin breakpoint($breakpoint, $type: 'base', $media-width: 'min-width') {
-  $map: map-get($breakpoints, $breakpoint);
-  $width: map-get($map, $type);
+  $map: map.get($breakpoints, $breakpoint);
+  $width: map.get($map, $type);
 
   @media screen and ($media-width: $width) {
     @content;
@@ -41,8 +42,8 @@ $breakpoints: (
 /// @param {string} $type
 ///   A breakpoint type.
 @function breakpoint($breakpoint, $type: 'base') {
-  $map: map-get($breakpoints, $breakpoint);
-  $width: map-get($map, $type);
+  $map: map.get($breakpoints, $breakpoint);
+  $width: map.get($map, $type);
 
   @return $width;
 }
@@ -54,8 +55,8 @@ $breakpoints: (
 /// @param {string} $type
 ///   A breakpoint type.
 @function breakpoint-value($breakpoint, $type: 'base') {
-  $map: map-get($breakpoints, $breakpoint);
-  $width: map-get($map, $type);
+  $map: map.get($breakpoints, $breakpoint);
+  $width: map.get($map, $type);
 
   @return strip-unit($width);
 }

@@ -45,7 +45,8 @@
       "@pinia/nuxt",
 
       "@types/node",
-      "nuxt-viewport"
+      "nuxt-viewport",
+      "@nuxtjs/axios"
     ]
   },
 
