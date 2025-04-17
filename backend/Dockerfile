@@ -7,6 +7,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 COPY . .
+ENV NODE_OPTIONS=--max_old_space_size=6144
 RUN npm run build
 
 FROM node:18-alpine
