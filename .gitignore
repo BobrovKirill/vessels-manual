@@ -22,4 +22,4 @@ logs
 .env
 .env.*
 !.env.example
-/backend/types/generated
+# /backend/types/generated
