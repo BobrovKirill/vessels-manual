@@ -44,7 +44,7 @@ console.log('props', props.list)
 }
 
 .nav__list-item {
-  color: #B82132;
+  color: $accent;
   font-size: 14px;
 
   a {

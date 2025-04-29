@@ -14,21 +14,32 @@ async function fetchTest() {
 </script>
 
 <template>
-  <div :class="$style.layout">
+  <div class="layout">
     <TheHeader />
     <button @click="fetchTest">
       TEST FETCH
     </button>
+
     <main>
-      <nuxt-page />
+      <div class="container">
+        <nuxt-page />
+      </div>
     </main>
+
     <TheFooter />
   </div>
 </template>
 
-<style lang="scss" module>
+<style lang="scss">
 .layout {
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid black;
 }
 </style>
