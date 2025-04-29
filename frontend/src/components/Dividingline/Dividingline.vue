@@ -4,11 +4,11 @@
 
 <template>
   <div class="dividingline__container">
-    <SvgIcon class="dividingline__svg" name="dividingline1" />
+    <SvgIcon class="dividingline__svg" name="dividingline-wheel" />
     <span class="dividingline__span">
       7 ФУТОВ ПОД КИЛЕМ!
     </span>
-    <SvgIcon class="dividingline__svg" name="dividingline2" />
+    <SvgIcon class="dividingline__svg" name="dividingline-knot" />
   </div>
 </template>
 
@@ -29,7 +29,7 @@
 }
 
   .dividingline__container {
-    background: #3B6790;
+    background: $secondary;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding: 21px 10px;

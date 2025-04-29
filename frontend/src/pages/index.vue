@@ -25,6 +25,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
         <dl class="main__blog-second-text2">
           <dd>
+            А
             Суда
           </dd>
           <dt>
@@ -273,7 +274,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     margin: 0;
     padding: 20px;
     max-width: 634px;
-    background-color: #B82132;
+    background-color: $accent;
     font-size: 20px;
     color: white;
 
@@ -296,7 +297,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     font-size: 25px;
     line-height: 47px;
     font-weight: bold;
-    color: #213341;
+    color: $second-font;
     margin: 0;
     padding: 0;
     max-width: 570px;
@@ -323,7 +324,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     font-weight: bold;
     padding: 0;
     margin: 0 0 20px;
-    color: #213341;
+    color: $second-font;
     border-bottom: 1px solid black;
 
     @include breakpoint('tablet') {
@@ -341,7 +342,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
   .main__blog-fourth-list{
     padding: 0;
     margin: 0 0 0 25px;
-    color: #B82132;
+    color: $accent;
     list-style-position: inside;
   }
 
@@ -511,7 +512,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     padding: 0;
     font-family: 'Merriweather';
     font-size: 26px;
-    color: #213341;
+    color: $second-font;
     text-align: center;
     border-bottom: 1px solid black;
     text-transform: uppercase;
@@ -578,7 +579,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     text-decoration: none;
     font-family: 'Martian Mono';
     color: white;
-    background: #B82132;
+    background: $accent;
     padding: 15px 0px;
     font-size: 14px;
     max-width: 184px;
@@ -745,13 +746,13 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
   .tests__card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 2px solid #B82132;
+    border: 2px solid $accent;
   }
 
   .tests__card-link {
     cursor: pointer;
     display: none;
-    background-color: #B82132;
+    background-color: $accent;
     position: absolute;
     top: 50%;
     color: white;

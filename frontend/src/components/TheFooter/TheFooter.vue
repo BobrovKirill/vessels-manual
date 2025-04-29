@@ -171,12 +171,12 @@ console.log('TheFooter is loaded')
   .footer_down_list_item {
     font-size: 15px;
     font-family: 'Roboto';
-    color: #213341;
+    color: $second-font;
   }
 
   .footer_blog_left_title {
     margin-bottom: 10px;
-    color: #213341;
+    color: $second-font;
     font-size: 14px;
 
     @include breakpoint('tablet') {
@@ -190,7 +190,7 @@ console.log('TheFooter is loaded')
 
   .footer_blog_left_subtitle {
     margin-bottom: 10px;
-    color: #213341;
+    color: $second-font;
 
     font-size: 14px;
 
@@ -208,7 +208,7 @@ console.log('TheFooter is loaded')
   }
 
   .footer_blog_left_text {
-    color: #213341;
+    color: $second-font;
     font-size: 12px;
 
     @include breakpoint('tablet') {
@@ -222,7 +222,7 @@ console.log('TheFooter is loaded')
 
   .footer_blog_right_title {
     margin-bottom: 10px;
-    color: #213341;
+    color: $second-font;
     font-size: 14px;
     text-transform: uppercase;
 
@@ -236,7 +236,7 @@ console.log('TheFooter is loaded')
   }
 
   .footer_blog_right_listcontacts_item{
-    color: #213341;
+    color: $second-font;
     margin-bottom: 10px;
 
     font-size: 12px;
@@ -251,11 +251,11 @@ console.log('TheFooter is loaded')
   }
 
   .footer_blog_right_listcontacts_item_link {
-    color: #213341;
+    color: $second-font;
   }
 
   .footer_blog_right_subtitle{
-    color: #213341;
+    color: $second-font;
     margin-bottom: 10px;
     font-size: 14px;
 
@@ -269,7 +269,7 @@ console.log('TheFooter is loaded')
   }
 
   .footer_blog_right_listdev_item{
-    color: #213341;
+    color: $second-font;
 
     font-size: 12px;
 

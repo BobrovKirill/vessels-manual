@@ -3,32 +3,32 @@
 </script>
 
 <template>
-  <div class="runningline__container">
+  <div class="runningline">
     <div class="runningline__wrapper">
       <div class="runningline__item">
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runningsvg-yacht" />
         <span class="running__inner-text">
           моторное судно
         </span>
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runnningsvg-jetski" />
         <span class="running__inner-text">
           гидроцикл
         </span>
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runningsvg-yacht" />
         <span class="running__inner-text2">
           парусное судно
         </span>
       </div>
       <div class="runningline__item">
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runningsvg-yacht" />
         <span class="running__inner-text">
           моторное судно
         </span>
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runnningsvg-jetski" />
         <span class="running__inner-text">
           гидроцикл
         </span>
-        <SvgIcon class="running__inner-svg" name="runningsvg1" />
+        <SvgIcon class="running__inner-svg" name="runningsvg-yacht" />
         <span class="running__inner-text2">
           парусное судно
         </span>
@@ -38,14 +38,14 @@
 </template>
 
 <style  lang="scss">
-  .runningline__container {
+  .runningline {
     overflow: hidden;
     position: relative;
   }
 
   .runningline__wrapper {
     display: flex;
-    background-color: #3B6790;
+    background-color: $secondary;
     padding: 10px 0;
   }
 
@@ -71,7 +71,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 50px;
-    animation: ticker 8s linear infinite; ;
+    animation: ticker 10s linear infinite; ;
   }
 
   @keyframes ticker {
