@@ -2,12 +2,14 @@ FROM node:18-bullseye-slim AS build
 
 RUN apt-get update && apt-get install -y \
       build-essential python3 gcc autoconf automake \
-      libvips-dev git curl \
+      libvips-dev git curl rustc cargo \
     && rm -rf /var/lib/apt/lists/*
     
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci           
+
+RUN npm rebuild @swc/core
 
 COPY . .
 ENV NODE_OPTIONS=--max_old_space_size=6144
