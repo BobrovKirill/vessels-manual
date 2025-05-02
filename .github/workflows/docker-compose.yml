@@ -23,7 +23,7 @@ services:
     image: vessels-manual-frontend:latest
     container_name: nuxt_frontend
     environment:
-      - API_URL=http://backend:1337/api
+      - API_URL=http://158.160.173.105/api
     ports:
       - "3000:3000"
     depends_on:
