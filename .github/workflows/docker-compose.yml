@@ -1,23 +1,9 @@
-services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: my-frontend:latest
-    container_name: nuxt_frontend
-    environment:
-      API_URL: "http://158.160.173.105/api"
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+version: "3.9"
 
-version: '3.8'
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: ./backend
+    image: vessels-manual-backend:latest
     container_name: strapi_backend
     env_file: ./backend/.env
     ports:
@@ -25,16 +11,14 @@ services:
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/.tmp:/app/.tmp
-    container_name: myapp_backend
-    ports:
-      - "8000:8000"
-    environment:
-      - ENV=production
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: myapp_frontend
+    build: ./frontend
+    image: vessels-manual-frontend:latest
+    container_name: nuxt_frontend
+    environment:
+      API_URL: "http://backend:1337/api"  
     ports:
-      - "3000:80"
+      - "3000:3000"
+    depends_on:
+      - backend
