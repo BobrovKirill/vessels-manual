@@ -1,9 +1,28 @@
+version: "3.8"
+
 services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: vessels-manual-backend:latest
+    container_name: strapi_backend
+    env_file:
+      - ./backend/.env
+    environment:
+      - ENV=production
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./backend/public/uploads:/app/public/uploads
+      - ./backend/.tmp:/app/.tmp
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: my-frontend:latest
+    image: vessels-manual-frontend:latest
     container_name: nuxt_frontend
     environment:
       API_URL: "http://158.160.173.105/api"
@@ -11,18 +30,3 @@ services:
       - "3000:3000"
     depends_on:
       - backend
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: strapi_backend
-    env_file: ./backend/.env
-    environment:
-      NODE_ENV: development
-      DATABASE_CLIENT: sqlite
-    ports:
-      - "1337:1337"
-    volumes:
-      - ./backend/public/uploads:/app/public/uploads
-      - ./backend/.tmp:/app/.tmp
