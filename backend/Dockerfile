@@ -20,6 +20,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 
+RUN npm rebuild @swc/core --build-from-source
+
 COPY . .
 ENV NODE_OPTIONS="--max_old_space_size=6144"
 RUN npm run build
