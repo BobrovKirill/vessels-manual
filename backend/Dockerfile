@@ -17,7 +17,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 
-RUN npm install @swc/core@latest --no-audit --no-fund
+RUN npm install \
+      @swc/core@latest \
+      @rollup/rollup-linux-x64-gnu@latest \
+    --no-audit --no-fund
 
 COPY . .
 ENV NODE_OPTIONS="--max_old_space_size=6144"
