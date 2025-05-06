@@ -13,14 +13,11 @@ RUN apt-get update && \
       libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 
-RUN npm rebuild @swc/core --build-from-source
+RUN npm install @swc/core@latest --no-audit --no-fund
 
 COPY . .
 ENV NODE_OPTIONS="--max_old_space_size=6144"
