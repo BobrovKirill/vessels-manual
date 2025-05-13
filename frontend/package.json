@@ -9,7 +9,7 @@
   "scripts": {
     "build": "cross-env nuxt build --dotenv ./env/.env.production",
     "start": "cross-env node .output/server/index.mjs --dotenv ./env/.env.production",
-    "dev": "cross-env nuxt dev --dotenv ./env/.env.development",
+    "dev": "cross-env nuxt dev --dotenv ./env/.env.production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
