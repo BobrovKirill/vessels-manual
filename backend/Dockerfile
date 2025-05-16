@@ -1,6 +1,6 @@
 FROM node:18-alpine AS build
 
-RUN apk add --no-cache build-base python3 gcc autoconf automake zlib-dev libpng-dev vips-dev git
+RUN apk add --no-cache build-base python3 gcc autoconf automake zlib-dev libpng-dev vips-dev git libc6-compat
 
 WORKDIR /app
 COPY package*.json ./
