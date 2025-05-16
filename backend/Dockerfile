@@ -1,29 +1,32 @@
-FROM node:18-alpine AS build
+FROM node:18-slim AS build
 
-RUN apk add --no-cache \
-      build-base \
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      build-essential \
       python3 \
-      gcc \
-      autoconf \
-      automake \
-      zlib-dev \
-      libpng-dev \
-      vips-dev \
-      git
+      git \
+      libvips-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 ENV NODE_OPTIONS=--max_old_space_size=6144
 RUN npm run build
 
-FROM node:18-alpine
-RUN apk add --no-cache vips-dev
+FROM node:18-slim
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libvips-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
 COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
 COPY --from=build /app ./
 
 ENV NODE_ENV=production
