@@ -10,16 +10,17 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm ci \
- && npm update @swc/core \
- && npm install --no-save @rollup/rollup-linux-x64-gnu
+    && npm update @swc/core \
+    && npm install --no-save @rollup/rollup-linux-x64-gnu
 
 COPY . .
 ENV NODE_OPTIONS=--max_old_space_size=6144
-RUN npm run build
+RUN npm run build \
+    && npm prune --production
 
-FROM node:18-slim
+FROM node:18-slim AS runtime
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends libvips-dev \
@@ -27,8 +28,6 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package*.json ./
 COPY --from=build /app ./
 
 ENV NODE_ENV=production
