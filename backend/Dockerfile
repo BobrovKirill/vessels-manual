@@ -6,19 +6,19 @@ RUN apt-get update \
       python3 \
       git \
       libvips-dev \
+ && npm install -g yarn \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci \
-    && npm update @swc/core \
-    && npm install --no-save @rollup/rollup-linux-x64-gnu
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
 ENV NODE_OPTIONS=--max_old_space_size=6144
-RUN npm run build \
-    && npm prune --production
+RUN yarn build
+
+RUN yarn install --production --ignore-scripts
 
 FROM node:18-slim AS runtime
 
@@ -33,4 +33,4 @@ COPY --from=build /app ./
 ENV NODE_ENV=production
 EXPOSE 1337
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]
