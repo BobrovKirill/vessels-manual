@@ -1,34 +1,42 @@
-FROM node:18-slim AS build
+FROM node:22-alpine AS build
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      build-essential \
-      python3 \
-      git \
-      libvips-dev \
- && npm install -g yarn \
- && rm -rf /var/lib/apt/lists/*
+RUN apk update \
+ && apk add --no-cache \
+      build-base \
+      gcc \
+      autoconf \
+      automake \
+      zlib-dev \
+      libpng-dev \
+      vips-dev \
+      git > /dev/null 2>&1
 
-WORKDIR /app
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /opt/
 
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn global add node-gyp \
+ && yarn config set network-timeout 600000 -g \
+ && yarn install --production
 
+ENV PATH=/opt/node_modules/.bin:$PATH
+
+WORKDIR /opt/app
 COPY . .
-ENV NODE_OPTIONS=--max_old_space_size=6144
 RUN yarn build
 
-RUN yarn install --production --ignore-scripts
+FROM node:22-alpine
+RUN apk add --no-cache vips-dev
 
-FROM node:18-slim AS runtime
+WORKDIR /opt/app
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends libvips-dev \
- && rm -rf /var/lib/apt/lists/*
+COPY --from=build /opt/node_modules ./node_modules
+COPY --from=build /opt/app ./
 
-WORKDIR /app
-
-COPY --from=build /app ./
+RUN chown -R node:node /opt/app
+USER node
 
 ENV NODE_ENV=production
 EXPOSE 1337
