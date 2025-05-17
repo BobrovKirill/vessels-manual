@@ -12,20 +12,21 @@ RUN apk add --no-cache \
     autoconf \
     automake
 
+RUN npm install -g node-gyp \
+    && yarn config set network-timeout 600000 -g
+
 WORKDIR /opt/app
 
 COPY package.json yarn.lock ./
-RUN npm install -g yarn node-gyp \
-    && yarn config set network-timeout 600000 -g \
-    && yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 COPY . .
 ENV NODE_OPTIONS="--max_old_space_size=6144"
 RUN yarn build
 
 FROM node:20-alpine
-RUN apk add --no-cache vips-dev
 
+RUN apk add --no-cache vips-dev
 WORKDIR /opt/app
 
 COPY --from=build /opt/app ./
