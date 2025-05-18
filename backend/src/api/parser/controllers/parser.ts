@@ -8,8 +8,8 @@ const rootUrl = 'https://mchs.gov.ru/deyatelnost/attestaciya-i-akkreditaciya/att
 const mokUrl = 'https://mchs.gov.ru/deyatelnost/attestaciya-i-akkreditaciya/attestaciya-sudovoditeley/voprosy-dlya-attestacii-sudovoditeley/razdel-rayon-plavaniya/mp-plus'; // URL для парсинга
 
 
-
-export default factories.createCoreController('api::parser.parser', ({strapi}) => ({
+// TODO избавиться от any!!
+export default factories.createCoreController('api::parser.parser' as any, ({strapi}) => ({
 
   async parse(ctx) {
     try {
