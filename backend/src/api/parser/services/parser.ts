@@ -78,7 +78,7 @@ async function uploadImageToStrapi(file) {
 }
 
 
-export default factories.createCoreService('api::parser.parser', ({strapi}) => ({
+export default factories.createCoreService('api::parser.parser' as any, ({strapi}) => ({
   async parsePdfFromUrl(data: { type: QuestionType, urls: string[] }) {
     try {
       // !! Временно обрезаем ссылки на все пдф, чтоб не загружать парсер
