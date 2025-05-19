@@ -1,11 +1,11 @@
 FROM node:18-alpine AS build
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN yarn build
 
 FROM node:18-alpine AS runtime
 
