@@ -30,9 +30,6 @@ services:
       NUXT_PUBLIC_HOST:    "0.0.0.0"
     ports:
       - "3000:3000"
-    depends_on:
-      backend:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
