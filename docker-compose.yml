@@ -6,8 +6,6 @@ services:
     image: vessels-manual-backend:latest
     container_name: strapi_backend
     restart: unless-stopped
-    env_file:
-      - ./backend/.env
     ports:
       - "1337:1337"
     volumes:

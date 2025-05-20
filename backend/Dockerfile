@@ -21,6 +21,10 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 COPY . .
+
+COPY generate-env.js .
+RUN node generate-env.js
+
 ENV NODE_OPTIONS="--max_old_space_size=6144"
 RUN yarn build
 
@@ -30,8 +34,8 @@ RUN apk add --no-cache vips-dev curl
 WORKDIR /opt/app
 
 COPY --from=build /opt/app ./
-COPY ./entrypoint.sh ./generate-env.js ./
 
+COPY entrypoint.sh ./
 RUN chmod +x ./entrypoint.sh
 
 ENV NODE_ENV=production
