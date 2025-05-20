@@ -33,7 +33,7 @@ FROM node:20-alpine
 RUN apk add --no-cache vips-dev curl
 WORKDIR /opt/app
 
-COPY --from=build /opt/app ./
+COPY --from=build /opt/app/.env .env
 
 COPY entrypoint.sh ./
 RUN chmod +x ./entrypoint.sh
