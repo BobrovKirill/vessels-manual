@@ -12,10 +12,11 @@ services:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/.tmp:/app/.tmp
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:1337 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://158.160.173.105:1337 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 40s
 
   frontend:
     build:
