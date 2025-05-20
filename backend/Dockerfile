@@ -30,8 +30,11 @@ RUN apk add --no-cache vips-dev curl
 WORKDIR /opt/app
 
 COPY --from=build /opt/app ./
+COPY ./entrypoint.sh ./generate-env.js ./
+
+RUN chmod +x ./entrypoint.sh
 
 ENV NODE_ENV=production
 EXPOSE 1337
 
-CMD ["yarn", "start"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
