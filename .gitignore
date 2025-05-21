@@ -25,6 +25,8 @@ logs/
 
 .env
 .env.*
+!.env.production
+!.env.development
 !.env.example
 
 dist/
