@@ -11,7 +11,7 @@ if (!fs.existsSync(envPath)) {
         HOST=0.0.0.0
         PORT=1337
         DATABASE_CLIENT=sqlite
-        DATABASE_FILENAME=./data.db
+        DATABASE_PATH=/database/strapi.db
         APP_KEYS=${generateKey()},${generateKey()}
         API_TOKEN_SALT=${generateKey()}
         ADMIN_JWT_SECRET=${generateKey()}
