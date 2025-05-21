@@ -8,12 +8,14 @@ const envPath = path.join(__dirname, '.env');
 
 if (!fs.existsSync(envPath)) {
     const envContent = `
+        HOST=0.0.0.0
+        PORT=1337
+        DATABASE_CLIENT=sqlite
+        DATABASE_FILENAME=./data.db
         APP_KEYS=${generateKey()},${generateKey()}
         API_TOKEN_SALT=${generateKey()}
         ADMIN_JWT_SECRET=${generateKey()}
         JWT_SECRET=${generateKey()}
-        DATABASE_CLIENT=sqlite
-        DATABASE_FILENAME=./data.db;
         `.trim()
 
     fs.writeFileSync(envPath, envContent, 'utf8');
