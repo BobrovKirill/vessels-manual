@@ -471,6 +471,34 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiParserParser extends Struct.CollectionTypeSchema {
+  collectionName: 'parsers';
+  info: {
+    displayName: 'parser';
+    pluralName: 'parsers';
+    singularName: 'parser';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parser.parser'
+    > &
+      Schema.Attribute.Private;
+    pdfs: Schema.Attribute.Media<'files'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
@@ -1018,6 +1046,7 @@ declare module '@strapi/strapi' {
       'api::answer.answer': ApiAnswerAnswer;
       'api::article.article': ApiArticleArticle;
       'api::global.global': ApiGlobalGlobal;
+      'api::parser.parser': ApiParserParser;
       'api::question.question': ApiQuestionQuestion;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
