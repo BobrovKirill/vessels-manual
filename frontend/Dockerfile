@@ -19,4 +19,4 @@ COPY --from=build /app/package*.json ./
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["yarn", "run", "start"]
+CMD ["yarn", "run", "build"]
