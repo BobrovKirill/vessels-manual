@@ -10,9 +10,9 @@ services:
       - "1337:1337"
     volumes:
       - ./backend/public/uploads:/app/public/uploads
-      - /database:/srv/app/database
+      - ./backend/database:/srv/app/database
     environment:
-      DATABASE_PATH: ./backend/database/strapi.db
+      DATABASE_PATH: /srv/app/database/strapi.db
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:1337 || exit 1"]
       interval: 30s

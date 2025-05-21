@@ -62,7 +62,7 @@ module.exports = ({ env }) => ({
   connection: {
     client: 'sqlite',
     connection: {
-      filename: env('DATABASE_PATH', '/database/strapi.db'),
+      filename: env('DATABASE_PATH', '/srv/app/database/strapi.db'),
     },
     useNullAsDefault: true,
   },
