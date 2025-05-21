@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "cross-env nuxt build --dotenv .env.production",
-    "start": "cross-env node .output/server/index.mjs --dotenv ./env/.env.production",
+    "start": "cross-env node .output/server/index.mjs --dotenv .env.production",
     "dev": "cross-env nuxt dev --dotenv .env.development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

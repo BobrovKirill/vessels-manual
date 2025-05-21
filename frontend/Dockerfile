@@ -16,7 +16,9 @@ COPY --from=build /app/.output       ./.output
 COPY --from=build /app/node_modules  ./node_modules
 COPY --from=build /app/package*.json ./
 
+COPY --from=build /app/.env.production .env.production
+
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["yarn", "run", "build"]
+CMD ["yarn", "start"]
