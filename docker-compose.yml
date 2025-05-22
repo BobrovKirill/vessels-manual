@@ -7,7 +7,7 @@ services:
     container_name: strapi_backend
     restart: unless-stopped
     ports:
-      - "80:1337"
+      - "1337:1337"
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/database:/srv/app/database
