@@ -8,6 +8,14 @@ interface CustomFetchOptions<T> {
   default?: () => T
 }
 
+function getBaseURL() {
+  const API_URL = import.meta.env.API_URL || null
+  const API_URL_SERVER = import.meta.env.API_URL_SERVER || ''
+  const isServer = import.meta.server
+
+  return isServer && API_URL_SERVER ? API_URL_SERVER : API_URL
+}
+
 export async function useRam<T>(
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
   path: string,
@@ -25,9 +33,13 @@ export async function useRam<T>(
     headers.Authorization = `Bearer ${user.jwt.accessToken}`
   }
 
+  console.log('import.meta', import.meta)
+  console.log('import.meta.env', import.meta.env)
+  const baseUrl = getBaseURL()
+
   const fetchOptions = {
     method,
-    baseURL: import.meta.env.API_URL || 'http://localhost:1337/api',
+    baseURL: baseUrl || 'http://localhost:1337/api',
     query: options.query,
     body: options.body,
     headers,

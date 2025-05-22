@@ -2,13 +2,14 @@ import { resolve } from 'node:path'
 import { defineNuxtConfig } from 'nuxt/config'
 import usePluginAutoImport from 'unplugin-auto-import/vite'
 import svgLoader from 'vite-svg-loader'
-
+import { envDefine } from './env'
 import {
   BUILD_MODULES as buildModules,
   HEAD as head,
   MODULES as modules,
   ROUTER as router,
 } from './nuxt.config/index'
+
 import { createRobots } from './robots'
 
 createRobots()
@@ -50,6 +51,8 @@ export default defineNuxtConfig({
   css: ['~/assets/styles/global.scss'],
 
   vite: {
+    define: envDefine,
+
     css: {
       preprocessorOptions: {
         scss: {

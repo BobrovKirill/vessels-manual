@@ -7,9 +7,9 @@
   "author": "Bobrov Kirill <bobrovkirill11@gmail.ru>",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "cross-env MODE=production nuxt build",
-    "start": "cross-env MODE=production node .output/server/index.mjs",
-    "dev": "cross-env MODE=development nuxt dev",
+    "build": "cross-env nuxt build --dotenv ./env/.env.production",
+    "start": "cross-env node .output/server/index.mjs --dotenv ./env/.env.production",
+    "dev": "cross-env nuxt dev --dotenv ./env/.env.development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
