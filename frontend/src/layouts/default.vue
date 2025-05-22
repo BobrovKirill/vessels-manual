@@ -8,7 +8,7 @@ async function fetchTest() {
   // console.log(json)
 
   // Обертка fetch'a которую будем юзать мы, в ней потом допишем логику для пользователя
-  const { data } = await useRam('GET', 'quiz?category=mp')
+  const { data } = await useRam('GET', '/questions/quiz?category=mp')
   console.log(data)
 }
 
@@ -19,7 +19,7 @@ async function fetchTest2() {
   // console.log(json)
 
   // Обертка fetch'a которую будем юзать мы, в ней потом допишем логику для пользователя
-  const { data } = await useRam('GET', 'exam?category=vv')
+  const { data } = await useRam('GET', '/questions/exam?category=vv')
   console.log(data)
 }
 </script>
