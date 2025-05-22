@@ -24,12 +24,14 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        MODE: production
+        API_URL: http://158.160.173.105/api
+        HOST_URL: http://158.160.173.105
+        BUILD_TIMESTAMP: "manual-2025"
     image: vessels-manual-frontend:latest
     container_name: nuxt_frontend
     restart: unless-stopped
-    environment:
-      VITE_API: "http://158.160.173.105/api"
-      NUXT_PUBLIC_HOST: "0.0.0.0"
     ports:
       - "3000:3000"
     depends_on:

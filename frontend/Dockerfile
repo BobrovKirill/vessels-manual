@@ -1,5 +1,15 @@
 FROM node:22-alpine AS build
 
+ARG MODE
+ARG API_URL
+ARG HOST_URL
+ARG BUILD_TIMESTAMP
+
+ENV MODE=$MODE \
+    API_URL=$API_URL \
+    HOST_URL=$HOST_URL \
+    BUILD_TIMESTAMP=$BUILD_TIMESTAMP
+
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -15,8 +25,6 @@ WORKDIR /app
 COPY --from=build /app/.output       ./.output
 COPY --from=build /app/node_modules  ./node_modules
 COPY --from=build /app/package*.json ./
-
-COPY --from=build /app/.env.production .env.production
 
 ENV NODE_ENV=production
 EXPOSE 3000

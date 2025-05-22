@@ -27,7 +27,7 @@ export async function useRam<T>(
 
   const fetchOptions = {
     method,
-    baseURL: import.meta.env.VITE_API || 'http://localhost:1337/api',
+    baseURL: import.meta.env.API_URL || 'http://localhost:1337/api',
     query: options.query,
     body: options.body,
     headers,

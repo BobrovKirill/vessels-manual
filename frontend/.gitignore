@@ -19,5 +19,5 @@ logs
 .idea
 
 # Local env files
-!.env.production
-!.env.development
+!env/.env.production
+!env/.env.development
