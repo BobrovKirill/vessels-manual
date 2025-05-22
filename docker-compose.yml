@@ -27,6 +27,7 @@ services:
       args:
         MODE: production
         API_URL: http://158.160.173.105/api
+        API_URL_SERVER: http://158.160.173.105:1337
         HOST_URL: http://158.160.173.105
         BUILD_TIMESTAMP: "manual-2025"
     image: vessels-manual-frontend:latest
