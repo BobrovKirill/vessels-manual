@@ -7,7 +7,7 @@ services:
     container_name: strapi_backend
     restart: unless-stopped
     ports:
-      - "1337:1337"
+      - "80:1337"
     volumes:
       - ./backend/public/uploads:/app/public/uploads
       - ./backend/database:/srv/app/database
@@ -34,7 +34,7 @@ services:
     container_name: nuxt_frontend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - backend
     healthcheck:
