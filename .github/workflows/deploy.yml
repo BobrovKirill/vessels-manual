@@ -56,7 +56,9 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd ${{ secrets.REMOTE_PATH }}
+            cd ${{ secrets.DEPLOY_PATH }}
+            ls -al
+            pwd
             docker-compose down --remove-orphans
             docker-compose pull
             docker-compose up -d
