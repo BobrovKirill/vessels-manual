@@ -2,9 +2,9 @@ name: Deploy vessels-manual via Docker Compose
 
 on:
   push:
-    branches: 
-    - master
-    - develop
+    branches:
+      - master
+      - develop
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,10 @@ jobs:
 
     permissions:
       contents: read
-      packages: write 
+      packages: write
+
+    env:
+      REGISTRY_OWNER: bobrovkirill
 
     steps:
       - name: Checkout vessels-manual repo
@@ -35,8 +38,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/vessels-manual-backend:latest
+          tags: ghcr.io/${{ env.REGISTRY_OWNER }}/vessels-manual-backend:latest
 
       - name: Build & push frontend image
         uses: docker/build-push-action@v4
@@ -44,8 +46,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/vessels-manual-frontend:latest
+          tags: ghcr.io/${{ env.REGISTRY_OWNER }}/vessels-manual-frontend:latest
 
       - name: Deploy on Yandex Cloud VM via SSH
         uses: appleboy/ssh-action@v1.1.0
