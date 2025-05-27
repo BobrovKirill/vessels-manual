@@ -3,7 +3,7 @@ name: Deploy vessels-manual via Docker Compose
 on:
   push:
     branches: 
-    - main
+    - master
     - develop
   workflow_dispatch:
 
