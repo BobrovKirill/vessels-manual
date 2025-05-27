@@ -56,9 +56,13 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
+                -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+          
             cd ${{ secrets.DEPLOY_PATH }}
             ls -al
             pwd
+
             docker-compose down --remove-orphans
             docker-compose pull
             docker-compose up -d
