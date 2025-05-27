@@ -2,6 +2,9 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
+const dbPath = isProd ? '/database/strapi.db' : '.tmp/data.db';
+
 const generateKey = () => crypto.randomBytes(32).toString('hex');
 
 const envPath = path.join(__dirname, '.env');
@@ -11,7 +14,7 @@ if (!fs.existsSync(envPath)) {
         HOST=0.0.0.0
         PORT=1337
         DATABASE_CLIENT=sqlite
-        DATABASE_PATH=/database/strapi.db
+        DATABASE_PATH=${dbPath}
         APP_KEYS=${generateKey()},${generateKey()}
         API_TOKEN_SALT=${generateKey()}
         ADMIN_JWT_SECRET=${generateKey()}

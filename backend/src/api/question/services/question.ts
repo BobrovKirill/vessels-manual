@@ -33,8 +33,6 @@ export default {
     const question = await strapi.entityService.findOne('api::question.question', questionId, {
       populate: { answers: true }
     });
-
-
     if (!question) throw new Error('Вопрос не найден');
 
     // @ts-ignore

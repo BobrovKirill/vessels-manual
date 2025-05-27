@@ -7,6 +7,7 @@ import  questionService  from '../services/question'
 
 module.exports = factories.createCoreController('api::question.question', ({ strapi }) => ({
 
+  // Поинт для пробных тестов
   async quiz(ctx) {
     try {
       const { category } = ctx.query;
@@ -20,6 +21,7 @@ module.exports = factories.createCoreController('api::question.question', ({ str
     }
   },
 
+  // Поинт для пробного экзамена
   async exam(ctx) {
     try {
       const { category = ''} = ctx.query;
@@ -32,6 +34,7 @@ module.exports = factories.createCoreController('api::question.question', ({ str
     }
   },
 
+  // Получить ответ
   async answer(ctx) {
     try {
       const { session, question, answer } = ctx.request.body;
@@ -44,6 +47,7 @@ module.exports = factories.createCoreController('api::question.question', ({ str
     }
   },
 
+  // Поинт для показа результата тестирования
   async finish(ctx) {
     try {
       const { sessionId } = ctx.request.body;

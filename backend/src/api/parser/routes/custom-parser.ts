@@ -5,8 +5,8 @@ module.exports = {
       path: '/parser/parse',
       handler: 'parser.parse',
       config: {
-        auth: false, // можно true если хочешь только для авторизованных
-        policies: [],
+        auth: true,
+        policies: ['global::is-super-admin'],
         middlewares: [],
         type: 'content-api'
       },
