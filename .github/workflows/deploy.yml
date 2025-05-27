@@ -57,5 +57,7 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             cd ${{ secrets.REMOTE_PATH }}
+            docker-compose down --remove-orphans
             docker-compose pull
             docker-compose up -d
+            docker system prune -f
