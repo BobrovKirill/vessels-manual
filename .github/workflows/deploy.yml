@@ -48,7 +48,7 @@ jobs:
           push: true
           build-args: |
             MODE=production
-            API_URL=http://158.160.173.105/api
+            API_URL=http://158.160.173.105:1337/api
             API_URL_SERVER=http://158.160.173.105:1337
             HOST_URL=http://158.160.173.105
             BUILD_TIMESTAMP=${{ github.run_number }}
