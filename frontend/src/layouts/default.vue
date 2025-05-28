@@ -27,6 +27,7 @@ async function fetchTest2() {
 <template>
   <div class="layout">
     <TheHeader />
+    <p>Тестовый текст для проверки CI/CD</p>
     <button @click="fetchTest">
       TEST FETCH
     </button>
