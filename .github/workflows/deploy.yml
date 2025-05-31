@@ -1,24 +1,75 @@
-name: Deploy Docker Containers
+name: Deploy vessels-manual via Docker Compose
 
 on:
   push:
     branches:
-      - main  
+      - master
+      - develop
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    env:
+      REGISTRY_OWNER: bobrovkirill
 
     steps:
-      - name: Checkout репозитория
-        uses: actions/checkout@v3 
+      - name: Checkout vessels-manual repo
+        uses: actions/checkout@v3
 
-      - name: Установка Docker и Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io docker-compose
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Запуск контейнеров
-        run: |
-          docker-compose down 
-          docker-compose up -d --build  
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build & push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: ghcr.io/${{ env.REGISTRY_OWNER }}/vessels-manual-backend:latest
+
+      - name: Build & push frontend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          build-args: |
+            MODE=production
+            API_URL=http://158.160.173.105:1337/api
+            API_URL_SERVER=http://158.160.173.105:1337
+            HOST_URL=http://158.160.173.105
+            BUILD_TIMESTAMP=${{ github.run_number }}
+          tags: ghcr.io/${{ env.REGISTRY_OWNER }}/vessels-manual-frontend:latest
+
+      - name: Deploy on Yandex Cloud VM via SSH
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: 22
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io \
+                -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+          
+            cd ${{ secrets.DEPLOY_PATH }}
+            ls -al
+            pwd
+
+            docker-compose down --remove-orphans
+            docker-compose pull
+            docker-compose up -d
+            docker system prune -f

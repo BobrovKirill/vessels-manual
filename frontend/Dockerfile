@@ -1,21 +1,34 @@
-FROM node:18-alpine AS build
-WORKDIR /app
+FROM node:22-alpine AS build
 
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+ARG MODE
+ARG API_URL
+ARG HOST_URL
+ARG API_URL_SERVER
+ARG BUILD_TIMESTAMP
+
+ENV MODE=$MODE \
+    API_URL=$API_URL \
+    API_URL_SERVER=$API_URL_SERVER \
+    HOST_URL=$HOST_URL \
+    BUILD_TIMESTAMP=$BUILD_TIMESTAMP
+
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN yarn build
 
-FROM node:18-alpine
+FROM node:22-alpine AS runtime
+
+RUN apk add --no-cache curl
+
 WORKDIR /app
-
-COPY --from=build /app/.output ./.output 
-COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.output       ./.output
+COPY --from=build /app/node_modules  ./node_modules
 COPY --from=build /app/package*.json ./
-COPY --from=build /app/nuxt.config.* ./
 
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["node", ".output/server/index.mjs"]
+CMD ["yarn", "start"]

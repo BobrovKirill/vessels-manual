@@ -369,15 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-<<<<<<< HEAD
-export interface ApiAboutAbout extends Struct.SingleTypeSchema {
-  collectionName: 'abouts';
-  info: {
-    description: 'Write about yourself and the content you create';
-    displayName: 'About';
-    pluralName: 'abouts';
-    singularName: 'about';
-=======
 export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
   collectionName: 'answers';
   info: {
@@ -385,25 +376,11 @@ export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
     displayName: 'answer';
     pluralName: 'answers';
     singularName: 'answer';
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-<<<<<<< HEAD
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
-=======
     comment: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -418,7 +395,6 @@ export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
     text: Schema.Attribute.String;
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -437,17 +413,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-<<<<<<< HEAD
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     blocks: Schema.Attribute.DynamicZone<
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
     >;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-=======
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -471,73 +439,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
-<<<<<<< HEAD
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
-  info: {
-    description: 'Create authors for your content';
-    displayName: 'Author';
-    pluralName: 'authors';
-    singularName: 'author';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::author.author'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Category';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-=======
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -570,8 +471,34 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-<<<<<<< HEAD
-=======
+export interface ApiParserParser extends Struct.CollectionTypeSchema {
+  collectionName: 'parsers';
+  info: {
+    displayName: 'parser';
+    pluralName: 'parsers';
+    singularName: 'parser';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parser.parser'
+    > &
+      Schema.Attribute.Private;
+    pdfs: Schema.Attribute.Media<'files'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
@@ -588,6 +515,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -595,123 +523,17 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    quiz_type: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::quiz-type.quiz-type'
-    >;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    water_region_types: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::water-region-type.water-region-type'
-    >;
-    watercraft_types: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::watercraft-type.watercraft-type'
-    >;
-  };
-}
-
-export interface ApiQuizTypeQuizType extends Struct.CollectionTypeSchema {
-  collectionName: 'quiz_types';
-  info: {
-    description: '';
-    displayName: 'quizType';
-    pluralName: 'quiz-types';
-    singularName: 'quiz-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::quiz-type.quiz-type'
+    type: Schema.Attribute.Enumeration<
+      ['vp', 'vvp', 'mp', 'motor', 'scooter', 'sail', 'special']
     > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
-    text: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<['quiz', 'exam']> &
-      Schema.Attribute.DefaultTo<'quiz'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiWaterRegionTypeWaterRegionType
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'water_region_types';
-  info: {
-    description: '';
-    displayName: 'waterRegionType';
-    pluralName: 'water-region-types';
-    singularName: 'water-region-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::water-region-type.water-region-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
-    region: Schema.Attribute.Enumeration<['mp', 'vp', 'vvp']> &
       Schema.Attribute.Required;
-    text: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiWatercraftTypeWatercraftType
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'watercraft_types';
-  info: {
-    description: '';
-    displayName: 'WatercraftType';
-    pluralName: 'watercraft-types';
-    singularName: 'watercraft-type';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::watercraft-type.watercraft-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.Relation<'manyToOne', 'api::question.question'>;
-    text: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    watercraft: Schema.Attribute.Enumeration<['motor', 'jet-sky']>;
-  };
-}
-
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1221,21 +1043,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-<<<<<<< HEAD
-      'api::about.about': ApiAboutAbout;
-      'api::article.article': ApiArticleArticle;
-      'api::author.author': ApiAuthorAuthor;
-      'api::category.category': ApiCategoryCategory;
-      'api::global.global': ApiGlobalGlobal;
-=======
       'api::answer.answer': ApiAnswerAnswer;
       'api::article.article': ApiArticleArticle;
       'api::global.global': ApiGlobalGlobal;
+      'api::parser.parser': ApiParserParser;
       'api::question.question': ApiQuestionQuestion;
-      'api::quiz-type.quiz-type': ApiQuizTypeQuizType;
-      'api::water-region-type.water-region-type': ApiWaterRegionTypeWaterRegionType;
-      'api::watercraft-type.watercraft-type': ApiWatercraftTypeWatercraftType;
->>>>>>> 55580a7e1fe3ff426d64f9e21ba6e7f2688c7b96
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

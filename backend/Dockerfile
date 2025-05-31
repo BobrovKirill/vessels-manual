@@ -1,24 +1,44 @@
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
-RUN apk add --no-cache build-base python3 gcc autoconf automake zlib-dev libpng-dev vips-dev git
+RUN apk add --no-cache \
+    build-base \
+    python3 \
+    git \
+    libpng-dev \
+    zlib-dev \
+    vips-dev \
+    nasm \
+    bash \
+    autoconf \
+    automake
 
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --only=production
+RUN npm install -g node-gyp \
+    && yarn config set network-timeout 600000 -g
+
+WORKDIR /opt/app
+
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
-ENV NODE_OPTIONS=--max_old_space_size=6144
-RUN npm run build
 
-FROM node:18-alpine
-RUN apk add --no-cache vips-dev
+COPY generate-env.js .
+RUN node generate-env.js
 
-WORKDIR /app
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/. ./
+ENV NODE_OPTIONS="--max_old_space_size=6144"
+RUN yarn build
+
+FROM node:20-alpine
+
+RUN apk add --no-cache vips-dev curl
+WORKDIR /opt/app
+
+COPY --from=build /opt/app ./
+
+COPY entrypoint.sh ./
+RUN chmod +x ./entrypoint.sh
 
 ENV NODE_ENV=production
 EXPOSE 1337
 
-CMD ["npm", "run", "start"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]

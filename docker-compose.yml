@@ -1,28 +1,32 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: my-frontend:latest
-    container_name: nuxt_frontend
-    environment:
-      API_URL: "http://158.160.173.105/api"
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/bobrovkirill/vessels-manual-backend:latest
     container_name: strapi_backend
-    env_file: ./backend/.env
-    environment:
-      NODE_ENV: development
-      DATABASE_CLIENT: sqlite
+    restart: unless-stopped
     ports:
       - "1337:1337"
     volumes:
       - ./backend/public/uploads:/app/public/uploads
-      - ./backend/.tmp:/app/.tmp
+      - ./backend/database:/srv/app/database
+    environment:
+      DATABASE_PATH: /srv/app/database/strapi.db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:1337 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  frontend:
+    image: ghcr.io/bobrovkirill/vessels-manual-frontend:latest
+    container_name: nuxt_frontend
+    restart: unless-stopped
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
