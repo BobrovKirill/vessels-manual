@@ -27,11 +27,12 @@ import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
 
 <style lang="scss" scoped>
 .header {
-  max-width: 320px;
+  max-width: 1400px;
   width: 100%;
   height: $header-height-mobile;
   margin: 0 auto;
-  border: 1px solid #000000;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   display: flex;
 
   align-items: center;
@@ -39,14 +40,15 @@ import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
   position: relative;
 
   @include breakpoint('tablet') {
-    max-width: 744px;
     height: $header-height-tablet;
     padding-left: 15px;
   }
 
   @include breakpoint('desktop') {
-    max-width: 1400px;
     height: $header-height-desk;
+
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
   }
 
 }

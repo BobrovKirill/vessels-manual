@@ -6,12 +6,12 @@ import { runningItems } from '~/components/Runningline/index'
   <div class="runningline">
     <div class="runningline__wrapper">
       <div v-for="dup in 2" :key="dup" class="runningline__item">
-        <template v-for="(item, i) in runningItems" :key="i">
+        <div v-for="(item, i) in runningItems" :key="i">
           <SvgIcon class="running__inner-svg" :name="item.icon" />
           <span :class="item.alt ? 'running__inner-text' : 'running__inner-text'">
             {{ item.text }}
           </span>
-        </template>
+        </div>
       </div>
     </div>
   </div>
@@ -24,6 +24,8 @@ import { runningItems } from '~/components/Runningline/index'
 }
 .runningline__wrapper {
   display: flex;
+  gap: 80px;
+
   background-color: $secondary;
   padding: 10px 0;
 }
@@ -31,29 +33,31 @@ import { runningItems } from '~/components/Runningline/index'
   color: #fff;
   font-family: 'Merriweather';
   font-size: 17px;
-
-  &:last-child {
-    margin-right: 60px;
-  }
 }
 
 .runningline__item {
-  white-space: nowrap;
-  max-width: 1440px;
   width: 100%;
-  flex-shrink: 0;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 50px;
+
+  gap: 80px;
   animation: ticker 10s linear infinite;
+
+  div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 80px;
+  }
 }
+
 @keyframes ticker {
   0% {
     transform: translateZ(0);
   }
   to {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 </style>
