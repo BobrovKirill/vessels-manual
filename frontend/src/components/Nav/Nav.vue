@@ -32,7 +32,7 @@ console.log('props', props.list)
 
 .nav__list {
     display: grid;
-    grid-template-columns: repeat(5, 90px);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-areas:
     "item1 item2 pass item3 item4";
     list-style: none;
@@ -46,6 +46,10 @@ console.log('props', props.list)
 .nav__list-item {
   color: $accent;
   font-size: 14px;
+
+  @include breakpoint('tablet') {
+    font-size: 18px;
+  }
 
   a {
     text-decoration: none;

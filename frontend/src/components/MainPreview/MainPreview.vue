@@ -77,7 +77,7 @@
     padding: 16px;
     border-bottom: 1px solid black;
 
-    font-family: 'Merriweather';
+    font-family: font('secondary');
     font-size: 25px;
     line-height: 47px;
     font-weight: 700;
@@ -88,7 +88,7 @@
     @include breakpoint('tablet') {
       font-size: 35px;
       line-height: 57px;
-      adding: 30px;
+      padding: 30px;
     }
 
     @include breakpoint('desktop') {
@@ -136,7 +136,8 @@
       max-width: 50%;
       font-size: 12px;
       text-transform: uppercase;
-      font-family: 'Martian Mono', serif;
+      font-family: font('primary');
+      font-weight: 400;
 
       dd {
         margin: 0 0 12px;
@@ -195,11 +196,11 @@
       margin: 0;
       padding: 0 30px;
 
-      font-family: 'Merriweather';
+      font-family: font('secondary');
       text-align: center;
       font-size: 20px;
       line-height: 45px;
-      font-weight: bold;
+      font-weight: 700;
       color: $second-font;
 
       border-bottom: 1px solid black;
@@ -228,9 +229,9 @@
       margin: 0;
       padding: 0;
 
-      font-family: 'Martian Mono', serif;
+      font-family: font('primary');
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 700;
 
       @include breakpoint('tablet') {
         font-size: 26px;

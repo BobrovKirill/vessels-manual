@@ -2,18 +2,18 @@
 @forward 'breakpoint';
 @forward 'color';
 @forward 'constants';
-//@import 'font';
-//@import 'hover';
-//@import 'lines-loader';
-//@import 'multiline-text-truncate';
-//@import 'placeholder';
-//@import 'responsive-size';
-//@import 'scrollbar';
-//@import 'str-replace';
-//@import 'svg-pattern';
-//@import 'text-security';
-//@import 'vh';
-//@import 'z-index';
+@forward 'font';
+//@forward 'hover';
+//@forward 'lines-loader';
+//@forward 'multiline-text-truncate';
+//@forward 'placeholder';
+//@forward 'responsive-size';
+//@forward 'scrollbar';
+//@forward 'str-replace';
+//@forward 'svg-pattern';
+//@forward 'text-security';
+//@forward 'vh';
+//@forward 'z-index';
 @forward 'strip-unit';
 
 

@@ -10,9 +10,7 @@ import {
   ROUTER as router,
 } from './nuxt.config/index'
 
-import { createRobots } from './robots'
-
-createRobots()
+// createRobots()
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',

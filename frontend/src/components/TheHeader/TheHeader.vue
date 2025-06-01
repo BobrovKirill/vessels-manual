@@ -30,18 +30,21 @@ import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
   max-width: 1400px;
   width: 100%;
   height: $header-height-mobile;
+
   margin: 0 auto;
+  padding-left: 6px;
+
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
-  display: flex;
 
+  display: flex;
   align-items: center;
-  padding-left: 5px;
+
   position: relative;
 
   @include breakpoint('tablet') {
     height: $header-height-tablet;
-    padding-left: 15px;
+    padding-left: 16px;
   }
 
   @include breakpoint('desktop') {

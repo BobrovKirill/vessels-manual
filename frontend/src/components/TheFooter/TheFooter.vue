@@ -1,79 +1,91 @@
 <script setup lang="ts">
-console.log('TheFooter is loaded')
 </script>
 
 <template>
   <footer>
-    <div class="page_footer">
-      <div class="footer_up">
-        <div class="footer_blog_left">
-          <h3 class="footer_blog_left_title">
-            О&nbsp;нас
-          </h3>
-          <h4 class="footer_blog_left_subtitle">
-            Проект для подготовки к&nbsp;экзамену ГИМС
-          </h4>
-          <p class="footer_blog_left_text">
-            Этот сайт поможет вам подготовиться к&nbsp;экзамену ГИМС легко и&nbsp;удобно. Мы&nbsp;собрали всю нужную информацию, официальные билеты, полезные советы и&nbsp;тесты. С&nbsp;нами вы&nbsp;сможете уверенно сдать экзамен и&nbsp;получить права на&nbsp;управление маломерными судами.
-          </p>
-          <h4 class="footer_blog_left_subtitle">
-            Информация о&nbsp;курсе
-          </h4>
-          <p class="footer_blog_left_text">
-            В&nbsp;курсе есть все, что нужно для успешной подготовки: теория по&nbsp;судовождению, проверочные тесты и&nbsp;советы по&nbsp;прохождению экзамена. Все материалы соответствуют требованиям ГИМС, поэтому вы&nbsp;будете изучать только нужные темы и&nbsp;сможете сразу применять знания на&nbsp;практике.
-          </p>
-        </div>
-        <div class="footer_blog_right">
-          <h3 class="footer_blog_right_title">
-            Контакты
-          </h3>
-          <ul class="footer_blog_right_listcontacts">
-            <li class="footer_blog_right_listcontacts_item">
-              <span>
-                Почта:
-              </span>
-              <a class="footer_blog_right_listcontacts_item_link" href="mailto:">jfjfjf@mail.ru</a>
-            </li>
-            <li class="footer_blog_right_listcontacts_item">
-              <address class="footer_blog_right_listcontacts_item_adress">
-                Адрес: Москва, Россия
-              </address>
-            </li>
-            <li class="footer_blog_right_listcontacts_item">
-              <span>
-                Телефон:
-              </span>
-              <a class="footer_blog_right_listcontacts_item_link" href="tel:">+7....</a>
-            </li>
-          </ul>
-          <h4 class="footer_blog_right_subtitle">
-            РАЗРАБОТЧИКИ
-          </h4>
-          <ul class="footer_blog_right_listdev">
-            <li class="footer_blog_right_listdev_item">
-              БОБРОВ КИРИЛЛ
-            </li>
-            <li class="footer_blog_right_listdev_item">
-              БОЛУЧЕВСКАЯ КСЕНИЯ
-            </li>
-            <li class="footer_blog_right_listdev_item">
-              БАЖЕНОВ КИРИЛЛ
-            </li>
-          </ul>
-          <h4 class="footer_blog_right_subtitle">
-            ССЫЛКИ
-          </h4>
-        </div>
+    <div class="footer">
+      <div class="footer__body">
+        <dl class="footer__content">
+          <div>
+            <dt class="footer__content-title">
+              Проект для подготовки к&nbsp;экзамену ГИМС
+            </dt>
+
+            <dd class="footer__content-text">
+              Этот сайт поможет вам подготовиться к&nbsp;экзамену ГИМС легко и&nbsp;удобно. Мы&nbsp;собрали всю нужную информацию, официальные билеты, полезные советы и&nbsp;тесты. С&nbsp;нами вы&nbsp;сможете уверенно сдать экзамен и&nbsp;получить права на&nbsp;управление маломерными судами.
+            </dd>
+          </div>
+
+          <div>
+            <dt class="footer__content-title">
+              Информация о&nbsp;курсе
+            </dt>
+
+            <dd class="footer__content-text">
+              В&nbsp;курсе есть все, что нужно для успешной подготовки: теория по&nbsp;судовождению, проверочные тесты и&nbsp;советы по&nbsp;прохождению экзамена. Все материалы соответствуют требованиям ГИМС, поэтому вы&nbsp;будете изучать только нужные темы и&nbsp;сможете сразу применять знания на&nbsp;практике.
+            </dd>
+          </div>
+        </dl>
+
+        <dl class="footer__content">
+          <div>
+            <dt class="footer__content-title">
+              Контакты
+            </dt>
+
+            <dd class="footer__content-text">
+              <ul class="footer__content-list">
+                <li class="footer__content-item">
+                  <span>
+                    Почта:
+                  </span>
+                  <a class="footer__content-link" href="mailto:">vessels-manual@gmail.com</a>
+                </li>
+
+                <li class="footer__content-item">
+                  <address class="footer__content-item_adress">
+                    Адрес: Студенческая ул., 38, Пермь, Пермский край, Россия, 614070
+                  </address>
+                </li>
+              </ul>
+            </dd>
+          </div>
+
+          <div>
+            <dt class="footer__content-title">
+              Участники
+            </dt>
+
+            <dd class="footer__content-text">
+              <ul class="footer__content-list">
+                <li class="footer__content-item">
+                  БОБРОВ КИРИЛЛ
+                </li>
+
+                <li class="footer__content-item">
+                  БОЛУЧЕВСКАЯ КСЕНИЯ
+                </li>
+
+                <li class="footer__content-item">
+                  БАЖЕНОВ КИРИЛЛ
+                </li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
       </div>
-      <div class="footer_down">
-        <ul class="footer_down_list">
-          <li class="footer_down_list_item">
-            PRIVACY
+
+      <div class="footer__line">
+        <ul class="footer__line-list">
+          <li class="footer__line-list_item">
+            vessels-manual
           </li>
-          <li class="footer_down_list_item">
+
+          <li class="footer__line-list_item">
             МОСКВА 2025
           </li>
-          <li class="footer_down_list_item">
+
+          <li class="footer__line-list_item">
             ВШЭ
           </li>
         </ul>
@@ -83,79 +95,92 @@ console.log('TheFooter is loaded')
 </template>
 
 <style lang="scss" scoped>
-  a {
-    text-decoration: none;
-  }
-
-  address {
-    font-style: normal;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  div,h1,h2,h3,h4,p,ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .page_footer{
+  .footer {
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
     font-family: 'Martian Mono', serif; ;
   }
 
-  .footer_up {
+  .footer__body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 16px;
+
     background-image: url("@/assets/images/footer/footerback.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    justify-content: space-between;
+
+    padding: 30px 16px;
 
     @include breakpoint('desktop') {
-      flex-direction: row;
       padding: 40px 50px;
+      gap: 24px;
     }
   }
 
-  .footer_blog_left {
-    padding: 0;
-    margin: 0 0 15px 0;
-    max-width: 520px;
+  .footer__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    max-width: 860px;
     width: 100%;
-    background-color: rgba(247, 247, 247, 0.45);
+
+    background-color: rgba(247, 247, 247, 0.5);
     border-radius: 4px;
-    padding: 35px 55px 35px 35px;
+
+    padding: 16px;
+
+    @include breakpoint('tablet') {
+      &:last-child {
+        grid-template-columns: 60% 40%;
+      }
+    }
 
     @include breakpoint('desktop') {
-      margin: 0 0 0 0;
+      padding: 24px 16px;
+      margin: 0;
     }
   }
 
-  .footer_blog_right {
+  .footer__content-title {
+    margin: 0 0 10px;
+
+    color: $second-font;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 800;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
+  }
+
+  .footer__content-text {
+    margin: 8px 0 0 12px;
+
+    color: $second-font;
+    font-size: 12px;
+    line-height: 16px;
+
+    @include breakpoint('tablet') {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .footer__content-list {
+    margin: 8px 0 0 12px;
     padding: 0;
-    margin: 0 0 15px 0;
-    max-width: 520px;
-    width: 100%;
-    background-color: rgba(247, 247, 247, 0.45);
-    border-radius: 4px;
-    padding: 35px 55px 35px 35px;
-
-    @include breakpoint('desktop') {
-      max-height: 483px;
-      margin: 0 0 0 0;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    list-style: none;
   }
 
-  .footer_down_list {
+  .footer__content-link {
+    color: $second-font;
+  }
+
+  .footer__line-list {
     display: flex;
     padding: 0;
     margin: 0;
@@ -163,79 +188,12 @@ console.log('TheFooter is loaded')
     justify-content: space-between;
   }
 
-  .footer_down {
+  .footer__line {
     border: 1px solid;
     padding: 8px 20px;
   }
 
-  .footer_down_list_item {
-    font-size: 15px;
-    font-family: 'Roboto';
-    color: $second-font;
-  }
-
-  .footer_blog_left_title {
-    margin-bottom: 10px;
-    color: $second-font;
-    font-size: 14px;
-
-    @include breakpoint('tablet') {
-      font-size: 18px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 18px;
-    }
-  }
-
-  .footer_blog_left_subtitle {
-    margin-bottom: 10px;
-    color: $second-font;
-
-    font-size: 14px;
-
-    @include breakpoint('tablet') {
-      font-size: 18px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 18px;
-    }
-  }
-
-  .footer_blog_left_text:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  .footer_blog_left_text {
-    color: $second-font;
-    font-size: 12px;
-
-    @include breakpoint('tablet') {
-      font-size: 16px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 16px;
-    }
-  }
-
-  .footer_blog_right_title {
-    margin-bottom: 10px;
-    color: $second-font;
-    font-size: 14px;
-    text-transform: uppercase;
-
-    @include breakpoint('tablet') {
-      font-size: 18px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 18px;
-    }
-  }
-
-  .footer_blog_right_listcontacts_item{
+  .footer__content-item{
     color: $second-font;
     margin-bottom: 10px;
 
@@ -248,41 +206,5 @@ console.log('TheFooter is loaded')
     @include breakpoint('desktop') {
       font-size: 18px;
     }
-  }
-
-  .footer_blog_right_listcontacts_item_link {
-    color: $second-font;
-  }
-
-  .footer_blog_right_subtitle{
-    color: $second-font;
-    margin-bottom: 10px;
-    font-size: 14px;
-
-    @include breakpoint('tablet') {
-      font-size: 18px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 18px;
-    }
-  }
-
-  .footer_blog_right_listdev_item{
-    color: $second-font;
-
-    font-size: 12px;
-
-    @include breakpoint('tablet') {
-      font-size: 18px;
-    }
-
-    @include breakpoint('desktop') {
-      font-size: 18px;
-    }
-  }
-
-  .footer_blog_right_listdev {
-    margin-bottom: 10px;
   }
 </style>

@@ -120,7 +120,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     margin: 0;
     padding: 30px;
 
-    font-family: 'Merriweather';
+    font-family: font('secondary');
     font-size: 26px;
     color: $second-font;
     text-align: center;
@@ -162,7 +162,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     display: inline-block;
     text-align: center;
     width: 50%;
-    font-family: 'Merriweather';
+    font-family: font('secondary');
     font-weight: bold;
     font-size: 12px;
 
@@ -192,7 +192,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     margin: 0;
     font-size: 12px;
     line-height: 16px;
-    font-family: 'Martian Mono';
+    font-family: font('primary');
     text-transform: uppercase;
     hyphens: auto;
   }
@@ -210,7 +210,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
   }
 
   &-item {
-    font-family: 'Martian Mono';
+    font-family: font('primary');
     font-size: 12px;
     text-transform: uppercase;
   }
@@ -223,7 +223,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     background: $accent;
 
     text-decoration: none;
-    font-family: 'Martian Mono';
+    font-family: font('primary');
     color: white;
     font-size: 12px;
 

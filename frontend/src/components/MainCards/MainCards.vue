@@ -8,6 +8,7 @@ import { MOST_POPULAR_CARDS } from '~/components/MainCards/index'
     <h2 class="cards__title">
       Популярные
     </h2>
+
     <ul class="cards__list">
       <li v-for="(card, id) in MOST_POPULAR_CARDS" :key="id">
         <MainCard :data="card" />
@@ -28,8 +29,10 @@ import { MOST_POPULAR_CARDS } from '~/components/MainCards/index'
     margin: 0 0 36px;
 
     text-align: center;
-    font-size: 56px;
-    line-height: 60px;
+    font-size: 48px;
+    line-height: 50px;
+    font-family: font('secondary');
+    font-weight: 700;
   }
 
   &__list {
