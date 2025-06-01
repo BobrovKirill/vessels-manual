@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { runningItems } from '~/components/Runningline/index'
+import { runningItems } from '~/components/RunningLine/index'
 </script>
 
 <template>
