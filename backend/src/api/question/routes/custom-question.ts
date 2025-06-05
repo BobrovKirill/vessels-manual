@@ -1,7 +1,7 @@
 module.exports = {
   routes: [
     {
-      "method": "GET",
+      "method": "POST",
       "path": "/questions/quiz",
       "handler": "question.quiz",
       "config": {
@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     {
-      "method": "GET",
+      "method": "POST",
       "path": "/questions/exam",
       "handler": "question.exam",
       "config": {

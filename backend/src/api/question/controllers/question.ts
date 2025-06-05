@@ -10,10 +10,10 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   // Поинт для пробных тестов
   async quiz(ctx) {
     try {
-      const { category } = ctx.query;
+      const { certificate, regions, vessels } = ctx.request.body;
 
       // @ts-ignore
-      const result = await questionService.getQuestions('quiz', category);
+      const result = await questionService.getQuestions('quiz', { certificate, regions, vessels });
       return ctx.send(result);
     } catch (err) {
       console.error('❌ Ошибка запуска квиза:', err);
@@ -24,10 +24,21 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   // Поинт для пробного экзамена
   async exam(ctx) {
     try {
-      const { category = ''} = ctx.query;
+      const { certificate, regions, vessels } = ctx.request.body;
+
       // @ts-ignore
-      const result = await questionService.getQuestions('exam', category);
-      return ctx.send(result);
+      const result = await questionService.getQuestions('exam', { certificate, regions, vessels });
+      const cleanerResult = {
+        ...result,
+        questions: result.questions.map(questionGroup =>
+          questionGroup.map(question => ({
+            ...question,
+            answers: null,
+          }))
+        ),
+      };
+
+      return ctx.send(cleanerResult);
     } catch (err) {
       console.error('❌ Ошибка запуска экзамена:', err);
       ctx.throw(500, 'Ошибка запуска экзамена');
@@ -38,7 +49,7 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   async answer(ctx) {
     try {
       const { session, question, answer } = ctx.request.body;
-      console.log(question);
+
       const result = await questionService.sendAnswer(session, question, answer);
       return ctx.send(result);
     } catch (err) {
