@@ -6,10 +6,20 @@ interface requestBody {
     vessels: string[]
 }
 
-const sessions: Record<string, {
-  type: 'quiz' | 'exam',
-  questions: Array<{ id: number, answer: { id: number, is_correct: boolean } }>,
-}> = {};
+type UserAnswer = {
+  id: number;
+  answer: {
+    id: number;
+    is_correct: boolean;
+  };
+};
+
+type Session = {
+  type: 'quiz' | 'exam';
+  questions: UserAnswer[];
+};
+
+const sessions: Record<string, Session> = {};
 
 function getQuestionCount({certificate, regions, vessels} : requestBody) {
   const regionCount = regions.length;

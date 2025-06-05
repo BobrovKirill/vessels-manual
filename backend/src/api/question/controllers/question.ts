@@ -61,8 +61,8 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   // Поинт для показа результата тестирования
   async finish(ctx) {
     try {
-      const { sessionId } = ctx.request.body;
-      const result = await questionService.finishExam(sessionId);
+      const { session } = ctx.request.body;
+      const result = await questionService.finishExam(session);
       return ctx.send(result);
     } catch (err) {
       console.error('❌ Ошибка завершения экзамена:', err);
