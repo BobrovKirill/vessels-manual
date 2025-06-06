@@ -28,14 +28,13 @@ module.exports = factories.createCoreController('api::question.question', ({ str
 
       // @ts-ignore
       const result = await questionService.getQuestions('exam', { certificate, regions, vessels });
+
       const cleanerResult = {
         ...result,
-        questions: result.questions.map(questionGroup =>
-          questionGroup.map(question => ({
-            ...question,
-            answers: null,
-          }))
-        ),
+        questions: result.questions.map(question => ({
+          ...question,
+          answers: null,
+        }))
       };
 
       return ctx.send(cleanerResult);
@@ -59,10 +58,26 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   },
 
   // Поинт для показа результата тестирования
+  async launch(ctx) {
+    try {
+      const { session } = ctx.request.body;
+      const result = await questionService.launchExam(session);
+      return ctx.send(result);
+    } catch (err) {
+      console.error('❌ Ошибка завершения экзамена:', err);
+      ctx.throw(500, 'Ошибка завершения экзамена');
+    }
+  },
+
+  // Поинт для показа результата тестирования
   async finish(ctx) {
     try {
       const { session } = ctx.request.body;
       const result = await questionService.finishExam(session);
+      if (result.type === 'exam' && !result.success && !result.isTimer) {
+        return ctx.send({ success: result.success, message: 'Время на экзамен истекло, вы не успели'});
+      }
+
       return ctx.send(result);
     } catch (err) {
       console.error('❌ Ошибка завершения экзамена:', err);

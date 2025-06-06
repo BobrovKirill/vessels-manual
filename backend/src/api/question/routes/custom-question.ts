@@ -31,6 +31,16 @@ module.exports = {
     },
     {
       "method": "POST",
+      "path": "/questions/launch",
+      "handler": "question.launch",
+      "config": {
+        "policies": [],
+        "middlewares": [],
+        "type": 'content-api'
+      }
+    },
+    {
+      "method": "POST",
       "path": "/questions/finish",
       "handler": "question.finish",
       "config": {

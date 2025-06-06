@@ -17,34 +17,39 @@ type UserAnswer = {
 type Session = {
   type: 'quiz' | 'exam';
   questions: UserAnswer[];
+  timer?: number;
+  timeLimit: number;
 };
 
 const sessions: Record<string, Session> = {};
 
-function getQuestionCount({certificate, regions, vessels} : requestBody) {
+function getDataCounts({certificate, regions, vessels} : requestBody) {
   const regionCount = regions.length;
   const vesselCount = vessels.length;
 
   if (certificate && regionCount < 2 && vesselCount < 2) {
-    return regionCount ? 10 : vesselCount ? 15 : 0
+    return regionCount ? {questionsCount: 10, timeLimit: 15 } : vesselCount ? {questionsCount: 15, timeLimit: 20 } : null
   }
 
   const total = regionCount + vesselCount
 
   switch (true) {
     case total === 2:
-      return 25;
+      return { questionsCount: 25, timeLimit: 40 };
     case total >= 3 && total <= 6:
-      return 30;
+      return { questionsCount: 30, timeLimit: 40 };
     case total > 6:
-      return 35;
+      return { questionsCount: 35, timeLimit: 45 };
     default:
-      return 0;
+      return null;
   }
 }
 
-function getTime() {
-
+function isCorrectExamTime(startTime: number, examTime: number, endTime: number): boolean {
+  console.log('startTime - ', startTime)
+  console.log('examTime - ', examTime)
+  console.log('endTime - ', endTime)
+  return (endTime - startTime) <  examTime;
 }
 
 function shuffle(array) {
@@ -58,11 +63,12 @@ function shuffle(array) {
 
 export default {
   async getQuestions(type: 'quiz' | 'exam', requestBody: requestBody) {
-    const questionsCount = getQuestionCount(requestBody)
-    if (!questionsCount) {
-      throw new Error(`Поля с типами регион и судно выбраны с ошибкой, questionsCount - ${questionsCount}`);
+    const dataCounts = getDataCounts(requestBody)
+    if (dataCounts === null) {
+      throw new Error(`Поля с типами регион и судно выбраны с ошибкой, отсутсвуют нужные поля`);
     }
 
+    const { questionsCount, timeLimit } = dataCounts
     const allTypes = [...requestBody.regions, ...requestBody.vessels]
     const limit = Math.floor(questionsCount / allTypes.length)
 
@@ -84,6 +90,7 @@ export default {
     sessions[sessionId] = {
       type,
       questions: [],
+      timeLimit: timeLimit * 60 * 1000
     };
 
     return { success: true, sessionId, questions: shuffledQuestions };
@@ -112,15 +119,26 @@ export default {
     }
   },
 
+  async launchExam(sessionId: string) {
+    const session = sessions[sessionId];
+    if (!session) throw new Error('Сессия не найдена');
+
+    session.timer = Date.now();
+
+    return { success: true };
+  },
+
   async finishExam(sessionId: string) {
     const session = sessions[sessionId];
+    const finishTime = Date.now();
     if (!session) throw new Error('Сессия не найдена');
 
     const currentQuestion = session.questions;
     const total = session.questions.length;
+    const isCorrectTime = isCorrectExamTime(session.timer, finishTime, session.timeLimit);
 
     delete sessions[sessionId];
 
-    return { currentQuestion, total };
+    return { type: session.type, currentQuestion, total, isTimer: isCorrectTime, success: isCorrectTime };
   },
 };
