@@ -1,6 +1,8 @@
 module.exports = (policyContext, config, { strapi }) => {
   const { user } = policyContext.state;
-
+  console.log('Headers:', policyContext.request.header);
+  console.log('State:', policyContext.state);
+  console.log('User:', policyContext.state.user);
   if (!user) {
     return false;
   }

@@ -8,6 +8,7 @@ const rootUrl = 'https://mchs.gov.ru/deyatelnost/attestaciya-i-akkreditaciya/att
 const mokUrl = 'https://mchs.gov.ru/deyatelnost/attestaciya-i-akkreditaciya/attestaciya-sudovoditeley/voprosy-dlya-attestacii-sudovoditeley/razdel-rayon-plavaniya/mp-plus'; // URL для парсинга
 
 
+
 // TODO избавиться от any!!
 export default factories.createCoreController('api::parser.parser' as any, ({strapi}) => ({
 
@@ -29,6 +30,17 @@ export default factories.createCoreController('api::parser.parser' as any, ({str
       }
 
       return ctx.send({ message: 'BD filled successfully', success: true }, 200);
+    } catch (error) {
+      console.error('Ошибка при парсинге и загрузке:', error);
+      ctx.throw(500, 'Ошибка парсинга и загрузки BD');
+    }
+  },
+
+  async filling(ctx) {
+    try {
+      await strapi.service('api::parser.parser').createWrongAnswers();
+
+      return ctx.send({ message: 'BD filled wrong answers successfully', success: true }, 200);
     } catch (error) {
       console.error('Ошибка при парсинге и загрузке:', error);
       ctx.throw(500, 'Ошибка парсинга и загрузки BD');
