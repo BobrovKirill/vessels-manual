@@ -22,6 +22,7 @@ type Session = {
 };
 
 const sessions: Record<string, Session> = {};
+const timeForCleanSession = 8.64e7;
 
 function getDataCounts({certificate, regions, vessels} : requestBody) {
   const regionCount = regions.length;
@@ -46,9 +47,6 @@ function getDataCounts({certificate, regions, vessels} : requestBody) {
 }
 
 function isCorrectExamTime(startTime: number, examTime: number, endTime: number): boolean {
-  console.log('startTime - ', startTime)
-  console.log('examTime - ', examTime)
-  console.log('endTime - ', endTime)
   return (endTime - startTime) <  examTime;
 }
 
@@ -61,6 +59,20 @@ function shuffle(array) {
   return result;
 }
 
+function createSession(id, type, timeLimit) {
+  sessions[id] = {
+    type,
+    questions: [],
+    timeLimit: timeLimit * 60 * 1000
+  };
+
+  setTimeout(() => {
+    if (sessions[id]) {
+      delete sessions[id];
+    }
+  }, timeForCleanSession)
+}
+
 export default {
   async getQuestions(type: 'quiz' | 'exam', requestBody: requestBody) {
     const dataCounts = getDataCounts(requestBody)
@@ -70,7 +82,7 @@ export default {
 
     const { questionsCount, timeLimit } = dataCounts
     const allTypes = [...requestBody.regions, ...requestBody.vessels]
-    const limit = Math.floor(questionsCount / allTypes.length)
+    const limit = Math.ceil(questionsCount / allTypes.length)
 
     const allQuestions = await Promise.all(
       allTypes.map(type =>
@@ -83,15 +95,11 @@ export default {
       )
     );
 
-    const shuffledQuestions = shuffle(allQuestions.flat());
+    const shuffledQuestions = shuffle(allQuestions.flat().slice(0, questionsCount));
 
     const sessionId = uuidv4();
 
-    sessions[sessionId] = {
-      type,
-      questions: [],
-      timeLimit: timeLimit * 60 * 1000
-    };
+    createSession(sessionId, type, timeLimit);
 
     return { success: true, sessionId, questions: shuffledQuestions };
   },
@@ -133,12 +141,12 @@ export default {
     const finishTime = Date.now();
     if (!session) throw new Error('Сессия не найдена');
 
-    const currentQuestion = session.questions;
+    const correctQuestions = session.questions;
     const total = session.questions.length;
     const isCorrectTime = isCorrectExamTime(session.timer, finishTime, session.timeLimit);
 
     delete sessions[sessionId];
 
-    return { type: session.type, currentQuestion, total, isTimer: isCorrectTime, success: isCorrectTime };
+    return { type: session.type, correctQuestions, total, isTimer: isCorrectTime, success: isCorrectTime };
   },
 };
