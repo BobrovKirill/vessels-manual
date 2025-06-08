@@ -1,6 +1,5 @@
+import type { NuxtConfig } from '@nuxt/schema'
 import { IS_PRODUCTION_MODE } from '../src/constants'
-import type {NuxtConfig} from "@nuxt/schema";
-
 
 export const BUILD_MODULES: NuxtConfig['modules'] = [
   '@nuxtjs/device',
@@ -25,7 +24,6 @@ export const BUILD_MODULES: NuxtConfig['modules'] = [
   ],
 
   '@nuxtjs/stylelint-module',
-
 
   [
     'nuxt-build-optimisations',

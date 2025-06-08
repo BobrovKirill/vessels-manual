@@ -18,7 +18,6 @@
 .dividing-line {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  padding: 4px 0;
 }
 
 .dividing-line__container {

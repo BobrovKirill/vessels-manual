@@ -19,6 +19,7 @@ type Session = {
   questions: UserAnswer[];
   timer?: number;
   timeLimit: number;
+  wrongLimit?: number;
 };
 
 const sessions: Record<string, Session> = {};
@@ -29,18 +30,18 @@ function getDataCounts({certificate, regions, vessels} : requestBody) {
   const vesselCount = vessels.length;
 
   if (certificate && regionCount < 2 && vesselCount < 2) {
-    return regionCount ? {questionsCount: 10, timeLimit: 15 } : vesselCount ? {questionsCount: 15, timeLimit: 20 } : null
+    return regionCount ? {questionsCount: 10, timeLimit: 15, wrongLimit: 1 } : vesselCount ? {questionsCount: 15, timeLimit: 20, wrongLimit: 1 } : null
   }
 
   const total = regionCount + vesselCount
 
   switch (true) {
     case total === 2:
-      return { questionsCount: 25, timeLimit: 40 };
+      return { questionsCount: 25, timeLimit: 40, wrongLimit: 1 };
     case total >= 3 && total <= 6:
-      return { questionsCount: 30, timeLimit: 40 };
+      return { questionsCount: 30, timeLimit: 40, wrongLimit: 2 };
     case total > 6:
-      return { questionsCount: 35, timeLimit: 45 };
+      return { questionsCount: 35, timeLimit: 45, wrongLimit: 3 };
     default:
       return null;
   }
@@ -59,11 +60,12 @@ function shuffle(array) {
   return result;
 }
 
-function createSession(id, type, timeLimit) {
+function createSession(id: number, type: Session["type"], timeLimit: number, wrongLimit: number) {
   sessions[id] = {
     type,
     questions: [],
-    timeLimit: timeLimit * 60 * 1000
+    timeLimit: timeLimit * 60 * 1000,
+    wrongLimit,
   };
 
   setTimeout(() => {
@@ -80,7 +82,7 @@ export default {
       throw new Error(`Поля с типами регион и судно выбраны с ошибкой, отсутсвуют нужные поля`);
     }
 
-    const { questionsCount, timeLimit } = dataCounts
+    const { questionsCount, timeLimit, wrongLimit } = dataCounts
     const allTypes = [...requestBody.regions, ...requestBody.vessels]
     const limit = Math.ceil(questionsCount / allTypes.length)
 
@@ -99,9 +101,9 @@ export default {
 
     const sessionId = uuidv4();
 
-    createSession(sessionId, type, timeLimit);
+    createSession(sessionId, type, timeLimit, wrongLimit);
 
-    return { success: true, sessionId, questions: shuffledQuestions };
+    return { success: true, sessionId, questions: shuffledQuestions, timeLimit };
   },
 
   async sendAnswer(sessionId: string, questionId: number, answerId: number) {
@@ -141,12 +143,17 @@ export default {
     const finishTime = Date.now();
     if (!session) throw new Error('Сессия не найдена');
 
-    const correctQuestions = session.questions;
+    const questions = session.questions;
     const total = session.questions.length;
+    const wrongAnswerCount = questions.filter(
+      (question) => question.answer && question.answer.is_correct === false
+    ).length
+    const wrongLimit = session.wrongLimit
+    const isPassedExam = wrongAnswerCount <= wrongLimit;
     const isCorrectTime = isCorrectExamTime(session.timer, finishTime, session.timeLimit);
 
     delete sessions[sessionId];
 
-    return { type: session.type, correctQuestions, total, isTimer: isCorrectTime, success: isCorrectTime };
+    return { type: session.type, questions, total, isTimer: isCorrectTime, wrongAnswer: wrongAnswerCount, wrongLimit, isPassedExam, success: isCorrectTime };
   },
 };

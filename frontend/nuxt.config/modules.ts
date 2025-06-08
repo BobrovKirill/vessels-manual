@@ -2,7 +2,7 @@ import type { NuxtConfig } from '@nuxt/schema'
 import { BREAKPOINTS } from '../src/constants'
 
 export const MODULES: NuxtConfig['modules'] = [
-  '@pinia/nuxt',
+  // '@pinia/nuxt',
 
   /**
    * DayJS.

@@ -7,93 +7,93 @@
  * JWT cookie name.
  * @string
  */
-export const USER_COOKIE_JWT = 'jwt'
+// export const USER_COOKIE_JWT = 'jwt'
 
 /**
  * JWT cookie expires in days.
  * @const
  */
-export const USER_COOKIE_EXPIRES_IN_DAYS = 7
+// export const USER_COOKIE_EXPIRES_IN_DAYS = 7
 
 /**
  * JWT cookie SameSite.
  * @const
  */
-export const USER_COOKIE_SAMESITE = 'Lax'
-
-export interface UserChangePasswordOptions {
-  code: string
-  email: string
-
-  newPassword: string
-}
-
-export interface UserCreateOptions {
-  email: string
-  name: string
-  password: string
-  subscribe: boolean
-}
-
-export interface UserCreateConfirmOptions {
-  code: string
-  email: string
-}
-
-export interface UserEmailConfirmOptions {
-  code: string
-  email: string
-}
-
-export interface UserEmailRecoveryOptions {
-  code: string
-  email: string
-}
-
-async function createOAuth(url: string, height = 640, width = 640): Promise<Record<string, string>> {
-  const left = screen.width / 2 - width / 2
-  const top = screen.height / 2 - height / 2
-
-  const w = window.open(url, '', `popup=1,width=${width},height=${height},top=${top},left=${left}`)
-
-  if (!w) {
-    return {}
-  }
-
-  w.focus()
-
-  return new Promise((resolve) => {
-    const interval = window.setInterval(() => {
-      try {
-        if (w.location.origin !== window.location.origin) {
-          return
-        }
-
-        const hash = Object.fromEntries(
-          w.location.hash
-            .slice(1)
-            .split(/& */)
-            .map(v => v.split('=')),
-        )
-
-        if (w.location.search) {
-          Object.assign(hash, Object.fromEntries(new URLSearchParams(w.location.search) as any))
-        }
-
-        w.close()
-        window.clearInterval(interval)
-
-        resolve(hash)
-      } catch (error) {
-        //
-      }
-    }, 200)
-  })
-}
-
-export const useUser = {
-  isAuthorized: false,
-}
+// export const USER_COOKIE_SAMESITE = 'Lax'
+//
+// export interface UserChangePasswordOptions {
+//   code: string
+//   email: string
+//
+//   newPassword: string
+// }
+//
+// export interface UserCreateOptions {
+//   email: string
+//   name: string
+//   password: string
+//   subscribe: boolean
+// }
+//
+// export interface UserCreateConfirmOptions {
+//   code: string
+//   email: string
+// }
+//
+// export interface UserEmailConfirmOptions {
+//   code: string
+//   email: string
+// }
+//
+// export interface UserEmailRecoveryOptions {
+//   code: string
+//   email: string
+// }
+//
+// async function createOAuth(url: string, height = 640, width = 640): Promise<Record<string, string>> {
+//   const left = screen.width / 2 - width / 2
+//   const top = screen.height / 2 - height / 2
+//
+//   const w = window.open(url, '', `popup=1,width=${width},height=${height},top=${top},left=${left}`)
+//
+//   if (!w) {
+//     return {}
+//   }
+//
+//   w.focus()
+//
+//   return new Promise((resolve) => {
+//     const interval = window.setInterval(() => {
+//       try {
+//         if (w.location.origin !== window.location.origin) {
+//           return
+//         }
+//
+//         const hash = Object.fromEntries(
+//           w.location.hash
+//             .slice(1)
+//             .split(/& */)
+//             .map(v => v.split('=')),
+//         )
+//
+//         if (w.location.search) {
+//           Object.assign(hash, Object.fromEntries(new URLSearchParams(w.location.search) as any))
+//         }
+//
+//         w.close()
+//         window.clearInterval(interval)
+//
+//         resolve(hash)
+//       } catch (error) {
+//         //
+//       }
+//     }, 200)
+//   })
+// }
+//
+// export const useUser = {
+//   isAuthorized: false,
+// }
 
 // export const useUser = defineStore('user', {
 // actions: {

@@ -40,7 +40,6 @@
   align-items: center;
 
   border: 1px solid $main;
-  border-radius: 50px;
 
   width: 74px;
   height: 36px;
@@ -74,7 +73,6 @@
   height: 22px;
   background-color: inherit;
   transition: background-color 0.1s ease-in;
-  border-radius: 100%;
 
   @include breakpoint('desktop') {
     width: 36px;

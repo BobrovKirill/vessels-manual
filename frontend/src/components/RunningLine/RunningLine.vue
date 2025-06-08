@@ -25,7 +25,6 @@ import { runningItems } from '~/components/RunningLine/index'
   position: relative;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  padding: 4px 0;
 }
 
 .running-line__wrapper {
