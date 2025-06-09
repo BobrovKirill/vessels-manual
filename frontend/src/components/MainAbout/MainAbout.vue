@@ -33,7 +33,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
 
         <div class="about__content-texts">
           <p class="about__content-text">
-            Пройдите теоретический курс, потренируйтесь на тестах и узнайте все правила судовождения, необходимые для успешной сдачи экзамена.
+            Пройдите теоретический курс, потренируйтесь на&nbsp;тестах и&nbsp;узнайте все правила судовождения, необходимые для успешной сдачи экзамена.
           </p>
 
           <ul class="about__content-list">
@@ -50,14 +50,14 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
             </li>
           </ul>
 
-          <button class="about__content-btn">
+          <NuxtLink class="about__content-btn" to="/info">
             ОЗНАКОМИТСЯ ПОДРОБНЕЕ
-          </button>
+          </NuxtLink>
         </div>
 
         <div class="about__content-texts">
           <p class="about__content-text">
-            Этот ресурс полностью бесплатный, Вы&nbsp;можете проходить тесты в&nbsp;любой момент, но&nbsp;если вы&nbsp;зарегистрируетесь в&nbsp;личном кабинете&nbsp;то&nbsp;сможете отслеживать процесс своего обучения. это очень удобно попробуйте!
+            Этот ресурс полностью бесплатный! <br>Вы&nbsp;можете проходить тесты в&nbsp;любой момент, но&nbsp;если вы&nbsp;хотите отслеживать процесс своего обучения&nbsp;&mdash; зарегистрируетесь в&nbsp;личном&nbsp;кабинете.<br>Это очень удобно попробуйте!
           </p>
 
           <button class="about__content-btn">
@@ -193,8 +193,12 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     font-size: 12px;
     line-height: 16px;
     font-family: font('primary');
-    text-transform: uppercase;
     hyphens: auto;
+
+    @include breakpoint('mobile') {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 
   &-list {
@@ -226,6 +230,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
     font-family: font('primary');
     color: white;
     font-size: 12px;
+    cursor: pointer;
 
     @include breakpoint('tablet') {
       font-size: 14px;

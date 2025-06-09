@@ -1,14 +1,14 @@
-const { VITE_API, HOST } = import.meta.env
+// const { VITE_API, HOST } = import.meta.env
 
-const title = 'Курсовая работа'
-const description = 'Курсовая работа ВШЭ'
+const title = 'ОНЛАЙН ТРЕНАЖЕР ЭКЗАМЕНА ГИМС'
+const description = 'Бесплатный ОНЛАЙН ТРЕНАЖЕР который поможет сдать экзамен гимс.'
 
-function addPreconnect(href: string) {
-  return [
-    { href, rel: 'preconnect', crossorigin: '' },
-    { href, rel: 'dns-prefetch' },
-  ]
-}
+// function addPreconnect(href: string) {
+//   return [
+//     { href, rel: 'preconnect', crossorigin: '' },
+//     { href, rel: 'dns-prefetch' },
+//   ]
+// }
 
 export const HEAD = {
   /**
@@ -34,13 +34,13 @@ export const HEAD = {
 
     // Social base
     { hid: 'og:locale', property: 'og:locale', content: 'ru_RU' },
-    { hid: 'og:site_name', property: 'og:site_name', content: 'Курсач' },
+    { hid: 'og:site_name', property: 'og:site_name', content: 'ОНЛАЙН ТРЕНАЖЕР' },
     { hid: 'og:type', property: 'og:type', content: 'website' },
 
     // Social important
     { hid: 'og:description', property: 'og:description', content: description },
     { hid: 'og:title', property: 'og:title', content: title },
-    { hid: 'og:url', property: 'og:url', content: HOST },
+    { hid: 'og:url', property: 'og:url', content: 'https://vessels-manual.ru/' },
 
     // Favicons
     // { name: 'msapplication-TileColor', content: '#101010' },
@@ -52,15 +52,15 @@ export const HEAD = {
    * Link
    */
   link: [
-    { hid: 'canonical', rel: 'canonical', href: HOST },
+    { hid: 'canonical', rel: 'canonical', href: 'https://vessels-manual.ru/' },
 
     // Favicons
     // { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png?v=2' },
-    // { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png?v=2' },
-    // { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png?v=2' },
-    // { rel: 'manifest', href: '/favicon/site.webmanifest?v=2' },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png?v=2' },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png?v=2' },
+    { rel: 'manifest', href: '/favicon/site.webmanifest?v=2' },
     // { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg?v=2', color: '#101010' },
-    // { rel: 'shortcut icon', href: '/favicon/favicon.ico?v=2' },
+    { rel: 'shortcut icon', href: '/favicon/favicon.ico?v=2' },
 
     // Resource hints: preconnect
     // ...(IS_PRODUCTION_MODE ? [...addPreconnect('//{host}')] : []),

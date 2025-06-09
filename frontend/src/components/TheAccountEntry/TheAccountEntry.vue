@@ -22,6 +22,7 @@ const isAuthorized = false
 
   height: 100%;
   width: 34px;
+  cursor: pointer;
 
   background-color: $accent;
 

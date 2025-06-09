@@ -12,7 +12,7 @@
             </dt>
 
             <dd class="footer__content-text">
-              Этот сайт поможет вам подготовиться к&nbsp;экзамену ГИМС легко и&nbsp;удобно. Мы&nbsp;собрали всю нужную информацию, официальные билеты, полезные советы и&nbsp;тесты. С&nbsp;нами вы&nbsp;сможете уверенно сдать экзамен и&nbsp;получить права на&nbsp;управление маломерными судами.
+              Этот сайт поможет вам подготовиться к&nbsp;экзамену ГИМС. Мы&nbsp;постарались собрали всю нужную информацию и&nbsp;официальные билеты. Проект Создан в&nbsp;учебных целях группой студентов Вышей Школы Экономики. Проект в&nbsp;процессе постоянной доработки и&nbsp;внедрению нового функционала
             </dd>
           </div>
 
@@ -127,8 +127,7 @@
     max-width: 860px;
     width: 100%;
 
-    background-color: rgba(247, 247, 247, 0.5);
-    border-radius: 4px;
+    background-color: rgba(#3B6790, 0.6);
 
     padding: 16px;
 
@@ -147,7 +146,7 @@
   .footer__content-title {
     margin: 0 0 10px;
 
-    color: $second-font;
+    color: white;
     font-size: 14px;
     line-height: 16px;
     font-weight: 800;
@@ -160,7 +159,7 @@
   .footer__content-text {
     margin: 8px 0 0 12px;
 
-    color: $second-font;
+    color: white;
     font-size: 12px;
     line-height: 16px;
 
@@ -177,7 +176,7 @@
   }
 
   .footer__content-link {
-    color: $second-font;
+    color: white;
   }
 
   .footer__line-list {
@@ -189,12 +188,13 @@
   }
 
   .footer__line {
-    border: 1px solid;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 8px 20px;
   }
 
-  .footer__content-item{
-    color: $second-font;
+  .footer__content-item {
+    color: white;
     margin-bottom: 10px;
 
     font-size: 12px;

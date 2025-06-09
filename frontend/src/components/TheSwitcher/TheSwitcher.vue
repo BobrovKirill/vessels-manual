@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <fieldset class="switcher">
+  <fieldset class="switcher" disabled>
     <legend class="switcher__legend">
       Переключение темная / светлая тема
     </legend>
@@ -57,11 +57,21 @@
     width: 96px;
     height: 56px;
   }
+
+  &[disabled] {
+    filter: grayscale(60%);
+  }
 }
 
 .switcher__legend {
   position: absolute;
   opacity: 0;
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 1px;
+
   pointer-events: none;
 }
 
