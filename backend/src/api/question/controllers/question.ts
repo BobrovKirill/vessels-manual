@@ -88,13 +88,13 @@ module.exports = factories.createCoreController('api::question.question', ({ str
   // Очистить выбранный ответ
   async clear(ctx) {
     try {
-      const { sessionId } = ctx.request.body;
+      const { session } = ctx.request.body;
 
-      if (!sessionId) {
-        return ctx.badRequest('sessionId обязателен');
+      if (!session) {
+        return ctx.badRequest('session обязателен');
       }
 
-      await strapi.service('api::question.question').clearSession(sessionId);
+      await strapi.service('api::question.question').clearSession(session);
 
       return ctx.send({ message: 'Сессия очищена' });
     } catch (err) {

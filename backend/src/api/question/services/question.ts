@@ -99,16 +99,16 @@ export default {
 
     const shuffledQuestions = shuffle(allQuestions.flat().slice(0, questionsCount));
 
-    const sessionId = uuidv4();
+    const session = uuidv4();
 
-    createSession(sessionId, type, timeLimit, wrongLimit);
+    createSession(session, type, timeLimit, wrongLimit);
 
-    return { success: true, sessionId, questions: shuffledQuestions, timeLimit };
+    return { success: true, session, questions: shuffledQuestions, timeLimit };
   },
 
-  async sendAnswer(sessionId: string, questionId: number, answerId: number) {
-    const session = sessions[sessionId];
-    if (!session) throw new Error('Сессия не найдена');
+  async sendAnswer(session: string, questionId: number, answerId: number) {
+    const currentSession = sessions[session];
+    if (!currentSession) throw new Error('Сессия не найдена');
 
     const question = await strapi.entityService.findOne('api::question.question', questionId, {
       populate: { answers: true }
@@ -120,40 +120,40 @@ export default {
     const answer = question.answers?.find(asnwer => asnwer.id === Number(answerId));
     if (!answer) throw new Error('Ответ не найден');
 
-    session.questions.push({ id: questionId, answer: { id: answerId, is_correct: answer.is_correct } });
+    currentSession.questions.push({ id: questionId, answer: { id: answerId, is_correct: answer.is_correct } });
 
-    if (session.type === 'quiz') {
+    if (currentSession.type === 'quiz') {
       return {  success: true, is_correct: answer.is_correct };
     } else {
       return { success: true };
     }
   },
 
-  async launchExam(sessionId: string) {
-    const session = sessions[sessionId];
-    if (!session) throw new Error('Сессия не найдена');
+  async launchExam(session: string) {
+    const currentSession = sessions[session];
+    if (!currentSession) throw new Error('Сессия не найдена');
 
-    session.timer = Date.now();
+    currentSession.timer = Date.now();
 
     return { success: true };
   },
 
-  async finishExam(sessionId: string) {
-    const session = sessions[sessionId];
+  async finishExam(session: string) {
+    const currentSession = sessions[session];
     const finishTime = Date.now();
-    if (!session) throw new Error('Сессия не найдена');
+    if (!currentSession) throw new Error('Сессия не найдена');
 
-    const questions = session.questions;
-    const total = session.questions.length;
+    const questions = currentSession.questions;
+    const total = currentSession.questions.length;
     const wrongAnswerCount = questions.filter(
       (question) => question.answer && question.answer.is_correct === false
     ).length
-    const wrongLimit = session.wrongLimit
+    const wrongLimit = currentSession.wrongLimit
     const isPassedExam = wrongAnswerCount <= wrongLimit;
-    const isCorrectTime = isCorrectExamTime(session.timer, finishTime, session.timeLimit);
+    const isCorrectTime = isCorrectExamTime(currentSession.timer, finishTime, currentSession.timeLimit);
 
-    delete sessions[sessionId];
+    delete sessions[session];
 
-    return { type: session.type, questions, total, isTimer: isCorrectTime, wrongAnswer: wrongAnswerCount, wrongLimit, isPassedExam, success: isCorrectTime };
+    return { type: currentSession.type, questions, total, isTimer: isCorrectTime, wrongAnswer: wrongAnswerCount, wrongLimit, isPassedExam, success: isCorrectTime };
   },
 };
