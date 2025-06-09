@@ -43,6 +43,9 @@
         "images",
         "files"
       ]
+    },
+    "description": {
+      "type": "string"
     }
   }
 }

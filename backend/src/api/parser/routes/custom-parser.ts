@@ -6,16 +6,26 @@ module.exports = {
       handler: 'parser.parse',
       config: {
         policies: ['global::is-super-admin'],
-        type: 'admin'
+        type: 'content-api'
       },
     },
 
     {
       method: 'GET',
-      path: '/parser/filling',
-      handler: 'parser.filling',
+      path: '/parser/filling-answers',
+      handler: 'parser.fillingAnswers',
       config: {
         policies: ['global::is-super-admin'],
+        type: 'content-api'
+      },
+    },
+
+    {
+      method: 'GET',
+      path: '/parser/filling-description',
+      handler: 'parser.fillingDescription',
+      config: {
+        policies: [],
         type: 'content-api'
       },
     },

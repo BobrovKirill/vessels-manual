@@ -25,7 +25,11 @@ type QuestionWithAnswers = {
   text: string;
   answers: Answer[];
   type: "vp" | "vvp" | "mp" | "motor" | "scooter" | "sail" | "special";
+  description: string;
 };
+
+type TypePrompt = 'description' | 'answers'
+type Model = 'gemini' | 'openrouter'
 
 const keyWordsForRootType: {type: rootQuestionType, words: string[]}[] = [
   { type: 'vessel', words: ["тип", "судна"] },
@@ -53,6 +57,10 @@ const models = {
   }
 }
 
+const promptes = {
+  'description': 'Ты — помощник, генерирующий пояснение ответы почему именно этот ответ является верным. Для каждого вопроса из списка с правильными и не правильными ответами пояснения почему именно этот ответ является правильным а остальные не правильными.\n  \n  Формат ответа:\n  \n  [\n    {\n      "id": 123,\n      "description": "..."\n    },\n    ...\n  ]\n  \n  Вот список вопросов:',
+  'answers': 'Ты — помощник, генерирующий неправильные ответы. Для каждого вопроса из списка с правильными ответами сгенерируй 3 неправдоподобных, но реалистичных неправильных ответа. Не повторяй правильные.\n  \n  Формат ответа:\n  \n  [\n    {\n      "id": 123,\n      "wrongAnswers": ["...", "...", "..."]\n    },\n    ...\n  ]\n  \n  Вот список вопросов:',
+}
 
 const questionSizeForPrompt = 30;
 
@@ -92,26 +100,17 @@ const keyWordsForType: Record<rootQuestionType, { type: QuestionType; words: str
   ]
 }
 
+
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
-async function aiGenerateWrongAnswers(questions, model) {
-    const prompt = `
-  Ты — помощник, генерирующий неправильные ответы. Для каждого вопроса из списка с правильными ответами сгенерируй 3 неправдоподобных, но реалистичных неправильных ответа. Не повторяй правильные.
-  
-  Формат ответа:
-  
-  [
-    {
-      "id": 123,
-      "wrongAnswers": ["...", "...", "..."]
-    },
-    ...
-  ]
-  
-  Вот список вопросов:
+async function aiGenerateWrongAnswers(questions, model: Model, typePrompt: TypePrompt) {
+  const currentPrompt = promptes[typePrompt];
+  const prompt = `
+  ${currentPrompt}
   ${JSON.stringify(questions, null, 2)}
   `;
 
@@ -275,7 +274,7 @@ export default factories.createCoreService('api::parser.parser' as any, ({strapi
 
     // questions = questions.slice(0, 1)
     const typedQuestions = questions as unknown as QuestionWithAnswers[];
-    const questionsToProcess = typedQuestions.filter(q => q.answers.length <= 1);
+    const questionsToProcess = typedQuestions.filter((question: QuestionWithAnswers) => question.answers.length <= 1);
 
     for (let i = 0; i < questionsToProcess.length; i += questionSizeForPrompt) {
       const batch = questionsToProcess.slice(i, i + questionSizeForPrompt);
@@ -289,11 +288,11 @@ export default factories.createCoreService('api::parser.parser' as any, ({strapi
       let aiResponse: { id: number; wrongAnswers: string[] }[] = [];
 
       try {
-        aiResponse = await aiGenerateWrongAnswers(aiInput, 'gemini');
+        aiResponse = await aiGenerateWrongAnswers(aiInput, 'gemini', 'answers');
       } catch (err) {
         console.warn(`Deepseek failed, trying Lima. Error: ${err.message}`);
         try {
-          aiResponse = await aiGenerateWrongAnswers(aiInput, 'openrouter');
+          aiResponse = await aiGenerateWrongAnswers(aiInput, 'openrouter', 'answers');
         } catch (err2) {
           console.error(`Both models failed: ${err2.message}`);
           continue;
@@ -312,6 +311,53 @@ export default factories.createCoreService('api::parser.parser' as any, ({strapi
         }
 
         console.log(`✅ Заполнили ${wrongAnswers.length} ответов для вопроса ${id}`);
+      }
+
+      await sleep(2000);
+    }
+  },
+
+  async createQuestionDescription() {
+    const questions = await strapi.entityService.findMany('api::question.question', {
+      populate: ['answers'],
+    })
+
+    const typedQuestions = questions as unknown as QuestionWithAnswers[];
+    const questionsToProcess = typedQuestions.filter((question: QuestionWithAnswers) => !question.description?.length);
+
+    for (let i = 0; i < questionsToProcess.length; i += questionSizeForPrompt) {
+      const batch = questionsToProcess.slice(i, i + questionSizeForPrompt);
+
+      const aiInput = batch.map(question => ({
+        id: question.id,
+        text: question.text,
+        correctAnswers: question.answers,
+      }));
+
+
+      let aiResponse: { id: number; description: string }[] = [];
+
+      try {
+        aiResponse = await aiGenerateWrongAnswers(aiInput, 'gemini', 'description');
+      } catch (err) {
+        console.warn(`Gemini failed, trying Openrouter with deepseek. Error: ${err.message}`);
+        try {
+          aiResponse = await aiGenerateWrongAnswers(aiInput, 'openrouter', 'description');
+        } catch (err2) {
+          console.error(`Both models failed: ${err2.message}`);
+          continue;
+        }
+      }
+
+
+      for (const { id, description } of aiResponse) {
+          await strapi.entityService.update('api::question.question', id, {
+            data: {
+              description
+            }
+          })
+
+        console.log(`✅ Заполнили description длинной в ${description.length} символов для вопроса ${id}`);
       }
 
       await sleep(2000);

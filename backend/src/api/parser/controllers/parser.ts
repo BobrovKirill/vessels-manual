@@ -36,11 +36,22 @@ export default factories.createCoreController('api::parser.parser' as any, ({str
     }
   },
 
-  async filling(ctx) {
+  async fillingAnswers(ctx) {
     try {
       await strapi.service('api::parser.parser').createWrongAnswers();
 
       return ctx.send({ message: 'BD filled wrong answers successfully', success: true }, 200);
+    } catch (error) {
+      console.error('Ошибка при парсинге и загрузке:', error);
+      ctx.throw(500, 'Ошибка парсинга и загрузки BD');
+    }
+  },
+
+  async fillingDescription(ctx) {
+    try {
+      await strapi.service('api::parser.parser').createQuestionDescription();
+
+      return ctx.send({ message: 'BD filled question description successfully', success: true }, 200);
     } catch (error) {
       console.error('Ошибка при парсинге и загрузке:', error);
       ctx.throw(500, 'Ошибка парсинга и загрузки BD');

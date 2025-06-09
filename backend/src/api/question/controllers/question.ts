@@ -33,6 +33,7 @@ module.exports = factories.createCoreController('api::question.question', ({ str
         ...result,
         questions: result.questions.map(question => ({
           ...question,
+          description: null,
           answers: question.answers?.map(({ is_correct, ...rest }) => rest) || null,
         }))
       };
