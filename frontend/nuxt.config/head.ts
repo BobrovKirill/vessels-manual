@@ -56,11 +56,11 @@ export const HEAD = {
 
     // Favicons
     // { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png?v=2' },
-    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png?v=2' },
-    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png?v=2' },
-    { rel: 'manifest', href: '/favicon/site.webmanifest?v=2' },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' },
+    { rel: 'manifest', href: '/favicon/site.webmanifest' },
     // { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg?v=2', color: '#101010' },
-    { rel: 'shortcut icon', href: '/favicon/favicon.ico?v=2' },
+    { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
 
     // Resource hints: preconnect
     // ...(IS_PRODUCTION_MODE ? [...addPreconnect('//{host}')] : []),
