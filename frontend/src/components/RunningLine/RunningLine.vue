@@ -37,6 +37,7 @@ import { runningItems } from '~/components/RunningLine/index'
   color: #fff;
   font-family: font('secondary');
   font-size: 17px;
+  hyphens: none;
 }
 
 .running-line__item {

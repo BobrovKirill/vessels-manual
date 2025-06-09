@@ -16,6 +16,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
+  app: {
+    head,
+  },
+
   build: {
     extractCSS: false,
     extend(config: any) {
@@ -83,7 +87,6 @@ export default defineNuxtConfig({
   srcDir: 'src',
 
   buildModules,
-  head,
   router,
   modules,
 })
