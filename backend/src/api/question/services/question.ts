@@ -52,12 +52,16 @@ function isCorrectExamTime(startTime: number, examTime: number, endTime: number)
 }
 
 function shuffle(array) {
-  const result = array.slice(); // создаем копию
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
+  const shufflerArray = array.slice();
+  let currentIndex = shufflerArray.length, randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [shufflerArray[currentIndex], shufflerArray[randomIndex]] = [shufflerArray[randomIndex], shufflerArray[currentIndex]];
   }
-  return result;
+  return shufflerArray;
 }
 
 function createSession(id: number, type: Session["type"], timeLimit: number, wrongLimit: number) {
@@ -97,13 +101,17 @@ export default {
       )
     );
 
-    const shuffledQuestions = shuffle(allQuestions.flat().slice(0, questionsCount));
+    const flatQuestions = allQuestions.flat().slice(0, questionsCount);
+    const shuffledQuestions = shuffle(flatQuestions).map(question => ({
+      ...question,
+      answers: shuffle(question.answers)
+    }));
 
     const session = uuidv4();
 
     createSession(session, type, timeLimit, wrongLimit);
 
-    return { success: true, session, questions: shuffledQuestions, timeLimit };
+    return { success: true, session, questions: shuffledQuestions, timeLimit, wrongLimit };
   },
 
   async sendAnswer(session: string, questionId: number, answerId: number) {
