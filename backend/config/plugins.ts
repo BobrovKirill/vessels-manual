@@ -8,7 +8,7 @@ module.exports = ({ env }) => ({
         localServer: {
           maxage: 300000,
           baseUrl: '/uploads',
-          basePath: env('UPLOADS_PATH', 'public/uploads'),
+          basePath: './public/uploads',
         }
       }
     }
