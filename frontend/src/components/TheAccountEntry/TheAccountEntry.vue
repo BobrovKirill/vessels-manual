@@ -1,15 +1,21 @@
 <script setup lang="ts">
-const isAuthorized = false
+import Authorization from '~/components/Authorization/Authorization.vue'
+import {
+  isAuthorized,
+  toggleModal,
+} from '~/components/Authorization/index'
 </script>
 
 <template>
-  <button class="entry">
+  <button class="entry" @click="toggleModal">
     <template v-if="isAuthorized">
       <img alt="Аватар" class="entry__avatar" src="#">
       <span class="entry__name">Имя</span>
     </template>
     <SvgIcon v-else class="entry__icon" name="lk" />
   </button>
+
+  <Authorization />
 </template>
 
 <style scoped lang="scss">

@@ -27,6 +27,12 @@ import { runningItems } from '~/components/RunningLine/index'
   border-bottom: 1px solid black;
 }
 
+.running__inner-svg {
+  color: #ffffff;
+  width: 44px;
+  height: 34px;
+}
+
 .running-line__wrapper {
   display: flex;
   background-color: $secondary;
