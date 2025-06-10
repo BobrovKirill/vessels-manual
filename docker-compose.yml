@@ -6,7 +6,7 @@ services:
     ports:
       - "1337:1337"
     volumes:
-      - ./backend/public/uploads:/app/public/uploads
+      - ./backend/public/uploads:/opt/app/public/uploads
       - ./backend/database:/srv/app/database
     environment:
       DATABASE_PATH: /srv/app/database/strapi.db
