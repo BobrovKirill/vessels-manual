@@ -13,7 +13,7 @@ import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
     <NuxtLink class="header__logo" to="/">
       <img
         alt="Лого сайта"
-        src="@/assets/images/header/icon.png"
+        src="@/assets/images/header/logo.png"
       >
     </NuxtLink>
 
