@@ -48,9 +48,9 @@ jobs:
           push: true
           build-args: |
             MODE=production
-            API_URL=http://158.160.173.105:1337/api
-            API_URL_SERVER=http://158.160.173.105:1337
-            HOST_URL=http://158.160.173.105
+            API_URL=https://api.vessels-manual.ru/api
+            API_URL_SERVER=https://api.vessels-manual.ru
+            HOST_URL=https://vessels-manual.ru
             BUILD_TIMESTAMP=${{ github.run_number }}
           tags: ghcr.io/${{ env.REGISTRY_OWNER }}/vessels-manual-frontend:latest
 
