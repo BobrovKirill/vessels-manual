@@ -265,7 +265,7 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import QuizzesForm from '~/components/QuizzesForm/QuizzesForm.vue'
-import Runningline from '~/components/Runningline/Runningline.vue'
+import RunningLine from '~/components/RunningLine/RunningLine.vue'
 import Trainer from '~/components/Trainer/Trainer.vue'
 
 // Флаг отображения Trainer
@@ -410,7 +410,7 @@ function handleClose() {
       <picture class="quizzes__content-right-img" />
     </div>
 
-    <Runningline />
+    <RunningLine />
 
     <div class="werw">
       <QuizzesForm
