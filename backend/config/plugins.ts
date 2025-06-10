@@ -6,7 +6,9 @@ module.exports = ({ env }) => ({
       sizeLimit: 256 * 1024 * 1024,
       providerOptions: {
         localServer: {
-          maxage: 300000
+          maxage: 300000,
+          baseUrl: '/uploads',
+          basePath: env('UPLOADS_PATH', 'public/uploads'),
         }
       }
     }
