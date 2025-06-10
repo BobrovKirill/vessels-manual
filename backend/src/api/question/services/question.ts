@@ -8,6 +8,7 @@ interface requestBody {
 
 type UserAnswer = {
   id: number;
+  description?: string;
   answer: {
     id: number;
     is_correct: boolean;
@@ -128,7 +129,7 @@ export default {
     const answer = question.answers?.find(asnwer => asnwer.id === Number(answerId));
     if (!answer) throw new Error('Ответ не найден');
 
-    currentSession.questions.push({ id: questionId, answer: { id: answerId, is_correct: answer.is_correct } });
+    currentSession.questions.push({ id: questionId, description: question.description, answer: { id: answerId, is_correct: answer.is_correct } });
 
     if (currentSession.type === 'quiz') {
       return {  success: true, is_correct: answer.is_correct };
