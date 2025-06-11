@@ -147,6 +147,12 @@ export default {
     return { success: true };
   },
 
+  async getInfo(type: string, certificate: boolean, regions: any, vessels: any) {
+    const data = getDataCounts({certificate, regions, vessels})
+
+    return { success: true, ...data };
+  },
+
   async finishExam(session: string) {
     const currentSession = sessions[session];
     const finishTime = Date.now();

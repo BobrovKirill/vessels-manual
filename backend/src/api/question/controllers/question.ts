@@ -70,6 +70,18 @@ module.exports = factories.createCoreController('api::question.question', ({ str
     }
   },
 
+  async info(ctx) {
+    try {
+      const { type, certificate, regions, vessels } = ctx.request.body;
+
+      const result = await questionService.getInfo(type, certificate, regions, vessels);
+      return ctx.send(result);
+    } catch (err) {
+      console.error('❌ Ошибка завершения экзамена:', err);
+      ctx.throw(500, 'Ошибка завершения экзамена');
+    }
+  },
+
   // Поинт для показа результата тестирования
   async finish(ctx) {
     try {

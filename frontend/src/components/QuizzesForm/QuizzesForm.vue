@@ -1,551 +1,205 @@
-<!-- <script setup lang="ts"> -->
-<!-- import { computed, ref } from 'vue' -->
-<!-- import { -->
-<!--  regionOptions, -->
-<!--  rightsOptions, -->
-<!--  vesselOptions, -->
-<!-- } from '~/components/QuizzesForm/index' -->
-
-<!-- const haveRights = ref('no') -->
-<!-- const regionType = ref<string[]>([]) -->
-<!-- const vesselType = ref<string[]>([]) -->
-
-<!-- const showModal = ref(false) -->
-<!-- const modalTitle = ref('') -->
-
-<!-- function onSubmit() { -->
-<!--  modalTitle.value = 'Подтвердите сдачу экзамена' -->
-<!--  showModal.value = true -->
-<!-- } -->
-
-<!-- function onTrainer() { -->
-<!--  modalTitle.value = 'Запустить тренажер' -->
-<!--  showModal.value = true -->
-<!-- } -->
-
-<!-- const isFormValid = computed(() => -->
-<!--  regionType.value.length > 0 -->
-<!--  && vesselType.value.length > 0, -->
-<!-- ) -->
-<!-- </script> -->
-
-<!-- <template> -->
-<!--  <form class="form" @submit.prevent="onSubmit"> -->
-<!--    &lt;!&ndash; 1. Права &ndash;&gt; -->
-<!--    <fieldset class="form__part1"> -->
-<!--      <legend class="form__part-title"> -->
-<!--        Есть ли у вас права -->
-<!--      </legend> -->
-<!--      <label -->
-<!--        v-for="opt in rightsOptions" -->
-<!--        :key="opt.value" -->
-<!--        class="form__part1-btn form__part-btn" -->
-<!--      > -->
-<!--        <input -->
-<!--          v-model="haveRights" -->
-<!--          class="form__input-hidden" -->
-<!--          type="radio" -->
-<!--          :value="opt.value" -->
-<!--        > -->
-<!--        <span class="form__part1-descr">{{ opt.label }}</span> -->
-<!--      </label> -->
-<!--    </fieldset> -->
-
-<!--    &lt;!&ndash; 2. Регион &ndash;&gt; -->
-<!--    <fieldset class="form__part2"> -->
-<!--      <legend class="form__part-title"> -->
-<!--        Выберите тип региона -->
-<!--      </legend> -->
-<!--      <label -->
-<!--        v-for="opt in regionOptions" -->
-<!--        :key="opt.value" -->
-<!--        class="form__part2-btn form__part-btn" -->
-<!--        :data-abbr="opt.abbr" -->
-<!--      > -->
-<!--        <input -->
-<!--          v-model="regionType" -->
-<!--          class="form__input-hidden" -->
-<!--          name="regionType" -->
-<!--          type="checkbox" -->
-<!--          :value="opt.value" -->
-<!--        > -->
-<!--        <span class="form__part2-descr">{{ opt.label }}</span> -->
-<!--      </label> -->
-<!--    </fieldset> -->
-
-<!--    &lt;!&ndash; 3. Судно &ndash;&gt; -->
-<!--    <fieldset class="form__part3"> -->
-<!--      <legend class="form__part-title"> -->
-<!--        Выберите тип судна -->
-<!--      </legend> -->
-<!--      <label -->
-<!--        v-for="opt in vesselOptions" -->
-<!--        :key="opt.value" -->
-<!--        class="form__part3-btn form__part-btn" -->
-<!--      > -->
-<!--        <input -->
-<!--          v-model="vesselType" -->
-<!--          class="form__input-hidden" -->
-<!--          type="checkbox" -->
-<!--          :value="opt.value" -->
-<!--        > -->
-<!--        <svg-icon -->
-<!--          class="form__part3-icon" -->
-<!--          :name="opt.icon" -->
-<!--        /> -->
-<!--        <span class="form__part3-descr">{{ opt.label }}</span> -->
-<!--      </label> -->
-<!--    </fieldset> -->
-
-<!--    &lt;!&ndash; Кнопки &ndash;&gt; -->
-<!--    <div class="form__buttons"> -->
-<!--      <button -->
-<!--        class="form__button" -->
-<!--        :disabled="!isFormValid" -->
-<!--        type="submit" -->
-<!--      > -->
-<!--        Экзамен -->
-<!--      </button> -->
-<!--      <button -->
-<!--        class="form__button" -->
-<!--        :disabled="!isFormValid" -->
-<!--        type="button" -->
-<!--        @click="onTrainer" -->
-<!--      > -->
-<!--        Тренажер -->
-<!--      </button> -->
-<!--    </div> -->
-<!--  </form> -->
-
-<!--  &lt;!&ndash; Попап (модальное окно) &ndash;&gt; -->
-<!-- </template> -->
-
-<!-- <style scoped lang="scss"> -->
-<!-- .form__input-hidden { -->
-<!--  position: absolute; -->
-<!--  opacity: 0; -->
-<!--  width: 0; -->
-<!--  height: 0; -->
-<!-- } -->
-
-<!-- .form__part-btn { -->
-<!--  position: relative; -->
-<!--  display: inline-block; -->
-<!--  margin-right: 20px; -->
-<!--  width: 140px; -->
-<!--  height: 90px; -->
-<!--  border: 2px solid #b82132; -->
-<!--  color: #b82132; -->
-<!--  cursor: pointer; -->
-<!--  overflow: hidden; -->
-<!--  user-select: none; -->
-<!--  transition: background 0.3s, color 0.3s, border-color 0.3s; -->
-<!-- } -->
-
-<!-- /* Описание внутри кнопки (разное для каждой части) */ -->
-<!-- .form__part1-descr, -->
-<!-- .form__part2-descr, -->
-<!-- .form__part3-descr { -->
-<!--  display: flex; -->
-<!--  width: 100%; -->
-<!--  height: 100%; -->
-<!--  align-items: center; -->
-<!--  justify-content: center; -->
-<!--  padding: 0; -->
-<!--  font-family: 'Merriweather'; -->
-<!--  font-size: 15px; -->
-<!--  font-weight: bold; -->
-<!--  text-align: center; -->
-<!--  transition: background 0.3s, color 0.3s; -->
-<!-- } -->
-
-<!-- /* Стили для легенд */ -->
-<!-- .form__part-title { -->
-<!--  margin-bottom: 15px; -->
-<!--  font-size: 18px; -->
-<!--  font-family: 'Merriweather'; -->
-<!-- } -->
-
-<!-- /* Секция «Права» */ -->
-<!-- .form__part1 { -->
-<!--  margin: 0 0 30px 0; -->
-<!--  padding: 0; -->
-<!--  border: none; -->
-<!--  display: flex; -->
-<!-- } -->
-
-<!-- /* Активное состояние радиокнопки */ -->
-<!-- .form__part1-btn input:checked + .form__part1-descr { -->
-<!--  background-color: #b82132; -->
-<!--  color: #fff; -->
-<!--  border-color: #b82132; -->
-<!-- } -->
-
-<!-- /* Секция «Регион» */ -->
-<!-- .form__part2 { -->
-<!--  margin: 0 0 30px 0; -->
-<!--  padding: 0; -->
-<!--  border: none; -->
-<!--  display: flex; -->
-<!-- } -->
-
-<!-- /* Аббревиатура в углу */ -->
-<!-- .form__part2-btn::before { -->
-<!--  content: attr(data-abbr); -->
-<!--  position: absolute; -->
-<!--  top: 0; -->
-<!--  left: 0; -->
-<!--  color: #b82132; -->
-<!--  border-right: 1px solid #b82132; -->
-<!--  border-bottom: 1px solid #b82132; -->
-<!--  padding: 2px 6px; -->
-<!--  font-size: 0.75rem; -->
-<!--  line-height: 1; -->
-<!--  background: transparent; -->
-<!--  transition: background 0.3s, color 0.3s, border-color 0.3s; -->
-<!-- } -->
-
-<!-- /* Активное состояние чекбокса «Регион» */ -->
-<!-- .form__part2-btn input:checked + .form__part2-descr { -->
-<!--  background-color: #b82132; -->
-<!--  color: #fff; -->
-<!-- } -->
-
-<!-- /* Когда чекбокс «Регион» выбран, меняем и псевдоэлемент */ -->
-<!-- .form__part2-btn:has(input:checked)::before { -->
-<!--  background-color: #b82132; -->
-<!--  color: #fff; -->
-<!--  border-color: #fff; -->
-<!-- } -->
-
-<!-- /* Секция «Судно» */ -->
-<!-- .form__part3 { -->
-<!--  margin: 0 0 30px 0; -->
-<!--  padding: 0; -->
-<!--  border: none; -->
-<!--  display: flex; -->
-<!--  flex-wrap: wrap; -->
-<!--  gap: 20px 30px; -->
-<!-- } -->
-
-<!-- /* Иконка внутри кнопки «Судно» */ -->
-<!-- .form__part3-icon { -->
-<!--  position: absolute; -->
-<!--  top: 4px; -->
-<!--  left: 4px; -->
-<!--  width: 18px; -->
-<!--  height: 18px; -->
-<!--  margin-bottom: 5px; -->
-<!--  color: #b82132; -->
-<!--  pointer-events: none; -->
-<!-- } -->
-
-<!-- /* Активное состояние чекбокса «Судно» */ -->
-<!-- .form__part3-btn input:checked ~ .form__part3-descr { -->
-<!--  background-color: #b82132; -->
-<!--  color: #fff; -->
-<!-- } -->
-
-<!-- .form__part3-btn input:checked ~ .form__part3-icon { -->
-<!--  color: #fff; -->
-<!-- } -->
-
-<!-- /* Стили для группы кнопок «Экзамен/Тренажер» */ -->
-<!-- .form__buttons { -->
-<!--  display: flex; -->
-<!--  gap: 1rem; -->
-<!-- } -->
-
-<!-- /* Общий стиль для кнопок */ -->
-<!-- .form__button { -->
-<!--  background-color: #3b6790; -->
-<!--  color: #fff; -->
-<!--  padding: 20px 35px; -->
-<!--  font-size: 20px; -->
-<!--  cursor: pointer; -->
-<!--  border: none; -->
-<!--  border-radius: 4px; -->
-<!--  transition: opacity 0.3s; -->
-<!-- } -->
-
-<!-- .form__button:disabled { -->
-<!--  opacity: 0.6; -->
-<!--  cursor: not-allowed; -->
-<!-- } -->
-<!-- </style> -->
-
 <script setup lang="js">
 import { computed, ref } from 'vue'
-import { regionOptions, rightsOptions, vesselOptions } from '~/components/QuizzesForm/index'
+import { QUIZZES_FORM_OPTIONS } from '~/components/QuizzesForm/index'
 
-// Определяем, какие события будем эмитить
-const emit = defineEmits(['start-exam', 'start-trainer'])
+const emit = defineEmits(['launch', 'sendCurrentForm'])
 
-// Состояние формы
-const haveRights = ref('no') // 'yes' или 'no'
-const regionType = ref([]) // массив строк
-const vesselType = ref([]) // массив строк
+const form = ref({
+  certificate: 'no',
+  type: 'quiz',
+  regions: [],
+  vessels: [],
+})
 
-// Валидность формы: хотя бы один регион и один тип судна
 const isFormValid = computed(() =>
-  regionType.value.length > 0 && vesselType.value.length > 0,
+  form.value.regions.length > 0 && form.value.vessels.length > 0,
 )
 
-// Нажали «Экзамен» → эмитим событие 'start-exam' с пэйлоадом
 function onSubmit() {
-  const payload = {
-    certificate: haveRights.value === 'yes',
-    regions: regionType.value.slice(),
-    vessels: vesselType.value.slice(),
-  }
-  emit('start-exam', payload)
+  emit('launch')
 }
 
-// Нажали «Тренажер» → эмитим событие 'start-trainer' с пэйлоадом
-function onTrainer() {
-  const payload = {
-    certificate: haveRights.value === 'yes',
-    regions: regionType.value.slice(),
-    vessels: vesselType.value.slice(),
-  }
-  emit('start-trainer', payload)
+function sendCurrentForm() {
+  emit('sendCurrentForm', form.value)
 }
 </script>
 
 <template>
   <form class="form" @submit.prevent="onSubmit">
-    <!-- 1. Права -->
-    <fieldset class="form__part1">
-      <legend class="form__part-title">
-        Есть ли у вас права
+    <fieldset v-for="(option, name) in QUIZZES_FORM_OPTIONS" :key="name" class="form__part">
+      <legend class="form__title">
+        {{ option.title }}
       </legend>
-      <label
-        v-for="opt in rightsOptions"
-        :key="opt.value"
-        class="form__part1-btn form__part-btn"
-      >
-        <input
-          v-model="haveRights"
-          class="form__input-hidden"
-          type="radio"
-          :value="opt.value"
+
+      <p class="form__text" v-html="option.description" />
+
+      <div class="form__inputs" :style="name === 'vessels' ? 'grid-template-columns: auto auto;' : ''">
+        <label
+          v-for="(item, id) in option.items"
+          :key="`${name}-${id}`"
+          class="form__label"
         >
-        <span class="form__part1-descr">{{ opt.label }}</span>
-      </label>
+          <input
+            v-model="form[name]"
+            class="form__input-hidden"
+            :type="option.type"
+            :value="item.value"
+            @change="sendCurrentForm"
+          >
+
+          <span class="form__custom-checkbox">
+            <svg-icon v-if="item.icon" class="form__icon" :name="item.icon" />
+            <template v-else>
+              {{ item.abbr }}
+            </template>
+          </span>
+
+          <svg-icon v-if="item.icon" class="form__icon" :name="item.icon" />
+
+          <span class="form__label-textr">{{ item.label }}</span>
+        </label>
+      </div>
     </fieldset>
 
-    <!-- 2. Регион -->
-    <fieldset class="form__part2">
-      <legend class="form__part-title">
-        Выберите тип региона
-      </legend>
-      <label
-        v-for="opt in regionOptions"
-        :key="opt.value"
-        class="form__part2-btn form__part-btn"
-        :data-abbr="opt.abbr"
-      >
-        <input
-          v-model="regionType"
-          class="form__input-hidden"
-          type="checkbox"
-          :value="opt.value"
-        >
-        <span class="form__part2-descr">{{ opt.label }}</span>
-      </label>
-    </fieldset>
-
-    <!-- 3. Судно -->
-    <fieldset class="form__part3">
-      <legend class="form__part-title">
-        Выберите тип судна
-      </legend>
-      <label
-        v-for="opt in vesselOptions"
-        :key="opt.value"
-        class="form__part3-btn form__part-btn"
-      >
-        <input
-          v-model="vesselType"
-          class="form__input-hidden"
-          type="checkbox"
-          :value="opt.value"
-        >
-        <svg-icon class="form__part3-icon" :name="opt.icon" />
-        <span class="form__part3-descr">{{ opt.label }}</span>
-      </label>
-    </fieldset>
-
-    <!-- Кнопки -->
     <div class="form__buttons">
       <button
         class="form__button"
         :disabled="!isFormValid"
         type="submit"
       >
-        Экзамен
-      </button>
-      <button
-        class="form__button"
-        :disabled="!isFormValid"
-        type="button"
-        @click="onTrainer"
-      >
-        Тренажер
+        Начать
       </button>
     </div>
   </form>
 </template>
 
 <style scoped lang="scss">
-.form__input-hidden {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.form__part-btn {
-  position: relative;
-  display: inline-block;
-  margin-right: 20px;
-  width: 140px;
-  height: 90px;
-  border: 2px solid #b82132;
-  color: #b82132;
-  cursor: pointer;
-  overflow: hidden;
-  user-select: none;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-
-/* Описание внутри кнопки */
-.form__part1-descr,
-.form__part2-descr,
-.form__part3-descr {
+.form {
   display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  font-family: 'Merriweather';
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  transition: background 0.3s, color 0.3s;
-}
+  flex-direction: column;
+  gap: 36px;
 
-/* Стили для легенд */
-.form__part-title {
-  margin-bottom: 15px;
-  font-size: 18px;
-  font-family: 'Merriweather';
-}
+  &__part {
+    border: none;
+    padding: 0;
+  }
 
-/* Секция «Права» */
-.form__part1 {
-  margin: 0 0 30px 0;
-  padding: 0;
-  border: none;
-  display: flex;
-}
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
 
-/* Активное состояние радиокнопки */
-.form__part1-btn input:checked + .form__part1-descr {
-  background-color: #b82132;
-  color: #fff;
-  border-color: #b82132;
-}
+  &__text {
 
-/* Секция «Регион» */
-.form__part2 {
-  margin: 0 0 30px 0;
-  padding: 0;
-  border: none;
-  display: flex;
-}
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 24px;
+    hyphens: none;
+  }
 
-/* Аббревиатура в углу */
-.form__part2-btn::before {
-  content: attr(data-abbr);
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #b82132;
-  border-right: 1px solid #b82132;
-  border-bottom: 1px solid #b82132;
-  padding: 2px 6px;
-  font-size: 0.75rem;
-  line-height: 1;
-  background: transparent;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
+  &__inputs {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: start;
+    flex-wrap: wrap;
+    row-gap: 16px;
+    column-gap: 32px;
+  }
 
-/* Активное состояние чекбокса «Регион» */
-.form__part2-btn input:checked + .form__part2-descr {
-  background-color: #b82132;
-  color: #fff;
-}
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-/* Когда чекбокс «Регион» выбран, меняем и псевдоэлемент */
-.form__part2-btn:has(input:checked)::before {
-  background-color: #b82132;
-  color: #fff;
-  border-color: #fff;
-}
+    cursor: pointer;
 
-/* Секция «Судно» */
-.form__part3 {
-  margin: 0 0 30px 0;
-  padding: 0;
-  border: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px 30px;
-}
+    transition: all 0.2s ease-in-out;
 
-/* Иконка внутри кнопки «Судно» */
-.form__part3-icon {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 18px;
-  height: 18px;
-  margin-bottom: 5px;
-  color: #b82132;
-  pointer-events: none;
-}
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
 
-/* Активное состояние чекбокса «Судно» */
-.form__part3-btn input:checked ~ .form__part3-descr {
-  background-color: #b82132;
-  color: #fff;
-}
+  &__input-hidden {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
 
-.form__part3-btn input:checked ~ .form__part3-icon {
-  color: #fff;
-}
+  &__custom-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
 
-/* Кнопки */
-.form__buttons {
-  display: flex;
-  gap: 1rem;
-}
+    width: 40px;
+    height: 40px;
 
-.form__button {
-  background-color: #3b6790;
-  color: #fff;
-  padding: 20px 35px;
-  font-size: 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  transition: opacity 0.3s;
-}
+    border: 2px solid #ccc;
+    background-color: #fff;
+    border-radius: 50%;
 
-.form__button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &__icon {
+    display: none;
+
+    width: 24px;
+    height: 24px;
+
+    fill: #fff;
+  }
+
+  &__label-text {
+    font-size: 22px;
+    hyphens: none;
+    flex-grow: 1;
+  }
+
+  &__input-hidden:checked + &__custom-checkbox {
+    background-color: $secondary;
+    border-color: $secondary;
+  }
+
+  &__input-hidden:checked + &__custom-checkbox &__icon {
+    display: block;
+  }
+
+  &__input-hidden[type="checkbox"] + &__custom-checkbox {
+    border-radius: 4px;
+  }
+
+  &__input-hidden:focus-visible + &__custom-checkbox {
+    outline: 2px solid $secondary;
+    outline-offset: 2px;
+  }
+
+  &__buttons {
+    padding: 16px 0 0;
+    border-top: 1px solid black;
+  }
+
+  &__button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $accent;
+    color: white;
+    padding: 24px 36px;
+
+    width: 100%;
+    max-width: 200px;
+
+    &[disabled] {
+      filter: grayscale(50%);
+    }
+  }
 }
 </style>

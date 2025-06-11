@@ -48,6 +48,16 @@ module.exports = {
         "middlewares": [],
         "type": 'content-api'
       }
+    },
+    {
+      "method": "POST",
+      "path": "/questions/info",
+      "handler": "question.info",
+      "config": {
+        "policies": [],
+        "middlewares": [],
+        "type": 'content-api'
+      }
     }
   ]
 }
