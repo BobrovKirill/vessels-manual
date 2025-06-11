@@ -77,7 +77,7 @@ function sendCurrentForm() {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 42px;
 
   &__part {
     border: none;

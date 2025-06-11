@@ -16,15 +16,7 @@ defineProps({
         </dt>
 
         <dd class="info__text">
-          <template v-if="typeof item.value === 'string'">
-            {{ item.value }}
-          </template>
-
-          <template v-if="Array.isArray(item.value)">
-            <span v-for="(text, id) in item.value" :key="id">
-              {{ id !== item.value.length - 1 ? `${text},` : text }}
-            </span>
-          </template>
+          {{ item.value || '-' }} {{ name === 'timeLimit' && item.value ? 'мин' : '' }}
         </dd>
       </template>
     </dl>

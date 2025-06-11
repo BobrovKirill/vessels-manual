@@ -22,19 +22,15 @@ const filters = ref({
 const quizzInfo = ref({
   timeLimit: {
     name: 'Время на сдачу',
-    value: '-',
+    value: '',
   },
   questionsCount: {
     name: 'Количество вопросов',
-    value: '-',
+    value: '',
   },
   wrongLimit: {
     name: 'Количество допустимых ошибок',
-    value: '-',
-  },
-  typeList: {
-    name: 'Список выбраных категорий',
-    value: ['-'],
+    value: '',
   },
 })
 
@@ -62,14 +58,11 @@ async function fetchInfo(data) {
     return
   }
 
-  console.log(response?.data)
   Object.entries(response?.data).forEach(([key, value]) => {
     if (quizzInfo.value[key]) {
       quizzInfo.value[key].value = `${value}`
     }
   })
-
-  quizzInfo.value.typeList.value = [...filters.value.regions, ...filters.value.vessels]
 }
 
 // Обработчик события «start-trainer» из QuizzesForm
@@ -140,7 +133,7 @@ function handleClose() {
   }
 
   &__description {
-    max-width: 300px;
+    max-width: 350px;
     margin: 0;
     color: $secondary;
   }
@@ -152,7 +145,7 @@ function handleClose() {
   }
 
   &__form {
-    padding: 24px 24px 24px;
+    padding: 24px 36px 24px;
     grid-column: span 2;
   }
 }
