@@ -22,7 +22,7 @@ defineProps({
 
           <template v-if="Array.isArray(item.value)">
             <span v-for="(text, id) in item.value" :key="id">
-              {{ text }}
+              {{ id !== item.value.length - 1 ? `${text},` : text }}
             </span>
           </template>
         </dd>
@@ -41,6 +41,7 @@ defineProps({
 
     display: grid;
     grid-template-columns: auto 1fr;
+    align-items: center;
     gap: 24px;
 
     padding: 24px;
@@ -57,6 +58,10 @@ defineProps({
   }
 
   &__text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
     margin: 0;
     font-weight: 700;
     font-size: 16px;

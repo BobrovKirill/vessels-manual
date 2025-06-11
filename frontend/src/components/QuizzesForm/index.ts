@@ -18,7 +18,7 @@ export const vesselOptions = [
 ]
 
 export const QUIZZES_FORM_OPTIONS = {
-  rights: {
+  certificate: {
     title: 'Шаг 1. Получали ли вы права ранее?',
     description: 'Если у вас уже есть права и вы хотите открыть новые категории. Количество вопросов и время значительно меньше',
     type: 'radio',

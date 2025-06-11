@@ -5,7 +5,6 @@ const props = defineProps({
     type: Array,
   },
 })
-console.log('props', props.list)
 </script>
 
 <template>

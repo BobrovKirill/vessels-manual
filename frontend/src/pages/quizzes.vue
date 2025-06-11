@@ -62,8 +62,11 @@ async function fetchInfo(data) {
     return
   }
 
+  console.log(response?.data)
   Object.entries(response?.data).forEach(([key, value]) => {
-    quizzInfo.value[key].value = value
+    if (quizzInfo.value[key]) {
+      quizzInfo.value[key].value = `${value}`
+    }
   })
 
   quizzInfo.value.typeList.value = [...filters.value.regions, ...filters.value.vessels]

@@ -91,7 +91,6 @@ function sendCurrentForm() {
   }
 
   &__text {
-
     font-size: 16px;
     line-height: 20px;
     margin: 0 0 24px;
