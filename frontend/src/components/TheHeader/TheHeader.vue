@@ -36,6 +36,8 @@ import TheSwitcher from '~/components/TheSwitcher/TheSwitcher.vue'
 
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
+  background-color: white;
+  @include shadow();
 
   display: flex;
   align-items: center;

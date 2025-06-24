@@ -96,7 +96,7 @@ export default {
         strapi.entityService.findMany('api::question.question', {
           // @ts-ignore
           filters: { type },
-          populate: { answers: { fields: ['is_correct', 'text'] } },
+          populate: { answers: { fields: ['is_correct', 'text'] }, image: true },
           limit,
         })
       )

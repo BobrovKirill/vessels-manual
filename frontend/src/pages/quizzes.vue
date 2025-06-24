@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import QuizzesForm from '~/components/QuizzesForm/QuizzesForm.vue'
 import QuizzesInfo from '~/components/RunningLine/QuizzesInfo.vue'
 import RunningLine from '~/components/RunningLine/RunningLine.vue'
-import Trainer from '~/components/Trainer/Trainer.vue'
+import TheTrainer from '~/components/TheTrainer/TheTrainer.vue'
 import { useRam } from '~/services/index.js'
 
 // Флаг отображения Trainer
@@ -39,6 +39,7 @@ const modalTitle = ref('')
 
 function handleLaunch() {
   showModal.value = true
+  document.body.style.overflowY = 'hidden'
 }
 
 async function fetchInfo(data) {
@@ -82,6 +83,7 @@ function handleFilling(data) {
 // При закрытии Trainer (emit('close'))
 function handleClose() {
   showModal.value = false
+  document.body.style.overflowY = 'auto'
 }
 </script>
 
@@ -102,11 +104,10 @@ function handleClose() {
       <QuizzesInfo :data="quizzInfo" />
     </div>
 
-    <Trainer
+    <TheTrainer
       v-if="showModal"
       :filters="filters"
       :mode="mode"
-      :visible="showModal"
       @close="handleClose"
     />
 
@@ -117,8 +118,7 @@ function handleClose() {
 <style scoped lang="scss">
 .quizzes {
   &__header {
-    margin-top: 24px;
-    padding: 16px 16px 24px;
+    padding: 24px 36px 40px;
 
     border-bottom: 1px solid black;
   }
@@ -133,9 +133,10 @@ function handleClose() {
   }
 
   &__description {
-    max-width: 350px;
+    max-width: 360px;
     margin: 0;
     color: $secondary;
+    hyphens: none;
   }
 
   &__active {

@@ -57,6 +57,8 @@ defineProps({
     margin: 0;
     font-weight: 700;
     font-size: 16px;
+
+    color: $secondary;
   }
 }
 </style>

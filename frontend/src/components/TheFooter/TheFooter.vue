@@ -98,8 +98,10 @@
   .footer {
     max-width: 1400px;
     width: 100%;
+
     margin: 0 auto;
-    font-family: 'Martian Mono', serif; ;
+
+    @include shadow();
   }
 
   .footer__body {
@@ -149,7 +151,8 @@
     color: white;
     font-size: 14px;
     line-height: 16px;
-    font-weight: 800;
+    font-weight: 400;
+    font-family: font('secondary');
 
     @include breakpoint('tablet') {
       font-size: 18px;
@@ -162,6 +165,8 @@
     color: white;
     font-size: 12px;
     line-height: 16px;
+    font-weight: 400;
+    font-family: font('primary');
 
     @include breakpoint('tablet') {
       font-size: 16px;

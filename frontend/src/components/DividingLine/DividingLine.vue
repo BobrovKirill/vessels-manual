@@ -37,6 +37,7 @@
 }
 
 .dividing-line__svg {
+    color: #DCDDE2;
     width: 80px;
     height: 80px;
 

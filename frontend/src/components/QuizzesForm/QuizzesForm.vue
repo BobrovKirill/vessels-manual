@@ -26,9 +26,9 @@ function sendCurrentForm() {
 
 <template>
   <form class="form" @submit.prevent="onSubmit">
-    <fieldset v-for="(option, name) in QUIZZES_FORM_OPTIONS" :key="name" class="form__part">
-      <legend class="form__title">
-        {{ option.title }}
+    <fieldset v-for="(option, name, index) in QUIZZES_FORM_OPTIONS" :key="name" class="form__part">
+      <legend class="form__legend">
+        Шаг <span class="form__number">{{ index + 1 }}</span>. <span class="form__title">{{ option.title }}</span>
       </legend>
 
       <p class="form__text" v-html="option.description" />
@@ -84,10 +84,20 @@ function sendCurrentForm() {
     padding: 0;
   }
 
-  &__title {
+  &__legend {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 16px;
+    color: $secondary;
+  }
+
+  &__number {
+      font-size: 26px;
+      font-family: font('secondary');
+  }
+
+  &__title {
+    color: $first-font;
   }
 
   &__text {
@@ -138,7 +148,7 @@ function sendCurrentForm() {
     width: 40px;
     height: 40px;
 
-    border: 2px solid #ccc;
+    border: 4px solid rgba($secondary, 0.8);
     background-color: #fff;
     border-radius: 50%;
 
@@ -196,8 +206,12 @@ function sendCurrentForm() {
     width: 100%;
     max-width: 200px;
 
+    font-size: 18px;
+    cursor: pointer;
+
     &[disabled] {
       filter: grayscale(50%);
+      cursor: not-allowed;
     }
   }
 }
