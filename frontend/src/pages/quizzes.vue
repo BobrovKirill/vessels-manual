@@ -1,9 +1,9 @@
 <script setup lang="js">
 import { ref } from 'vue'
 import QuizzesForm from '~/components/QuizzesForm/QuizzesForm.vue'
-import QuizzesInfo from '~/components/RunningLine/QuizzesInfo.vue'
+import QuizzesInfo from '~/components/QuizzesInfo/QuizzesInfo.vue'
 import RunningLine from '~/components/RunningLine/RunningLine.vue'
-import Trainer from '~/components/Trainer/Trainer.vue'
+import TheTrainer from '~/components/TheTrainer/TheTrainer.vue'
 import { useRam } from '~/services/index.js'
 
 // Флаг отображения Trainer
@@ -104,7 +104,7 @@ function handleClose() {
       <QuizzesInfo :data="quizzInfo" />
     </div>
 
-    <Trainer
+    <TheTrainer
       v-if="showModal"
       :filters="filters"
       :mode="mode"

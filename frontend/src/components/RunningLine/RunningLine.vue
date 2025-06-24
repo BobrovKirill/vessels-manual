@@ -22,7 +22,6 @@ import { runningItems } from '~/components/RunningLine/index'
 <style scoped lang="scss">
 .running-line {
   overflow: hidden;
-  position: relative;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
