@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import {fillingImgUrl} from "../../../tools/fillingImgUrl";
 
 interface requestBody {
   certificate: boolean
@@ -92,13 +93,20 @@ export default {
     const limit = Math.ceil(questionsCount / allTypes.length)
 
     const allQuestions = await Promise.all(
-      allTypes.map(type =>
-        strapi.entityService.findMany('api::question.question', {
+      allTypes.map(async type => {
+          const questions = await strapi.entityService.findMany('api::question.question', {
           // @ts-ignore
           filters: { type },
           populate: { answers: { fields: ['is_correct', 'text'] }, image: true },
           limit,
         })
+
+        return questions.map(question => ({
+          ...question,
+          // @ts-ignore
+          image: question.image ? { ...question.image, url: fillingImgUrl(question.image.url) } : null,
+        }))
+        }
       )
     );
 
