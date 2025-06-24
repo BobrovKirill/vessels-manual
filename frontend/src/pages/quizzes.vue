@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import QuizzesForm from '~/components/QuizzesForm/QuizzesForm.vue'
 import QuizzesInfo from '~/components/RunningLine/QuizzesInfo.vue'
 import RunningLine from '~/components/RunningLine/RunningLine.vue'
-import TheTrainer from '~/components/TheTrainer/TheTrainer.vue'
+import Trainer from '~/components/Trainer/Trainer.vue'
 import { useRam } from '~/services/index.js'
 
 // Флаг отображения Trainer
@@ -104,7 +104,7 @@ function handleClose() {
       <QuizzesInfo :data="quizzInfo" />
     </div>
 
-    <TheTrainer
+    <Trainer
       v-if="showModal"
       :filters="filters"
       :mode="mode"
