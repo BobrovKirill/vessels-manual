@@ -95,7 +95,7 @@ function handleClose() {
       </h1>
 
       <p class="quizzes__description">
-        Заполните все шаги для формирования экзамена или тренажера и приступайте к сдаче. Удачи!
+        Заполните все шаги для формирования экзамена или тренажера и&nbsp;приступайте к&nbsp;сдаче. Удачи!
       </p>
     </div>
 
@@ -140,14 +140,23 @@ function handleClose() {
   }
 
   &__active {
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    @include breakpoint('tablet') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
   }
 
   &__form {
-    padding: 24px 36px 24px;
+    padding: 100px 36px 24px;
     grid-column: span 2;
+
+    @include breakpoint('tablet') {
+      padding: 24px 36px 24px;
+    }
   }
 }
 

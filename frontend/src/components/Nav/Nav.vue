@@ -45,6 +45,7 @@ const props = defineProps({
 .nav__list-item {
   color: $accent;
   font-size: 14px;
+  font-family: font('primary');
 
   @include breakpoint('tablet') {
     font-size: 18px;

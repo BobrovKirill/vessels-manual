@@ -46,7 +46,7 @@
       </NuxtLink>
 
       <p class="preview__action-text">
-        отслеживание прогресса в <NuxtLink class="preview__action-link" to="/">
+        отслеживание прогресса в <NuxtLink class="preview__action-link" to="/account">
           личном кабинете
         </NuxtLink>
       </p>
@@ -269,6 +269,10 @@
 
     &-link {
       color: $accent;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

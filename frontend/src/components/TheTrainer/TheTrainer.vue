@@ -1,5 +1,5 @@
 <script setup lang="js">
-import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRam } from '~/services'
 
 // Props & Emits
@@ -14,7 +14,7 @@ const sessionId = ref(null)
 
 // State
 const questions = ref([])
-const answers = reactive({})
+const answers = ref({})
 const results = ref({})
 const currentAnswer = ref(null)
 const currentIndex = ref(0)
@@ -34,20 +34,18 @@ const isTimer = ref(false)
 const isLoadResults = ref(false)
 const isLoading = computed(() => isLoadQuestion.value || isLoadResults.value)
 const isShowResult = ref(false)
-const isAnswersFull = computed(() => (Object.keys(answers).length === questions.value.length) && questions.value.length)
+const isAnswersFull = computed(() => (Object.keys(answers.value).length === questions.value.length) && questions.value.length)
 
 const answerButton = computed(() => {
-  const isQuestionAnswered = !!answers[currentIndex.value]
+  const isQuestionAnswered = !!answers.value[currentIndex.value]
 
   return {
     title: isQuestionAnswered ? 'Следующий' : 'Ответить',
     disabled: !currentAnswer.value && !isQuestionAnswered,
     action: () => {
       if (isQuestionAnswered && mode !== 'exam') {
-        console.log('z')
         nextQuestion()
       } else {
-        console.log('x')
         submitAnswer()
       }
     },
@@ -110,15 +108,15 @@ function selectAnswer(id, isCorrect = false) {
 }
 
 function getCorrectAnswer(id) {
-  if (mode === 'exam' || answers[currentIndex.value]?.id !== id) {
+  if (mode === 'exam' || answers.value[currentIndex.value]?.id !== id) {
     return ''
   }
 
-  return answers[currentIndex.value].isCorrect ? 'trainer__option--correct' : 'trainer__option--wrong'
+  return answers.value[currentIndex.value].isCorrect ? 'trainer__option--correct' : 'trainer__option--wrong'
 }
 
 async function submitAnswer() {
-  answers[currentIndex.value] = { id: currentAnswer.value.id, isCorrect: currentAnswer.value.isCorrect }
+  answers.value[currentIndex.value] = { id: currentAnswer.value.id, isCorrect: currentAnswer.value.isCorrect }
   const questionId = currentQuestion.value.id
   const answerId = currentAnswer.value.id
   currentAnswer.value = null
@@ -173,8 +171,6 @@ async function finishSession() {
     }
   })
 
-  console.log('results', results)
-
   isLoadResults.value = false
 }
 
@@ -224,7 +220,7 @@ onUnmounted(() => stopTimer())
 
 <template>
   <div class="trainer__backdrop">
-    <div class="trainer__content" :style="mode === 'exam' ? 'min-height: 765px' : 'min-height: 850px'" @click.stop>
+    <div class="trainer__content" :style="mode === 'exam' ? 'min-height: 660px' : 'min-height: 740px'" @click.stop>
       <button class="trainer__close" @click="handleClose">
         <SvgIcon name="close" />
       </button>
@@ -307,8 +303,8 @@ onUnmounted(() => stopTimer())
                 :class="[
                   idx === currentIndex && 'trainer__question-number--active',
                   (mode === 'exam' && answers[idx]?.id) && 'trainer__question-number--answered-exam',
-                  answers[idx]?.id && answers[idx]?.isCorrect && 'trainer__question-number--correct',
-                  answers[idx]?.id && !answers[idx]?.isCorrect && 'trainer__question-number--wrong',
+                  (mode !== 'exam' && answers[idx]?.id && answers[idx]?.isCorrect) && 'trainer__question-number--correct',
+                  (mode !== 'exam' && answers[idx]?.id && !answers[idx]?.isCorrect) && 'trainer__question-number--wrong',
                 ]"
                 @click="goToQuestion(idx)"
               >
@@ -340,6 +336,7 @@ onUnmounted(() => stopTimer())
                     currentAnswer?.id === answer.id && 'trainer__option--selected',
                     getCorrectAnswer(answer.id),
                   ]"
+                  :disabled="!!answers[currentIndex]"
                   @click="selectAnswer(answer.id, answer.is_correct)"
                 >
                   <img
@@ -422,11 +419,14 @@ onUnmounted(() => stopTimer())
   position: relative;
 
   padding: 0 60px;
-  min-height: 320px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include breakpoint('tablet') {
+    min-height: 320px;
+  }
 }
 
 .trainer__footer-buttons {
@@ -555,11 +555,11 @@ onUnmounted(() => stopTimer())
 
 .trainer__timer {
   position: absolute;
-  top: 25px;
-  left: 60px;
+  top: 22px;
+  left: 38px;
 
   font-family: font('secondary');
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .trainer__questions-counter {
@@ -612,21 +612,38 @@ onUnmounted(() => stopTimer())
 
 .trainer__question-content {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  height: 310px;
+
   margin-bottom: 16px;
 
-  height: 250px;
+  @include breakpoint('tablet') {
+    flex-direction: row;
+    gap: 0;
+    height: 250px;
+  }
 }
 
 .trainer__question-image {
-  flex: 0 0 50%;
-  padding: 0 10px 10px 0;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  height: 200px;
 
   img {
     height: 100%;
     width: 100%;
     object-fit: contain;
+  }
+
+  @include breakpoint('tablet') {
+    flex: 0 0 50%;
+    height: auto;
+
+    padding: 0 10px 10px 0;
+
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
   }
 }
 
@@ -638,8 +655,12 @@ onUnmounted(() => stopTimer())
   font-family: font('secondary');
   font-size: 18px;
 
-  padding: 0 10px 0;
+  padding: 0 0 10px;
   border-bottom: 1px solid black;
+
+  @include breakpoint('tablet') {
+    padding: 0 10px 0;
+  }
 
   p {
     margin: 0;
@@ -649,8 +670,8 @@ onUnmounted(() => stopTimer())
 }
 
 .trainer__options-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 10px;
 
   list-style: none;
@@ -658,7 +679,9 @@ onUnmounted(() => stopTimer())
   padding: 0 0 16px;
   margin: 0;
 
-  border-bottom: 1px solid black;
+  @include breakpoint('tablet') {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .trainer__option {
@@ -666,9 +689,11 @@ onUnmounted(() => stopTimer())
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 
-  padding: 16px;
+  width: 100%;
+  height: 60px;
+
+  padding: 10px 16px;
 
   border: 2px solid black;
   border-radius: 4px;
@@ -733,32 +758,43 @@ onUnmounted(() => stopTimer())
 
 .trainer__action {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   padding: 16px 0;
 
   border-bottom: 1px solid black;
+
+  @include breakpoint('tablet') {
+    justify-content: center;
+  }
 }
 
 .trainer__nav {
-  position: absolute;
-  top: 0;
-
-  width: 45px;
-  height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: #3b6790;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
 
+  height: 40px;
+  width: 40px;
+
+  border-radius: 4px;
   cursor: pointer;
   color: white;
   transition: background-color 0.3s;
+
+  @include breakpoint('tablet') {
+    position: absolute;
+    top: 0;
+
+    width: 45px;
+    height: 100%;
+
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
 
   &:hover {
     background-color: #264562;
@@ -781,13 +817,17 @@ onUnmounted(() => stopTimer())
 
 .trainer__button {
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s;
   background: #3b6790;
   color: #fff;
+
+  @include breakpoint('tablet') {
+    font-size: 16px;
+  }
 }
 
 .trainer__button--submit {

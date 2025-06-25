@@ -33,7 +33,7 @@ function sendCurrentForm() {
 
       <p class="form__text" v-html="option.description" />
 
-      <div class="form__inputs" :style="name === 'vessels' ? 'grid-template-columns: auto auto;' : ''">
+      <div class="form__inputs" :class="name === 'vessels' ? 'two-column' : ''">
         <label
           v-for="(item, id) in option.items"
           :key="`${name}-${id}`"
@@ -85,15 +85,23 @@ function sendCurrentForm() {
   }
 
   &__legend {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     margin-bottom: 16px;
     color: $secondary;
+
+    @include breakpoint('tablet') {
+      font-size: 18px;
+    }
   }
 
   &__number {
+    font-size: 18px;
+    font-family: font('secondary');
+
+    @include breakpoint('tablet') {
       font-size: 26px;
-      font-family: font('secondary');
+    }
   }
 
   &__title {
@@ -101,10 +109,14 @@ function sendCurrentForm() {
   }
 
   &__text {
-    font-size: 16px;
+    font-size: 12px;
     line-height: 20px;
     margin: 0 0 24px;
     hyphens: none;
+
+    @include breakpoint('tablet') {
+      font-size: 16px;
+    }
   }
 
   &__inputs {
@@ -114,6 +126,14 @@ function sendCurrentForm() {
     flex-wrap: wrap;
     row-gap: 16px;
     column-gap: 32px;
+
+    &.two-column {
+      grid-template-columns: 1fr;
+
+      @include breakpoint('tablet') {
+        grid-template-columns: auto auto;
+      }
+    }
   }
 
   &__label {
@@ -166,9 +186,13 @@ function sendCurrentForm() {
   }
 
   &__label-text {
-    font-size: 22px;
+    font-size: 16px;
     hyphens: none;
     flex-grow: 1;
+
+    @include breakpoint('tablet') {
+      font-size: 22px;
+    }
   }
 
   &__input-hidden:checked + &__custom-checkbox {
@@ -190,8 +214,7 @@ function sendCurrentForm() {
   }
 
   &__buttons {
-    padding: 16px 0 0;
-    border-top: 1px solid black;
+    padding: 6px 0 0;
   }
 
   &__button {

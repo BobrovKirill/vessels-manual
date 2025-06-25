@@ -6,7 +6,7 @@ export const navList = [
   },
   {
     name: 'Информация',
-    to: '/',
+    to: '/info',
 
   },
   {
@@ -16,7 +16,7 @@ export const navList = [
   },
   {
     name: 'Теория',
-    to: '/',
+    to: '/theory',
 
   },
 ]
