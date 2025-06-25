@@ -46,7 +46,7 @@
       </NuxtLink>
 
       <p class="preview__action-text">
-        отслеживание прогресса в <NuxtLink class="preview__action-link" to="/account">
+        отслеживание прогресса в <NuxtLink class="preview__action-link" to="/">
           личном кабинете
         </NuxtLink>
       </p>

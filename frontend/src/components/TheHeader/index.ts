@@ -1,22 +1,22 @@
 export const navList = [
   {
     name: 'Тесты',
-    to: '/home',
+    to: '/quizzes',
 
   },
   {
     name: 'Информация',
-    to: '/home',
+    to: '/',
 
   },
   {
     name: 'О проекте',
-    to: '/home',
+    to: '/about',
 
   },
   {
     name: 'Теория',
-    to: '/home',
+    to: '/',
 
   },
 ]

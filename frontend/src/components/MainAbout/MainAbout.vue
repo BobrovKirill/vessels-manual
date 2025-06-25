@@ -50,7 +50,7 @@ import SvgIcon from '~/components/SvgIcon/SvgIcon.vue'
             </li>
           </ul>
 
-          <NuxtLink class="about__content-btn" to="/info">
+          <NuxtLink class="about__content-btn" to="/">
             ОЗНАКОМИТСЯ ПОДРОБНЕЕ
           </NuxtLink>
         </div>

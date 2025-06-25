@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <MainPreview />
 
@@ -14,6 +11,3 @@
 
   <RunningLine />
 </template>
-
-<style scoped lang="scss">
-</style>

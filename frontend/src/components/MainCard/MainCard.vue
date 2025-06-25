@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink class="card" :to="{ path: '/example', query: data.value }">
+  <NuxtLink class="card" :to="{ path: '/quizzes', query: data.value }">
     <dl class="card__header">
       <div>
         <dt class="card__title">
