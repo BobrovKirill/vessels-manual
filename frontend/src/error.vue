@@ -16,7 +16,9 @@ const route = useRoute()
 const is404 = computed(() => props.error?.statusCode === 404)
 
 const title = is404.value ? 'Страница не найдена' : 'Страница недоступна'
-const subtitle = is404.value ? 'Возможно, она удалена, переименована, или просто временно недоступна. Но скорей всего мы просто еще не успели ее реализовать, она обязательно скоро появиться!' : 'Мы уже знаем о проблеме и занимаемся ее решением. Попробуйте зайти позднее.'
+const subtitle = is404.value
+  ? 'Возможно, она удалена, переименована, или просто временно недоступна. Но скорей всего мы просто еще не успели ее реализовать, она обязательно скоро появиться!'
+  : 'Мы уже знаем о проблеме и занимаемся ее решением. Попробуйте зайти позднее.'
 
 function handleError(event: Event) {
   event.preventDefault()
@@ -51,7 +53,7 @@ function handleError(event: Event) {
 
 <style lang="scss" scoped>
 .error {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
@@ -72,6 +74,8 @@ function handleError(event: Event) {
   &__title {
     font-size: 44px;
     line-height: 46px;
+
+    text-align: center;
 
     margin: 0;
   }

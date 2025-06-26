@@ -34,10 +34,10 @@ const isTimer = ref(false)
 const isLoadResults = ref(false)
 const isLoading = computed(() => isLoadQuestion.value || isLoadResults.value)
 const isShowResult = ref(false)
-const isAnswersFull = computed(() => (Object.keys(answers.value).length === questions.value.length) && questions.value.length)
+const isAnswersFull = computed(() => (answers.value && (Object.keys(answers.value).length === questions.value.length) && questions.value.length))
 
 const answerButton = computed(() => {
-  const isQuestionAnswered = !!answers.value[currentIndex.value]
+  const isQuestionAnswered = !!answers.value?.[currentIndex.value]
 
   return {
     title: isQuestionAnswered ? 'Следующий' : 'Ответить',
@@ -52,10 +52,14 @@ const answerButton = computed(() => {
   }
 })
 
-const displayTime = computed(() => {
-  const m = String(Math.floor(timeLeft.value / 60)).padStart(2, '0')
-  const s = String(timeLeft.value % 60).padStart(2, '0')
+function getStringTime(time) {
+  const m = String(Math.floor(time / 60)).padStart(2, '0')
+  const s = String(time % 60).padStart(2, '0')
   return `${m} : ${s}`
+}
+
+const displayTime = computed(() => {
+  return getStringTime(timeLeft.value)
 })
 
 const currentQuestion = computed(() => questions.value[currentIndex.value] || {})
@@ -108,11 +112,11 @@ function selectAnswer(id, isCorrect = false) {
 }
 
 function getCorrectAnswer(id) {
-  if (mode === 'exam' || answers.value[currentIndex.value]?.id !== id) {
+  if (mode === 'exam' || answers.value?.[currentIndex.value]?.id !== id) {
     return ''
   }
 
-  return answers.value[currentIndex.value].isCorrect ? 'trainer__option--correct' : 'trainer__option--wrong'
+  return answers.value?.[currentIndex.value].isCorrect ? 'trainer__option--correct' : 'trainer__option--wrong'
 }
 
 async function submitAnswer() {
@@ -152,7 +156,7 @@ async function finishSession() {
   }
 
   isPassed.value = data.isPassedExam || false
-  spendTime.value = data.spendTime || ''
+  spendTime.value = getStringTime(timeLimit.value * 60 - timeLeft.value)
   wrongAnswers.value = data.wrongAnswer || 0
   isTimer.value = data.isTimer || false
 
@@ -181,9 +185,9 @@ function handleClose() {
 function restartExam() {
   isShowResult.value = false
   isLoadResults.value = false
-  results.value = null
+  results.value = {}
   questions.value = null
-  answers.value = null
+  answers.value = {}
   currentIndex.value = 0
   currentAnswer.value = null
   currentIndex.value = null
@@ -235,8 +239,8 @@ onUnmounted(() => stopTimer())
           <h2 class="trainer__title result-title">
             {{ isPassed ? 'Сдал' : 'Не сдал' }}
           </h2>
-          <p class="result-info">
-            Потраченное время – {{ spentMinutes }} мин
+          <p v-if="mode === 'exam'" class="result-info">
+            Потраченное время – {{ spendTime }}
           </p>
           <p class="result-info">
             Неправильных ответов – {{ wrongAnswers }}
@@ -302,9 +306,9 @@ onUnmounted(() => stopTimer())
                 class="trainer__question-number"
                 :class="[
                   idx === currentIndex && 'trainer__question-number--active',
-                  (mode === 'exam' && answers[idx]?.id) && 'trainer__question-number--answered-exam',
-                  (mode !== 'exam' && answers[idx]?.id && answers[idx]?.isCorrect) && 'trainer__question-number--correct',
-                  (mode !== 'exam' && answers[idx]?.id && !answers[idx]?.isCorrect) && 'trainer__question-number--wrong',
+                  (mode === 'exam' && answers?.[idx]?.id) && 'trainer__question-number--answered-exam',
+                  (mode !== 'exam' && answers?.[idx]?.id && answers?.[idx]?.isCorrect) && 'trainer__question-number--correct',
+                  (mode !== 'exam' && answers?.[idx]?.id && !answers?.[idx]?.isCorrect) && 'trainer__question-number--wrong',
                 ]"
                 @click="goToQuestion(idx)"
               >
@@ -336,7 +340,7 @@ onUnmounted(() => stopTimer())
                     currentAnswer?.id === answer.id && 'trainer__option--selected',
                     getCorrectAnswer(answer.id),
                   ]"
-                  :disabled="!!answers[currentIndex]"
+                  :disabled="!!answers?.[currentIndex]"
                   @click="selectAnswer(answer.id, answer.is_correct)"
                 >
                   <img
@@ -371,7 +375,6 @@ onUnmounted(() => stopTimer())
               <button
                 v-show="isAnswersFull"
                 class="trainer__button trainer__button--submit"
-                :disabled="examFinished"
                 @click="finishSession()"
               >
                 Результаты
@@ -389,11 +392,11 @@ onUnmounted(() => stopTimer())
 
           <div v-if="mode !== 'exam'" class="trainer__feedback">
             <p
-              v-show="answers[currentIndex]?.id"
+              v-show="answers?.[currentIndex]?.id"
               class="trainer__feedback-text"
-              :class="answers[currentIndex]?.isCorrect ? 'trainer__feedback-text--correct' : 'trainer__feedback-text--wrong'"
+              :class="answers?.[currentIndex]?.isCorrect ? 'trainer__feedback-text--correct' : 'trainer__feedback-text--wrong'"
             >
-              <span v-html="answers[currentIndex]?.isCorrect ? 'Правильно!' : currentQuestion.description" />
+              <span v-html="answers?.[currentIndex]?.isCorrect ? 'Правильно!' : currentQuestion.description" />
             </p>
           </div>
         </div>

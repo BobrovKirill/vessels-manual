@@ -44,7 +44,7 @@
 
 <style scoped lang="scss">
 .error {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
@@ -65,7 +65,7 @@
   &__title {
     font-size: 44px;
     line-height: 46px;
-
+    text-align: center;
     margin: 0;
   }
 
